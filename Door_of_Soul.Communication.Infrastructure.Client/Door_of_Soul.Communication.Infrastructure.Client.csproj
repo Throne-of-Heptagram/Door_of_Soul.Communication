@@ -38,20 +38,69 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Answer\AnswerEventRouter.cs" />
+    <Compile Include="Answer\AnswerOperationRequestApi.cs" />
+    <Compile Include="Answer\AnswerOperationResponseRouter.cs" />
+    <Compile Include="Avatar\AvatarEventRouter.cs" />
+    <Compile Include="Avatar\AvatarOperationRequestApi.cs" />
+    <Compile Include="Avatar\AvatarOperationResponseRouter.cs" />
+    <Compile Include="Device\EventHandler\AnswerEventBroker.cs" />
+    <Compile Include="Device\EventHandler\AvatarEventBroker.cs" />
+    <Compile Include="Device\EventHandler\SceneEventBroker.cs" />
+    <Compile Include="Device\EventHandler\SoulEventBroker.cs" />
+    <Compile Include="Device\EventHandler\SystemEventBroker.cs" />
+    <Compile Include="Device\EventHandler\WorldEventBroker.cs" />
+    <Compile Include="Device\OperationResponseHandler\AnswerOperationResponseBroker.cs" />
+    <Compile Include="Device\OperationResponseHandler\AvatarOperationResponseBroker.cs" />
+    <Compile Include="Device\OperationResponseHandler\SceneOperationResponseBroker.cs" />
+    <Compile Include="Device\OperationResponseHandler\SoulOperationResponseBroker.cs" />
+    <Compile Include="Device\OperationResponseHandler\SystemOperationResponseBroker.cs" />
+    <Compile Include="Device\OperationResponseHandler\WorldOperationResponseBroker.cs" />
+    <Compile Include="OperationResponseRouter.cs" />
+    <Compile Include="CommunicationService.cs" />
+    <Compile Include="Device\DeviceEventRouter.cs" />
+    <Compile Include="Device\DeviceOperationRequestApi.cs" />
+    <Compile Include="Device\DeviceOperationResponseRouter.cs" />
+    <Compile Include="EventHandler.cs" />
+    <Compile Include="EventRouter.cs" />
+    <Compile Include="OperationResponseHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <Compile Include="Scene\SceneEventRouter.cs" />
+    <Compile Include="Scene\SceneOperationRequestApi.cs" />
+    <Compile Include="Scene\SceneOperationResponseRouter.cs" />
+    <Compile Include="Soul\SoulEventRouter.cs" />
+    <Compile Include="Soul\SoulOperationRequestApi.cs" />
+    <Compile Include="Soul\SoulOperationResponseRouter.cs" />
+    <Compile Include="System\SystemEventRouter.cs" />
+    <Compile Include="System\SystemOperationRequestApi.cs" />
+    <Compile Include="System\SystemOperationResponseRouter.cs" />
+    <Compile Include="World\WorldEventRouter.cs" />
+    <Compile Include="World\WorldOperationRequestApi.cs" />
+    <Compile Include="World\WorldOperationResponseRouter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core\Door_of_Soul.Core.csproj">
       <Project>{34c59e1e-eee2-4b13-9802-39dae818abfd}</Project>
       <Name>Door_of_Soul.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Door_of_Soul.Communication.Protocol\Door_of_Soul.Communication.Protocol.csproj">
-      <Project>{b253c3db-f984-4414-b08e-f4a87524adfe}</Project>
-      <Name>Door_of_Soul.Communication.Protocol</Name>
+    <ProjectReference Include="..\Door_of_Soul.Communication.Protocol.External\Door_of_Soul.Communication.Protocol.External.csproj">
+      <Project>{747f0ed6-82fd-44dc-994b-f9d2b9dde3f9}</Project>
+      <Name>Door_of_Soul.Communication.Protocol.External</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Answer\EventHandler\" />
+    <Folder Include="Answer\OperationResponseHandler\" />
+    <Folder Include="Avatar\EventHandler\" />
+    <Folder Include="Avatar\OperationResponseHandler\" />
+    <Folder Include="Scene\EventHandler\" />
+    <Folder Include="Scene\OperationResponseHandler\" />
+    <Folder Include="Soul\EventHandler\" />
+    <Folder Include="Soul\OperationResponseHandler\" />
+    <Folder Include="System\EventHandler\" />
+    <Folder Include="System\OperationResponseHandler\" />
+    <Folder Include="World\EventHandler\" />
+    <Folder Include="World\OperationResponseHandler\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
