@@ -2,9 +2,7 @@
 {
     public enum SceneOperationRequestParameterCode : byte
     {
-        WorldId,
         SceneId,
-        ObserverAvatarId,
         OperationCode,
         Parameters
     }

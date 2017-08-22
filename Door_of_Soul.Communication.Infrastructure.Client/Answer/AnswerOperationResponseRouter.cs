@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.Infrastructure.Client.Answer
 {
-    class AnswerOperationResponseRouter : OperationResponseRouter<Core.Answer, AnswerOperationCode>
+    class AnswerOperationResponseRouter : OperationResponseRouter<Core.Device, Core.Answer, AnswerOperationCode>
     {
         public static AnswerOperationResponseRouter Instance { get; private set; } = new AnswerOperationResponseRouter();
 

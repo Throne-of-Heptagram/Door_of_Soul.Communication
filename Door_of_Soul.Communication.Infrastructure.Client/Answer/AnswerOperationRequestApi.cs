@@ -8,7 +8,7 @@ namespace Door_of_Soul.Communication.Infrastructure.Client.Answer
     {
         public static void SendOperationRequest(Core.Answer sender, AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
-            DeviceOperationRequestApi.AnswerOperationRequest(sender, operationCode, parameters);
+            DeviceOperationRequestApi.AnswerOperationRequest(sender.AnswerId, operationCode, parameters);
         }
     }
 }

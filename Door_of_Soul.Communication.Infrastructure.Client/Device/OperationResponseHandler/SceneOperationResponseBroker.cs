@@ -7,15 +7,15 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Infrastructure.Client.Device.OperationResponseHandler
 {
-    class SceneOperationResponseBroker : OperationResponseHandler<Core.Device, DeviceOperationCode>
+    class SceneOperationResponseBroker : OperationResponseHandler<Core.Device, Core.Device, DeviceOperationCode>
     {
         public SceneOperationResponseBroker() : base(typeof(SceneOperationResponseParameterCode))
         {
         }
 
-        internal override bool Handle(Core.Device subject, DeviceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(Core.Device terminal, Core.Device subject, DeviceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(subject, operationCode, returnCode, operationMessage, parameters, out errorMessage))
+            if (base.Handle(terminal, subject, operationCode, returnCode, operationMessage, parameters, out errorMessage))
             {
                 int sceneId = (int)parameters[(byte)SceneOperationResponseParameterCode.SceneId];
                 SceneOperationCode sceneOperationCode = (SceneOperationCode)parameters[(byte)SceneOperationResponseParameterCode.OperationCode];
@@ -25,7 +25,7 @@ namespace Door_of_Soul.Communication.Infrastructure.Client.Device.OperationRespo
                 Core.Scene scene;
                 if (CommunicationService.Instance.FindScene(sceneId, out scene))
                 {
-                    return SceneOperationResponseRouter.Instance.Route(scene, sceneOperationCode, sceneOperationReturnCode, answerOperationMessage, operationResponseParameters, out errorMessage);
+                    return SceneOperationResponseRouter.Instance.Route(terminal, scene, sceneOperationCode, sceneOperationReturnCode, answerOperationMessage, operationResponseParameters, out errorMessage);
                 }
                 else
                 {

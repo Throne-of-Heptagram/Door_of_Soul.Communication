@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.Infrastructure.Client.World
 {
-    class WorldOperationResponseRouter : OperationResponseRouter<Core.World, WorldOperationCode>
+    class WorldOperationResponseRouter : OperationResponseRouter<Core.Device, Core.World, WorldOperationCode>
     {
         public static WorldOperationResponseRouter Instance { get; private set; } = new WorldOperationResponseRouter();
 

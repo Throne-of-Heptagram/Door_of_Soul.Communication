@@ -1,6 +1,7 @@
 ﻿using Door_of_Soul.Communication.Infrastructure.Client.Device;
 using Door_of_Soul.Communication.Protocol.External.Avatar;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Door_of_Soul.Communication.Infrastructure.Client.Avatar
 {
@@ -8,7 +9,10 @@ namespace Door_of_Soul.Communication.Infrastructure.Client.Avatar
     {
         public static void SendOperationRequest(Core.Avatar sender, AvatarOperationCode operationCode, Dictionary<byte, object> parameters)
         {
-            DeviceOperationRequestApi.AvatarOperationRequest(sender, operationCode, parameters);
+            if (!sender.Souls.Any(x => x.Answer != null))
+                return;
+            Core.Soul firstSoul = sender.Souls.First(x => x.Answer != null);
+            DeviceOperationRequestApi.AvatarOperationRequest(firstSoul.Answer.AnswerId, firstSoul.SoulId, sender.AvatarId, operationCode, parameters);
         }
     }
 }

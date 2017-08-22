@@ -7,15 +7,15 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Infrastructure.Client.Device.OperationResponseHandler
 {
-    class SoulOperationResponseBroker : OperationResponseHandler<Core.Device, DeviceOperationCode>
+    class SoulOperationResponseBroker : OperationResponseHandler<Core.Device, Core.Device, DeviceOperationCode>
     {
         public SoulOperationResponseBroker() : base(typeof(SoulOperationResponseParameterCode))
         {
         }
 
-        internal override bool Handle(Core.Device subject, DeviceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(Core.Device terminal, Core.Device subject, DeviceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(subject, operationCode, returnCode, operationMessage, parameters, out errorMessage))
+            if (base.Handle(terminal, subject, operationCode, returnCode, operationMessage, parameters, out errorMessage))
             {
                 int soulId = (int)parameters[(byte)SoulOperationResponseParameterCode.SoulId];
                 SoulOperationCode soulOperationCode = (SoulOperationCode)parameters[(byte)SoulOperationResponseParameterCode.OperationCode];
@@ -25,7 +25,7 @@ namespace Door_of_Soul.Communication.Infrastructure.Client.Device.OperationRespo
                 Core.Soul soul;
                 if (CommunicationService.Instance.FindSoul(soulId, out soul))
                 {
-                    return SoulOperationResponseRouter.Instance.Route(soul, soulOperationCode, soulOperationReturnCode, soulOperationMessage, operationResponseParameters, out errorMessage);
+                    return SoulOperationResponseRouter.Instance.Route(terminal, soul, soulOperationCode, soulOperationReturnCode, soulOperationMessage, operationResponseParameters, out errorMessage);
                 }
                 else
                 {

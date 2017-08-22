@@ -7,33 +7,24 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Device.OperationRequestHandler
 {
-    class SystemOperationRequestBroker : OperationRequestHandler<Core.Device, DeviceOperationCode>
+    class SystemOperationRequestBroker : OperationRequestHandler<Core.Device, Core.Device, DeviceOperationCode>
     {
         public SystemOperationRequestBroker() : base(typeof(SystemOperationRequestParameterCode))
         {
         }
 
-        public override void SendResponse(Core.Device target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(Core.Device terminal, Core.Device target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             DeviceOperationResponseApi.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
         }
 
-        public override bool Handle(Core.Device requester, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(Core.Device terminal, Core.Device requester, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(requester, operationCode, parameters, out errorMessage))
+            if (base.Handle(terminal, requester, operationCode, parameters, out errorMessage))
             {
-                string authenticationToken = (string)parameters[(byte)SystemOperationRequestParameterCode.AuthenticationToken];
                 SystemOperationCode systemOperationCode = (SystemOperationCode)parameters[(byte)SystemOperationRequestParameterCode.OperationCode];
                 Dictionary<byte, object> operationRequestParameters = (Dictionary<byte, object>)parameters[(byte)SystemOperationRequestParameterCode.Parameters];
-                if (CommunicationService.Instance.SystemAuthenticate(authenticationToken))
-                {
-                    return SystemOperationRequestRouter.Instance.Route(Core.System.Instance, systemOperationCode, operationRequestParameters, out errorMessage);
-                }
-                else
-                {
-                    errorMessage = $"SystemAuthenticate Failed";
-                    return false;
-                }
+                return SystemOperationRequestRouter.Instance.Route(terminal, Core.System.Instance, systemOperationCode, operationRequestParameters, out errorMessage);
             }
             else
             {

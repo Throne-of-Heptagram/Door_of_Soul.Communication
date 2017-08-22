@@ -7,9 +7,9 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Soul
 {
     public static class SoulOperationResponseApi
     {
-        public static void SendOperationResponse(Core.Soul target, SoulOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SendOperationResponse(Core.Device terminal, Core.Soul target, SoulOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            DeviceOperationResponseApi.SoulOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
+            DeviceOperationResponseApi.SoulOperationResponse(terminal, target, operationCode, operationReturnCode, operationMessage, parameters);
         }
     }
 }

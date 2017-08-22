@@ -7,90 +7,83 @@ using Door_of_Soul.Communication.Protocol.External.Soul;
 using Door_of_Soul.Communication.Protocol.External.System;
 using Door_of_Soul.Communication.Protocol.External.World;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Door_of_Soul.Communication.Infrastructure.Client.Device
 {
     public static class DeviceOperationRequestApi
     {
-        public static void SendOperationRequest(DeviceOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void SendProxyServerOperationRequest(DeviceOperationCode operationCode, Dictionary<byte, object> parameters)
         {
-            CommunicationService.Instance.SendOperation(operationCode, parameters);
+            CommunicationService.Instance.SendProxyServerOperation(operationCode, parameters);
         }
-        public static void SystemOperationRequest(string authenticationToken, SystemOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void SendPhysicsServerOperationRequest(DeviceOperationCode operationCode, Dictionary<byte, object> parameters)
+        {
+            CommunicationService.Instance.SendPhysicsServerOperation(operationCode, parameters);
+        }
+        public static void SystemOperationRequest(SystemOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
-                { (byte)SystemOperationRequestParameterCode.AuthenticationToken, authenticationToken },
                 { (byte)SystemOperationRequestParameterCode.OperationCode, operationCode },
                 { (byte)SystemOperationRequestParameterCode.Parameters, parameters }
             };
-            SendOperationRequest(DeviceOperationCode.SystemOperation, operationRequestParameters);
+            SendProxyServerOperationRequest(DeviceOperationCode.SystemOperation, operationRequestParameters);
         }
-        public static void AnswerOperationRequest(Core.Answer sender, AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void AnswerOperationRequest(int answerId, AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
-                { (byte)AnswerOperationRequestParameterCode.AnswerId, sender.AnswerId },
+                { (byte)AnswerOperationRequestParameterCode.AnswerId, answerId },
                 { (byte)AnswerOperationRequestParameterCode.OperationCode, operationCode },
                 { (byte)AnswerOperationRequestParameterCode.Parameters, parameters }
             };
-            SendOperationRequest(DeviceOperationCode.AnswerOperation, operationRequestParameters);
+            SendProxyServerOperationRequest(DeviceOperationCode.AnswerOperation, operationRequestParameters);
         }
-        public static void SoulOperationRequest(Core.Soul sender, SoulOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void SoulOperationRequest(int answerId, int soulId, SoulOperationCode operationCode, Dictionary<byte, object> parameters)
         {
-            if (sender.Answer == null)
-                return;
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
-                { (byte)SoulOperationRequestParameterCode.AnswerId, sender.Answer.AnswerId },
-                { (byte)SoulOperationRequestParameterCode.SoulId, sender.SoulId },
+                { (byte)SoulOperationRequestParameterCode.AnswerId, answerId },
+                { (byte)SoulOperationRequestParameterCode.SoulId, soulId },
                 { (byte)SoulOperationRequestParameterCode.OperationCode, operationCode },
                 { (byte)SoulOperationRequestParameterCode.Parameters, parameters }
             };
-            SendOperationRequest(DeviceOperationCode.SoulOperation, operationRequestParameters);
+            SendProxyServerOperationRequest(DeviceOperationCode.SoulOperation, operationRequestParameters);
         }
-        public static void AvatarOperationRequest(Core.Avatar sender, AvatarOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void AvatarOperationRequest(int answerId, int soulId, int avatarId, AvatarOperationCode operationCode, Dictionary<byte, object> parameters)
         {
-            if (!sender.Souls.Any())
-                return;
-            Core.Soul firstSoul = sender.Souls.First(x => x.Answer != null);
-            if (firstSoul == null)
-                return;
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
-                { (byte)AvatarOperationRequestParameterCode.AnswerId, firstSoul.Answer.AnswerId },
-                { (byte)AvatarOperationRequestParameterCode.SoulId, firstSoul.SoulId },
-                { (byte)AvatarOperationRequestParameterCode.AvatarId, sender.AvatarId },
+                { (byte)AvatarOperationRequestParameterCode.AnswerId, answerId },
+                { (byte)AvatarOperationRequestParameterCode.SoulId, soulId },
+                { (byte)AvatarOperationRequestParameterCode.AvatarId, avatarId },
                 { (byte)AvatarOperationRequestParameterCode.OperationCode, operationCode },
                 { (byte)AvatarOperationRequestParameterCode.Parameters, parameters }
             };
-            SendOperationRequest(DeviceOperationCode.AvatarOperation, operationRequestParameters);
+            SendProxyServerOperationRequest(DeviceOperationCode.AvatarOperation, operationRequestParameters);
         }
-        public static void WorldOperationRequest(Core.World sender, string authenticationToken, WorldOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void WorldOperationRequest(int worldId, WorldOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
-                { (byte)WorldOperationRequestParameterCode.WorldId, sender.WorldId },
-                { (byte)WorldOperationRequestParameterCode.AuthenticationToken, authenticationToken },
+                { (byte)WorldOperationRequestParameterCode.WorldId, worldId },
                 { (byte)WorldOperationRequestParameterCode.OperationCode, operationCode },
                 { (byte)WorldOperationRequestParameterCode.Parameters, parameters }
             };
-            SendOperationRequest(DeviceOperationCode.WorldOperation, operationRequestParameters);
+            SendProxyServerOperationRequest(DeviceOperationCode.WorldOperation, operationRequestParameters);
         }
-        public static void SceneOperationRequest(Core.Scene sender, Core.Avatar observer, SceneOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void SceneOperationRequest(int sceneId, SceneOperationCode operationCode, Dictionary<byte, object> parameters, bool isToPhysicsServer)
         {
-            if (sender.BelongingWorld == null)
-                return;
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
-                { (byte)SceneOperationRequestParameterCode.WorldId, sender.BelongingWorld.WorldId },
-                { (byte)SceneOperationRequestParameterCode.SceneId, sender.SceneId },
-                { (byte)SceneOperationRequestParameterCode.ObserverAvatarId, observer.AvatarId },
+                { (byte)SceneOperationRequestParameterCode.SceneId, sceneId },
                 { (byte)SceneOperationRequestParameterCode.OperationCode, operationCode },
                 { (byte)SceneOperationRequestParameterCode.Parameters, parameters }
             };
-            SendOperationRequest(DeviceOperationCode.SceneOperation, operationRequestParameters);
+            if (isToPhysicsServer)
+                SendPhysicsServerOperationRequest(DeviceOperationCode.SceneOperation, operationRequestParameters);
+            else
+                SendProxyServerOperationRequest(DeviceOperationCode.SceneOperation, operationRequestParameters);
         }
     }
 }

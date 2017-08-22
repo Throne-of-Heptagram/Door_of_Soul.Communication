@@ -14,16 +14,28 @@ namespace Door_of_Soul.Communication.Infrastructure.Client
             Instance = instance;
         }
 
-        public event Action<bool> OnConnectStatusChanged;
+        public event Action<bool> OnProxyServerConnectStatusChanged;
+        public event Action<bool> OnPhysicsServerConnectStatusChanged;
 
-        private bool serverConnected;
-        public bool ServerConnected
+        private bool proxyServerConnected;
+        public bool ProxyServerConnected
         {
-            get { return serverConnected; }
+            get { return proxyServerConnected; }
             protected set
             {
-                serverConnected = value;
-                OnConnectStatusChanged?.Invoke(serverConnected);
+                proxyServerConnected = value;
+                OnProxyServerConnectStatusChanged?.Invoke(proxyServerConnected);
+            }
+        }
+
+        private bool physicsServerConnected;
+        public bool PhysicsServerConnected
+        {
+            get { return physicsServerConnected; }
+            protected set
+            {
+                physicsServerConnected = value;
+                OnPhysicsServerConnectStatusChanged?.Invoke(physicsServerConnected);
             }
         }
 
@@ -41,11 +53,14 @@ namespace Door_of_Soul.Communication.Infrastructure.Client
 
         protected bool HandleOperationResponse(DeviceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            return DeviceOperationResponseRouter.Instance.Route(GetDevice(), operationCode, returnCode, operationMessage, parameters, out errorMessage);
+            return DeviceOperationResponseRouter.Instance.Route(GetDevice(), GetDevice(), operationCode, returnCode, operationMessage, parameters, out errorMessage);
         }
-        public abstract bool Connect(string serverAddress, int port, string applicationName);
+        public abstract bool ConnectProxyServer(string serverAddress, int port, string applicationName);
+        public abstract bool ConnectPhysicsServer(string serverAddress, int port, string applicationName);
         public abstract void Process();
-        public abstract void Disconnect();
-        public abstract void SendOperation(DeviceOperationCode operationCode, Dictionary<byte, object> parameters);
+        public abstract void DisconnectProxyServer();
+        public abstract void DisconnectPhysicsServer();
+        public abstract void SendProxyServerOperation(DeviceOperationCode operationCode, Dictionary<byte, object> parameters);
+        public abstract void SendPhysicsServerOperation(DeviceOperationCode operationCode, Dictionary<byte, object> parameters);
     }
 }

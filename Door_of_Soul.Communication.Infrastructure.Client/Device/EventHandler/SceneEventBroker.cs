@@ -12,7 +12,7 @@ namespace Door_of_Soul.Communication.Infrastructure.Client.Device.EventHandler
         {
         }
 
-        internal override bool Handle(Core.Device subject, DeviceEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(Core.Device subject, DeviceEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
             if (base.Handle(subject, eventCode, parameters, out errorMessage))
             {

@@ -7,15 +7,15 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Infrastructure.Client.Device.OperationResponseHandler
 {
-    class AvatarOperationResponseBroker : OperationResponseHandler<Core.Device, DeviceOperationCode>
+    class AvatarOperationResponseBroker : OperationResponseHandler<Core.Device, Core.Device, DeviceOperationCode>
     {
         public AvatarOperationResponseBroker() : base(typeof(AvatarOperationResponseParameterCode))
         {
         }
 
-        internal override bool Handle(Core.Device subject, DeviceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(Core.Device terminal, Core.Device subject, DeviceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(subject, operationCode, returnCode, operationMessage, parameters, out errorMessage))
+            if (base.Handle(terminal, subject, operationCode, returnCode, operationMessage, parameters, out errorMessage))
             {
                 int avatarId = (int)parameters[(byte)AvatarOperationResponseParameterCode.AvatarId];
                 AvatarOperationCode avatarOperationCode = (AvatarOperationCode)parameters[(byte)AvatarOperationResponseParameterCode.OperationCode];
@@ -25,7 +25,7 @@ namespace Door_of_Soul.Communication.Infrastructure.Client.Device.OperationRespo
                 Core.Avatar avatar;
                 if (CommunicationService.Instance.FindAvatar(avatarId, out avatar))
                 {
-                    return AvatarOperationResponseRouter.Instance.Route(avatar, avatarOperationCode, avatarOperationReturnCode, avatarOperationMessage, operationResponseParameters, out errorMessage);
+                    return AvatarOperationResponseRouter.Instance.Route(terminal, avatar, avatarOperationCode, avatarOperationReturnCode, avatarOperationMessage, operationResponseParameters, out errorMessage);
                 }
                 else
                 {

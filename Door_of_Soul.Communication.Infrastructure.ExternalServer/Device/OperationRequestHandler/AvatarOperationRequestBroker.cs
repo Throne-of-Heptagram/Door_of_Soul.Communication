@@ -7,20 +7,20 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Device.OperationRequestHandler
 {
-    class AvatarOperationRequestBroker : OperationRequestHandler<Core.Device, DeviceOperationCode>
+    class AvatarOperationRequestBroker : OperationRequestHandler<Core.Device, Core.Device, DeviceOperationCode>
     {
         public AvatarOperationRequestBroker() : base(typeof(AvatarOperationRequestParameterCode))
         {
         }
 
-        public override void SendResponse(Core.Device target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(Core.Device terminal, Core.Device target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             DeviceOperationResponseApi.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
         }
 
-        public override bool Handle(Core.Device requester, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(Core.Device terminal, Core.Device requester, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(requester, operationCode, parameters, out errorMessage))
+            if (base.Handle(terminal, requester, operationCode, parameters, out errorMessage))
             {
                 int answerId = (int)parameters[(byte)AvatarOperationRequestParameterCode.AnswerId];
                 int soulId = (int)parameters[(byte)AvatarOperationRequestParameterCode.SoulId];
@@ -31,7 +31,7 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Device.Operat
                 Core.Avatar avatar;
                 if (requester.IsAnswerLinked(answerId) && requester.Answer.FindSoul(soulId, out soul) && soul.FindAvatar(avatarId, out avatar))
                 {
-                    return AvatarOperationRequestRouter.Instance.Route(avatar, avatarOperationCode, operationRequestParameters, out errorMessage);
+                    return AvatarOperationRequestRouter.Instance.Route(terminal, avatar, avatarOperationCode, operationRequestParameters, out errorMessage);
                 }
                 else
                 {

@@ -7,36 +7,33 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Device.OperationRequestHandler
 {
-    class SceneOperationRequestBroker : OperationRequestHandler<Core.Device, DeviceOperationCode>
+    class SceneOperationRequestBroker : OperationRequestHandler<Core.Device, Core.Device, DeviceOperationCode>
     {
         public SceneOperationRequestBroker() : base(typeof(SceneOperationRequestParameterCode))
         {
         }
 
-        public override void SendResponse(Core.Device target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(Core.Device terminal, Core.Device target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             DeviceOperationResponseApi.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
         }
 
-        public override bool Handle(Core.Device requester, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(Core.Device terminal, Core.Device requester, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(requester, operationCode, parameters, out errorMessage))
+            if (base.Handle(terminal, requester, operationCode, parameters, out errorMessage))
             {
-                int worldId = (int)parameters[(byte)SceneOperationRequestParameterCode.WorldId];
                 int sceneId = (int)parameters[(byte)SceneOperationRequestParameterCode.SceneId];
-                int observerAvatarId = (int)parameters[(byte)SceneOperationRequestParameterCode.ObserverAvatarId];
                 SceneOperationCode sceneOperationCode = (SceneOperationCode)parameters[(byte)SceneOperationRequestParameterCode.OperationCode];
                 Dictionary<byte, object> operationRequestParameters = (Dictionary<byte, object>)parameters[(byte)SceneOperationRequestParameterCode.Parameters];
-                Core.World world;
                 Core.Scene scene;
-                if (CommunicationService.Instance.FindWorld(worldId, out world) && world.FindScene(sceneId, out scene) && scene.ObserverAvatarId == observerAvatarId)
+                if (CommunicationService.Instance.FindScene(sceneId, out scene))
                 {
-                    return SceneOperationRequestRouter.Instance.Route(scene, sceneOperationCode, operationRequestParameters, out errorMessage);
+                    return SceneOperationRequestRouter.Instance.Route(terminal, scene, sceneOperationCode, operationRequestParameters, out errorMessage);
                 }
                 else
                 {
-                    errorMessage = $"Can not find SceneId:{sceneId} in WorldId:{worldId}, ObserverAvatarId:{observerAvatarId}";
-                    return false;
+                    SceneOperationRequestApi.SendOperationRequest(terminal.DeviceId, sceneId, (Protocol.Internal.Scene.SceneOperationCode)sceneOperationCode, operationRequestParameters);
+                    return true;
                 }
             }
             else

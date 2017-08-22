@@ -2,7 +2,6 @@
 {
     public enum SystemOperationRequestParameterCode : byte
     {
-        AuthenticationToken,
         OperationCode,
         Parameters
     }

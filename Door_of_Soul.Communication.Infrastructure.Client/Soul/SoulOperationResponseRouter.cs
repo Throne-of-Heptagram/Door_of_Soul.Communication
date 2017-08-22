@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.Infrastructure.Client.Soul
 {
-    class SoulOperationResponseRouter : OperationResponseRouter<Core.Soul, SoulOperationCode>
+    class SoulOperationResponseRouter : OperationResponseRouter<Core.Device, Core.Soul, SoulOperationCode>
     {
         public static SoulOperationResponseRouter Instance { get; private set; } = new SoulOperationResponseRouter();
 

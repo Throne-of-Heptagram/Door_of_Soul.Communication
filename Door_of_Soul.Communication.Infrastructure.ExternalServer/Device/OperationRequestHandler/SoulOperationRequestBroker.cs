@@ -7,20 +7,20 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Device.OperationRequestHandler
 {
-    class SoulOperationRequestBroker : OperationRequestHandler<Core.Device, DeviceOperationCode>
+    class SoulOperationRequestBroker : OperationRequestHandler<Core.Device, Core.Device, DeviceOperationCode>
     {
         public SoulOperationRequestBroker() : base(typeof(SoulOperationRequestParameterCode))
         {
         }
 
-        public override void SendResponse(Core.Device target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(Core.Device terminal, Core.Device target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             DeviceOperationResponseApi.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
         }
 
-        public override bool Handle(Core.Device requester, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(Core.Device terminal, Core.Device requester, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(requester, operationCode, parameters, out errorMessage))
+            if (base.Handle(terminal, requester, operationCode, parameters, out errorMessage))
             {
                 int answerId = (int)parameters[(byte)SoulOperationRequestParameterCode.AnswerId];
                 int soulId = (int)parameters[(byte)SoulOperationRequestParameterCode.SoulId];
@@ -29,7 +29,7 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Device.Operat
                 Core.Soul soul;
                 if (requester.IsAnswerLinked(answerId) && requester.Answer.FindSoul(soulId, out soul))
                 {
-                    return SoulOperationRequestRouter.Instance.Route(soul, soulOperationCode, operationRequestParameters, out errorMessage);
+                    return SoulOperationRequestRouter.Instance.Route(terminal, soul, soulOperationCode, operationRequestParameters, out errorMessage);
                 }
                 else
                 {

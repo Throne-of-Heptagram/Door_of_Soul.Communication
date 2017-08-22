@@ -3,7 +3,6 @@
     public enum WorldOperationRequestParameterCode : byte
     {
         WorldId,
-        AuthenticationToken,
         OperationCode,
         Parameters
     }

@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.World
 {
-    class WorldOperationRequestRouter : OperationRequestRouter<Core.World, WorldOperationCode>
+    class WorldOperationRequestRouter : OperationRequestRouter<Core.Device, Core.World, WorldOperationCode>
     {
         public static WorldOperationRequestRouter Instance { get; private set; } = new WorldOperationRequestRouter();
 

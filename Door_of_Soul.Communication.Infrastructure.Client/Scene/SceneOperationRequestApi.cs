@@ -6,9 +6,11 @@ namespace Door_of_Soul.Communication.Infrastructure.Client.Scene
 {
     public static class SceneOperationRequestApi
     {
-        public static void SendOperationRequest(Core.Scene sender, Core.Avatar observer, SceneOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void SendOperationRequest(Core.Scene sender, SceneOperationCode operationCode, Dictionary<byte, object> parameters, bool isToPhysicsServer)
         {
-            DeviceOperationRequestApi.SceneOperationRequest(sender, observer, operationCode, parameters);
+            if (sender.BelongingWorld == null)
+                return;
+            DeviceOperationRequestApi.SceneOperationRequest(sender.SceneId, operationCode, parameters, isToPhysicsServer);
         }
     }
 }

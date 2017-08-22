@@ -6,9 +6,9 @@ namespace Door_of_Soul.Communication.Infrastructure.Client.System
 {
     public static class SystemOperationRequestApi
     {
-        public static void SendOperationRequest(string authenticationToken, SystemOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void SendOperationRequest(SystemOperationCode operationCode, Dictionary<byte, object> parameters)
         {
-            DeviceOperationRequestApi.SystemOperationRequest(authenticationToken, operationCode, parameters);
+            DeviceOperationRequestApi.SystemOperationRequest(operationCode, parameters);
         }
     }
 }
