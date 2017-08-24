@@ -40,7 +40,54 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Answer\AnswerEventApi.cs" />
+    <Compile Include="Answer\AnswerOperationRequestRouter.cs" />
+    <Compile Include="Answer\AnswerOperationResponseApi.cs" />
+    <Compile Include="Avatar\AvatarEventApi.cs" />
+    <Compile Include="Avatar\AvatarOperationRequestRouter.cs" />
+    <Compile Include="Avatar\AvatarOperationResponseApi.cs" />
+    <Compile Include="CommunicationService.cs" />
+    <Compile Include="EndPoint\EndPointEventApi.cs" />
+    <Compile Include="EndPoint\EndPointOperationRequestRouter.cs" />
+    <Compile Include="EndPoint\EndPointOperationResponseApi.cs" />
+    <Compile Include="EndPoint\OperationRequestHandler\AnswerOperationRequestBroker.cs" />
+    <Compile Include="EndPoint\OperationRequestHandler\AvatarOperationRequestBroker.cs" />
+    <Compile Include="EndPoint\OperationRequestHandler\SceneOperationRequestBroker.cs" />
+    <Compile Include="EndPoint\OperationRequestHandler\SoulOperationRequestBroker.cs" />
+    <Compile Include="EndPoint\OperationRequestHandler\SystemOperationRequestBroker.cs" />
+    <Compile Include="EndPoint\OperationRequestHandler\WorldOperationRequestBroker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scene\SceneEventApi.cs" />
+    <Compile Include="Scene\SceneOperationRequestRouter.cs" />
+    <Compile Include="Scene\SceneOperationResponseApi.cs" />
+    <Compile Include="Soul\SoulEventApi.cs" />
+    <Compile Include="Soul\SoulOperationRequestRouter.cs" />
+    <Compile Include="Soul\SoulOperationResponseApi.cs" />
+    <Compile Include="System\SystemEventApi.cs" />
+    <Compile Include="System\SystemOperationRequestRouter.cs" />
+    <Compile Include="System\SystemOperationResponseApi.cs" />
+    <Compile Include="World\WorldEventApi.cs" />
+    <Compile Include="World\WorldOperationRequestRouter.cs" />
+    <Compile Include="World\WorldOperationResponseApi.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core.Internal\Door_of_Soul.Core.Internal.csproj">
+      <Project>{c23cf113-47de-4876-b903-39583414371c}</Project>
+      <Name>Door_of_Soul.Core.Internal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core\Door_of_Soul.Core.csproj">
+      <Project>{34c59e1e-eee2-4b13-9802-39dae818abfd}</Project>
+      <Name>Door_of_Soul.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Door_of_Soul.Communication.Protocol.Hexagram\Door_of_Soul.Communication.Protocol.Hexagram.csproj">
+      <Project>{d7a33245-4cc4-4528-9603-3051d6022120}</Project>
+      <Name>Door_of_Soul.Communication.Protocol.Hexagram</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Door_of_Soul.Communication.Protocol.Internal\Door_of_Soul.Communication.Protocol.Internal.csproj">
+      <Project>{d82bd596-1a35-4e4c-bc1e-2e27cd3e9812}</Project>
+      <Name>Door_of_Soul.Communication.Protocol.Internal</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

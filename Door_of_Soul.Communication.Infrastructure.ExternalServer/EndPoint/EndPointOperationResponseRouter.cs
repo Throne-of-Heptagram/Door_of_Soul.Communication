@@ -3,7 +3,7 @@ using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 
 namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.EndPoint
 {
-    class EndPointOperationResponseRouter : OperationResponseRouter<Core.InternalServer.EndPoint, Core.InternalServer.EndPoint, EndPointOperationCode>
+    class EndPointOperationResponseRouter : OperationResponseRouter<Core.Internal.EndPoint, Core.Internal.EndPoint, EndPointOperationCode>
     {
         public static EndPointOperationResponseRouter Instance { get; private set; } = new EndPointOperationResponseRouter();
 

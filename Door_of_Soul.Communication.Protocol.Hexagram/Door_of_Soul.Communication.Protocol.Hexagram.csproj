@@ -43,6 +43,21 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Destiny\" />
+    <Folder Include="Element\" />
+    <Folder Include="Eternity\" />
+    <Folder Include="HexagramTerminal\" />
+    <Folder Include="History\" />
+    <Folder Include="Infinite\" />
+    <Folder Include="Knowledge\" />
+    <Folder Include="Life\" />
+    <Folder Include="Love\" />
+    <Folder Include="Shadow\" />
+    <Folder Include="Space\" />
+    <Folder Include="Throne\" />
+    <Folder Include="Will\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Scene
 {
-    class SceneOperationResponseRouter : OperationResponseRouter<Core.InternalServer.EndPoint, Core.Scene, SceneOperationCode>
+    class SceneOperationResponseRouter : OperationResponseRouter<Core.Internal.EndPoint, Core.Scene, SceneOperationCode>
     {
         public static SceneOperationResponseRouter Instance { get; private set; } = new SceneOperationResponseRouter();
 

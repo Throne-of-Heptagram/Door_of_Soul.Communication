@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Soul
 {
-    class SoulOperationResponseRouter : OperationResponseRouter<Core.InternalServer.EndPoint, Core.Soul, SoulOperationCode>
+    class SoulOperationResponseRouter : OperationResponseRouter<Core.Internal.EndPoint, Core.Soul, SoulOperationCode>
     {
         public static SoulOperationResponseRouter Instance { get; private set; } = new SoulOperationResponseRouter();
 

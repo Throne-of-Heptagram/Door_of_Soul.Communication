@@ -7,18 +7,18 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Device.OperationRequestHandler
 {
-    class AvatarOperationRequestBroker : OperationRequestHandler<Core.Device, Core.Device, DeviceOperationCode>
+    class AvatarOperationRequestBroker : OperationRequestHandler<Core.External.Device, Core.External.Device, DeviceOperationCode>
     {
         public AvatarOperationRequestBroker() : base(typeof(AvatarOperationRequestParameterCode))
         {
         }
 
-        public override void SendResponse(Core.Device terminal, Core.Device target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(Core.External.Device terminal, Core.External.Device target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             DeviceOperationResponseApi.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
         }
 
-        public override bool Handle(Core.Device terminal, Core.Device requester, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(Core.External.Device terminal, Core.External.Device requester, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
             if (base.Handle(terminal, requester, operationCode, parameters, out errorMessage))
             {

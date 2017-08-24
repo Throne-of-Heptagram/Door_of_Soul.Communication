@@ -7,7 +7,7 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Scene
 {
     public static class SceneOperationResponseApi
     {
-        public static void SendOperationResponse(Core.Device terminal, Core.Scene target, SceneOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SendOperationResponse(Core.External.Device terminal, Core.Scene target, SceneOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             DeviceOperationResponseApi.SceneOperationResponse(terminal, target, operationCode, operationReturnCode, operationMessage, parameters);
         }

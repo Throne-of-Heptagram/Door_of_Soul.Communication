@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DF20E90E-7C05-4620-A122-686AF8161211}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Door_of_Soul.Communication.Infrastructure.Client</RootNamespace>
+    <AssemblyName>Door_of_Soul.Communication.Infrastructure.Client</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Answer\AnswerEventRouter.cs" />
+    <Compile Include="Answer\AnswerOperationRequestApi.cs" />
+    <Compile Include="Answer\AnswerOperationResponseRouter.cs" />
+    <Compile Include="Avatar\AvatarEventRouter.cs" />
+    <Compile Include="Avatar\AvatarOperationRequestApi.cs" />
+    <Compile Include="Avatar\AvatarOperationResponseRouter.cs" />
+    <Compile Include="Device\EventHandler\AnswerEventBroker.cs" />
+    <Compile Include="Device\EventHandler\AvatarEventBroker.cs" />
+    <Compile Include="Device\EventHandler\SceneEventBroker.cs" />
+    <Compile Include="Device\EventHandler\SoulEventBroker.cs" />
+    <Compile Include="Device\EventHandler\SystemEventBroker.cs" />
+    <Compile Include="Device\EventHandler\WorldEventBroker.cs" />
+    <Compile Include="Device\OperationResponseHandler\AnswerOperationResponseBroker.cs" />
+    <Compile Include="Device\OperationResponseHandler\AvatarOperationResponseBroker.cs" />
+    <Compile Include="Device\OperationResponseHandler\SceneOperationResponseBroker.cs" />
+    <Compile Include="Device\OperationResponseHandler\SoulOperationResponseBroker.cs" />
+    <Compile Include="Device\OperationResponseHandler\SystemOperationResponseBroker.cs" />
+    <Compile Include="Device\OperationResponseHandler\WorldOperationResponseBroker.cs" />
+    <Compile Include="CommunicationService.cs" />
+    <Compile Include="Device\DeviceEventRouter.cs" />
+    <Compile Include="Device\DeviceOperationRequestApi.cs" />
+    <Compile Include="Device\DeviceOperationResponseRouter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scene\SceneEventRouter.cs" />
+    <Compile Include="Scene\SceneOperationRequestApi.cs" />
+    <Compile Include="Scene\SceneOperationResponseRouter.cs" />
+    <Compile Include="Soul\SoulEventRouter.cs" />
+    <Compile Include="Soul\SoulOperationRequestApi.cs" />
+    <Compile Include="Soul\SoulOperationResponseRouter.cs" />
+    <Compile Include="System\SystemEventRouter.cs" />
+    <Compile Include="System\SystemOperationRequestApi.cs" />
+    <Compile Include="System\SystemOperationResponseRouter.cs" />
+    <Compile Include="World\WorldEventRouter.cs" />
+    <Compile Include="World\WorldOperationRequestApi.cs" />
+    <Compile Include="World\WorldOperationResponseRouter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core.External\Door_of_Soul.Core.External.csproj">
+      <Project>{3f47bd5a-dd1c-47cb-91d6-80aee16c052a}</Project>
+      <Name>Door_of_Soul.Core.External</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core\Door_of_Soul.Core.csproj">
+      <Project>{34c59e1e-eee2-4b13-9802-39dae818abfd}</Project>
+      <Name>Door_of_Soul.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Door_of_Soul.Communication.Protocol.External\Door_of_Soul.Communication.Protocol.External.csproj">
+      <Project>{747f0ed6-82fd-44dc-994b-f9d2b9dde3f9}</Project>
+      <Name>Door_of_Soul.Communication.Protocol.External</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Door_of_Soul.Communication\Door_of_Soul.Communication.csproj">
+      <Project>{90c6178d-f9ee-4160-b7e6-d450afe03bec}</Project>
+      <Name>Door_of_Soul.Communication</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Answer\EventHandler\" />
+    <Folder Include="Answer\OperationResponseHandler\" />
+    <Folder Include="Avatar\EventHandler\" />
+    <Folder Include="Avatar\OperationResponseHandler\" />
+    <Folder Include="Scene\EventHandler\" />
+    <Folder Include="Scene\OperationResponseHandler\" />
+    <Folder Include="Soul\EventHandler\" />
+    <Folder Include="Soul\OperationResponseHandler\" />
+    <Folder Include="System\EventHandler\" />
+    <Folder Include="System\OperationResponseHandler\" />
+    <Folder Include="World\EventHandler\" />
+    <Folder Include="World\OperationResponseHandler\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

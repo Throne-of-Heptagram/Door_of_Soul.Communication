@@ -104,17 +104,17 @@
     <Compile Include="World\WorldOperationResponseRouter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core.InternalServer\Door_of_Soul.Core.InternalServer.csproj">
+    <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core.External\Door_of_Soul.Core.External.csproj">
+      <Project>{3f47bd5a-dd1c-47cb-91d6-80aee16c052a}</Project>
+      <Name>Door_of_Soul.Core.External</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core.Internal\Door_of_Soul.Core.Internal.csproj">
       <Project>{c23cf113-47de-4876-b903-39583414371c}</Project>
-      <Name>Door_of_Soul.Core.InternalServer</Name>
+      <Name>Door_of_Soul.Core.Internal</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core\Door_of_Soul.Core.csproj">
       <Project>{34c59e1e-eee2-4b13-9802-39dae818abfd}</Project>
       <Name>Door_of_Soul.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Door_of_Soul.Communication.Infrastructure\Door_of_Soul.Communication.Infrastructure.csproj">
-      <Project>{34a45494-2cdc-42e9-936c-0aaa6a39c4bc}</Project>
-      <Name>Door_of_Soul.Communication.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\Door_of_Soul.Communication.Protocol.External\Door_of_Soul.Communication.Protocol.External.csproj">
       <Project>{747f0ed6-82fd-44dc-994b-f9d2b9dde3f9}</Project>

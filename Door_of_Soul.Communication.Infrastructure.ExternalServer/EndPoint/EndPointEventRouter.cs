@@ -3,7 +3,7 @@ using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 
 namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.EndPoint
 {
-    class EndPointEventRouter : EventRouter<Core.InternalServer.EndPoint, EndPointEventCode>
+    class EndPointEventRouter : EventRouter<Core.Internal.EndPoint, EndPointEventCode>
     {
         public static EndPointEventRouter Instance { get; private set; } = new EndPointEventRouter();
 

@@ -7,7 +7,7 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Answer
 {
     public static class AnswerOperationResponseApi
     {
-        public static void SendOperationResponse(Core.Device terminal, Core.Answer target, AnswerOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SendOperationResponse(Core.External.Device terminal, Core.External.ExternalAnswer target, AnswerOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             DeviceOperationResponseApi.AnswerOperationResponse(terminal, target, operationCode, operationReturnCode, operationMessage, parameters);
         }

@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Avatar
 {
-    class AvatarOperationResponseRouter : OperationResponseRouter<Core.InternalServer.EndPoint, Core.Avatar, AvatarOperationCode>
+    class AvatarOperationResponseRouter : OperationResponseRouter<Core.Internal.EndPoint, Core.Avatar, AvatarOperationCode>
     {
         public static AvatarOperationResponseRouter Instance { get; private set; } = new AvatarOperationResponseRouter();
 

@@ -29,22 +29,22 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer
             }
         }
 
-        public abstract Core.InternalServer.EndPoint GetEndPoint();
-        public abstract List<Core.Device> GetAllDevices();
-        public abstract bool FindDevice(int deviceId, out Core.Device device);
-        public abstract bool FindAnswer(int answerId, out Core.Answer answer);
+        public abstract Core.Internal.EndPoint GetEndPoint();
+        public abstract List<Core.External.Device> GetAllDevices();
+        public abstract bool FindDevice(int deviceId, out Core.External.Device device);
+        public abstract bool FindAnswer(int answerId, out Core.External.ExternalAnswer answer);
         public abstract bool FindSoul(int soulId, out Core.Soul soul);
         public abstract bool FindAvatar(int avatarId, out Core.Avatar avatar);
         public abstract bool FindWorld(int worldId, out Core.World world);
         public abstract bool FindScene(int sceneId, out Core.Scene scene);
 
 
-        protected bool HandleOperationRequest(Core.Device device, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        protected bool HandleOperationRequest(Core.External.Device device, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
             return DeviceOperationRequestRouter.Instance.Route(device, device, operationCode, parameters, out errorMessage);
         }
 
-        protected bool HandleEvent(Core.InternalServer.EndPoint endPoint, EndPointEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
+        protected bool HandleEvent(Core.Internal.EndPoint endPoint, EndPointEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
             return EndPointEventRouter.Instance.Route(GetEndPoint(), eventCode, parameters, out errorMessage);
         }
@@ -54,8 +54,8 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer
             return EndPointOperationResponseRouter.Instance.Route(GetEndPoint(), GetEndPoint(), operationCode, returnCode, operationMessage, parameters, out errorMessage);
         }
 
-        public abstract void SendEvent(Core.Device target, DeviceEventCode eventCode, Dictionary<byte, object> parameters);
-        public abstract void SendOperationResponse(Core.Device target, DeviceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters);
+        public abstract void SendEvent(Core.External.Device target, DeviceEventCode eventCode, Dictionary<byte, object> parameters);
+        public abstract void SendOperationResponse(Core.External.Device target, DeviceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters);
 
         public abstract bool ConnectHexagrameEntranceServer(string serverAddress, int port, string applicationName);
         public abstract void DisconnectHexagrameEntranceServer();

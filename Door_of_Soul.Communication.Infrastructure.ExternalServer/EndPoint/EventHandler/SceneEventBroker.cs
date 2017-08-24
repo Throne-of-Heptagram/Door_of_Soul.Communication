@@ -6,13 +6,13 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.EndPoint.EventHandler
 {
-    class SceneEventBroker : EventHandler<Core.InternalServer.EndPoint, EndPointEventCode>
+    class SceneEventBroker : EventHandler<Core.Internal.EndPoint, EndPointEventCode>
     {
         public SceneEventBroker() : base(typeof(SceneEventParameterCode))
         {
         }
 
-        public override bool Handle(Core.InternalServer.EndPoint subject, EndPointEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(Core.Internal.EndPoint subject, EndPointEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
             if (base.Handle(subject, eventCode, parameters, out errorMessage))
             {

@@ -12,7 +12,7 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Device
 {
     public static class DeviceEventApi
     {
-        public static void SendEvent(Core.Device target, DeviceEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SendEvent(Core.External.Device target, DeviceEventCode eventCode, Dictionary<byte, object> parameters)
         {
             CommunicationService.Instance.SendEvent(target, eventCode, parameters);
         }
@@ -28,7 +28,7 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Device
                 SendEvent(device, DeviceEventCode.SystemEvent, eventParameters);
             }
         }
-        public static void AnswerEvent(Core.Answer target, AnswerEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void AnswerEvent(Core.External.ExternalAnswer target, AnswerEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
             {
@@ -49,7 +49,7 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Device
                 { (byte)SoulEventParameterCode.EventCode, eventCode },
                 { (byte)SoulEventParameterCode.Parameters, parameters }
             };
-            foreach(var device in target.Answer.Devices)
+            foreach(var device in (target.Answer as Core.External.ExternalAnswer).Devices)
             {
                 SendEvent(device, DeviceEventCode.SoulEvent, eventParameters);
             }
@@ -62,10 +62,10 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Device
                 { (byte)AvatarEventParameterCode.EventCode, eventCode },
                 { (byte)AvatarEventParameterCode.Parameters, parameters }
             };
-            HashSet<Core.Device> deviceSet = new HashSet<Core.Device>();
+            HashSet<Core.External.Device> deviceSet = new HashSet<Core.External.Device>();
             foreach(var soul in target.Souls)
             {
-                foreach(var device in soul.Answer.Devices)
+                foreach(var device in (soul.Answer as Core.External.ExternalAnswer).Devices)
                 {
                     deviceSet.Add(device);
                 }
@@ -83,14 +83,14 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Device
                 { (byte)WorldEventParameterCode.EventCode, eventCode },
                 { (byte)WorldEventParameterCode.Parameters, parameters }
             };
-            HashSet<Core.Device> deviceSet = new HashSet<Core.Device>();
+            HashSet<Core.External.Device> deviceSet = new HashSet<Core.External.Device>();
             foreach(var scene in target.Scenes)
             {
-                foreach (var avatar in scene.Avatars)
+                foreach (var entity in scene.Entities)
                 {
                     foreach (var soul in avatar.Souls)
                     {
-                        foreach (var device in soul.Answer.Devices)
+                        foreach (var device in (soul.Answer as Core.External.ExternalAnswer).Devices)
                         {
                             deviceSet.Add(device);
                         }
@@ -110,12 +110,12 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Device
                 { (byte)SceneEventParameterCode.EventCode, eventCode },
                 { (byte)SceneEventParameterCode.Parameters, parameters }
             };
-            HashSet<Core.Device> deviceSet = new HashSet<Core.Device>();
+            HashSet<Core.External.Device> deviceSet = new HashSet<Core.External.Device>();
             foreach (var avatar in target.Avatars)
             {
                 foreach (var soul in avatar.Souls)
                 {
-                    foreach (var device in soul.Answer.Devices)
+                    foreach (var device in (soul.Answer as Core.External.ExternalAnswer).Devices)
                     {
                         deviceSet.Add(device);
                     }

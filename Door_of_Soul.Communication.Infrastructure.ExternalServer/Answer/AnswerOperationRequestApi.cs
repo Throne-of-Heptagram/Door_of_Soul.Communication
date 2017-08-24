@@ -6,7 +6,7 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Answer
 {
     public static class AnswerOperationRequestApi
     {
-        public static void SendOperationRequest(int deviceId, Core.Answer sender, AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void SendOperationRequest(int deviceId, Core.External.ExternalAnswer sender, AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             EndPointOperationRequestApi.AnswerOperationRequest(deviceId, sender.AnswerId, operationCode, parameters);
         }

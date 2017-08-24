@@ -13,11 +13,11 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Device
 {
     public static class DeviceOperationResponseApi
     {
-        public static void SendOperationResponse(Core.Device target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SendOperationResponse(Core.External.Device target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             CommunicationService.Instance.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
         }
-        public static void SystemOperationResponse(Core.Device terminal, SystemOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SystemOperationResponse(Core.External.Device terminal, SystemOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationResponseParameters = new Dictionary<byte, object>
             {
@@ -28,7 +28,7 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Device
             };
             SendOperationResponse(terminal, DeviceOperationCode.SystemOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
         }
-        public static void AnswerOperationResponse(Core.Device terminal, Core.Answer target, AnswerOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void AnswerOperationResponse(Core.External.Device terminal, Core.External.ExternalAnswer target, AnswerOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationResponseParameters = new Dictionary<byte, object>
             {
@@ -40,7 +40,7 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Device
             };
             SendOperationResponse(terminal, DeviceOperationCode.AnswerOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
         }
-        public static void SoulOperationResponse(Core.Device terminal, Core.Soul target, SoulOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SoulOperationResponse(Core.External.Device terminal, Core.Soul target, SoulOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationResponseParameters = new Dictionary<byte, object>
             {
@@ -52,7 +52,7 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Device
             };
             SendOperationResponse(terminal, DeviceOperationCode.SoulOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
         }
-        public static void AvatarOperationResponse(Core.Device terminal, Core.Avatar target, AvatarOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void AvatarOperationResponse(Core.External.Device terminal, Core.Avatar target, AvatarOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationResponseParameters = new Dictionary<byte, object>
             {
@@ -64,7 +64,7 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Device
             };
             SendOperationResponse(terminal, DeviceOperationCode.AvatarOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
         }
-        public static void WorldOperationResponse(Core.Device terminal, Core.World target, WorldOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void WorldOperationResponse(Core.External.Device terminal, Core.World target, WorldOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationResponseParameters = new Dictionary<byte, object>
             {
@@ -76,7 +76,7 @@ namespace Door_of_Soul.Communication.Infrastructure.ExternalServer.Device
             };
             SendOperationResponse(terminal, DeviceOperationCode.WorldOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
         }
-        public static void SceneOperationResponse(Core.Device terminal, Core.Scene target, SceneOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SceneOperationResponse(Core.External.Device terminal, Core.Scene target, SceneOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationResponseParameters = new Dictionary<byte, object>
             {
