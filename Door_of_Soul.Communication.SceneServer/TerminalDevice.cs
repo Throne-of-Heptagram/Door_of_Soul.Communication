@@ -2,11 +2,12 @@
 
 namespace Door_of_Soul.Communication.SceneServer
 {
-    public abstract class TerminalDevice : Core.External.Device
+    public abstract class TerminalDevice
     {
         public event Action<TerminalDevice, TerminalScene> OnSceneLinked;
         public event Action<TerminalDevice, TerminalScene> OnSceneUnlinked;
 
+        public int DeviceId { get; private set; }
         public TerminalScene Scene { get; private set; }
 
         public bool IsSceneLinked(int sceneId)

@@ -9,10 +9,10 @@ namespace Door_of_Soul.Communication.Client.Avatar
     {
         public static void SendOperationRequest(Core.Avatar sender, AvatarOperationCode operationCode, Dictionary<byte, object> parameters)
         {
-            if (!sender.Souls.Any(x => x.Answer != null))
+            Core.Soul soul = null;
+            if (!sender.SoulIds.Any(x => CommunicationService.Instance.FindSoul(x, out soul) && soul.AnswerId != 0))
                 return;
-            Core.Soul firstSoul = sender.Souls.First(x => x.Answer != null);
-            DeviceOperationRequestApi.AvatarOperationRequest(firstSoul.Answer.AnswerId, firstSoul.SoulId, sender.AvatarId, operationCode, parameters);
+            DeviceOperationRequestApi.AvatarOperationRequest(soul.AnswerId, soul.SoulId, sender.AvatarId, operationCode, parameters);
         }
     }
 }

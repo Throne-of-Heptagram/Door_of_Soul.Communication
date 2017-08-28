@@ -2,6 +2,7 @@
 {
     public enum SceneOperationRequestParameterCode : byte
     {
+        WorldId,
         SceneId,
         OperationCode,
         Parameters

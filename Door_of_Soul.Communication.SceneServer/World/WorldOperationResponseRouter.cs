@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.SceneServer.World
 {
-    class WorldOperationResponseRouter : OperationResponseRouter<Core.Internal.EndPoint, Core.World, WorldOperationCode>
+    class WorldOperationResponseRouter : OperationResponseRouter<Core.World, WorldOperationCode>
     {
         public static WorldOperationResponseRouter Instance { get; private set; } = new WorldOperationResponseRouter();
 

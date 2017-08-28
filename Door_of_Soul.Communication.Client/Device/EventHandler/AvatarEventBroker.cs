@@ -6,23 +6,23 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Client.Device.EventHandler
 {
-    class AvatarEventBroker : EventHandler<Core.External.Device, DeviceEventCode>
+    class AvatarEventBroker : EventHandler<DeviceEventCode>
     {
         public AvatarEventBroker() : base(typeof(AvatarEventParameterCode))
         {
         }
 
-        public override bool Handle(Core.External.Device subject, DeviceEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(DeviceEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(subject, eventCode, parameters, out errorMessage))
+            if (base.Handle(eventCode, parameters, out errorMessage))
             {
                 int avatarId = (int)parameters[(byte)AvatarEventParameterCode.AvatarId];
-                AvatarEventCode avatarEventCode = (AvatarEventCode)parameters[(byte)AvatarEventParameterCode.EventCode];
-                Dictionary<byte, object> eventParameters = (Dictionary<byte, object>)parameters[(byte)AvatarEventParameterCode.Parameters];
+                AvatarEventCode resolvedEventCode = (AvatarEventCode)parameters[(byte)AvatarEventParameterCode.EventCode];
+                Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)AvatarEventParameterCode.Parameters];
                 Core.Avatar avatar;
                 if (CommunicationService.Instance.FindAvatar(avatarId, out avatar))
                 {
-                    return AvatarEventRouter.Instance.Route(avatar, avatarEventCode, eventParameters, out errorMessage);
+                    return AvatarEventRouter.Instance.Route(avatar, resolvedEventCode, resolvedParameters, out errorMessage);
                 }
                 else
                 {

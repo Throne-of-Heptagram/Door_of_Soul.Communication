@@ -3,11 +3,11 @@ using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 
 namespace Door_of_Soul.Communication.ProxyServer.EndPoint
 {
-    class EndPointOperationResponseRouter : OperationResponseRouter<Core.Internal.EndPoint, Core.Internal.EndPoint, EndPointOperationCode>
+    class EndPointOperationResponseRouter : OperationResponseRouter<EndPointOperationCode>
     {
         public static EndPointOperationResponseRouter Instance { get; private set; } = new EndPointOperationResponseRouter();
 
-        private EndPointOperationResponseRouter()
+        private EndPointOperationResponseRouter() : base("EndPoint")
         {
             OperationTable.Add(EndPointOperationCode.SystemOperation, new SystemOperationResponseBroker());
             OperationTable.Add(EndPointOperationCode.AnswerOperation, new AnswerOperationResponseBroker());

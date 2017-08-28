@@ -75,10 +75,6 @@
     <Compile Include="World\WorldOperationResponseRouter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core.External\Door_of_Soul.Core.External.csproj">
-      <Project>{3f47bd5a-dd1c-47cb-91d6-80aee16c052a}</Project>
-      <Name>Door_of_Soul.Core.External</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core\Door_of_Soul.Core.csproj">
       <Project>{34c59e1e-eee2-4b13-9802-39dae818abfd}</Project>
       <Name>Door_of_Soul.Core</Name>

@@ -21,7 +21,7 @@ namespace Door_of_Soul.Communication.ProxyServer.Device
                 { (byte)SystemEventParameterCode.EventCode, eventCode },
                 { (byte)SystemEventParameterCode.Parameters, parameters }
             };
-            foreach(var device in CommunicationService.Instance.GetAllDevices())
+            foreach(var device in CommunicationService.Instance.AllDevices)
             {
                 SendEvent(device, DeviceEventCode.SystemEvent, eventParameters);
             }
@@ -47,9 +47,13 @@ namespace Door_of_Soul.Communication.ProxyServer.Device
                 { (byte)SoulEventParameterCode.EventCode, eventCode },
                 { (byte)SoulEventParameterCode.Parameters, parameters }
             };
-            foreach(var device in (target.Answer as TerminalAnswer).Devices)
+            TerminalAnswer answer;
+            if(CommunicationService.Instance.FindAnswer(target.AnswerId, out answer))
             {
-                SendEvent(device, DeviceEventCode.SoulEvent, eventParameters);
+                foreach (var device in answer.Devices)
+                {
+                    SendEvent(device, DeviceEventCode.SoulEvent, eventParameters);
+                }
             }
         }
         public static void AvatarEvent(Core.Avatar target, AvatarEventCode eventCode, Dictionary<byte, object> parameters)
@@ -61,11 +65,19 @@ namespace Door_of_Soul.Communication.ProxyServer.Device
                 { (byte)AvatarEventParameterCode.Parameters, parameters }
             };
             HashSet<TerminalDevice> deviceSet = new HashSet<TerminalDevice>();
-            foreach(var soul in target.Souls)
+            foreach (var soulId in target.SoulIds)
             {
-                foreach(var device in (soul.Answer as TerminalAnswer).Devices)
+                Core.Soul soul;
+                if(CommunicationService.Instance.FindSoul(soulId, out soul))
                 {
-                    deviceSet.Add(device);
+                    TerminalAnswer answer;
+                    if(CommunicationService.Instance.FindAnswer(soul.AnswerId, out answer))
+                    {
+                        foreach (var device in answer.Devices)
+                        {
+                            deviceSet.Add(device);
+                        }
+                    }
                 }
             }
             foreach (var device in deviceSet)

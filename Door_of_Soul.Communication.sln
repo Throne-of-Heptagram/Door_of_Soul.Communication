@@ -9,17 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.Communication.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.Communication.Protocol.Internal", "Door_of_Soul.Communication.Protocol.Internal\Door_of_Soul.Communication.Protocol.Internal.csproj", "{D82BD596-1A35-4E4C-BC1E-2E27CD3E9812}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.Communication.Infrastructure.ExternalServer", "Door_of_Soul.Communication.Infrastructure.ExternalServer\Door_of_Soul.Communication.Infrastructure.ExternalServer.csproj", "{75697261-1EA9-4C40-AD12-9CD36D7993CD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.Communication.Infrastructure.InternalServer", "Door_of_Soul.Communication.Infrastructure.InternalServer\Door_of_Soul.Communication.Infrastructure.InternalServer.csproj", "{C2D33AC7-1022-41C4-B7EE-37E61C58EB53}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.Communication.Infrastructure.HexagramServer", "Door_of_Soul.Communication.Infrastructure.HexagramServer\Door_of_Soul.Communication.Infrastructure.HexagramServer.csproj", "{743A4729-54AC-44BE-9CE7-18EB549E78F0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.Communication.Protocol.Hexagram", "Door_of_Soul.Communication.Protocol.Hexagram\Door_of_Soul.Communication.Protocol.Hexagram.csproj", "{D7A33245-4CC4-4528-9603-3051D6022120}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.Core.Internal", "..\Door_of_Soul.Core\Door_of_Soul.Core.Internal\Door_of_Soul.Core.Internal.csproj", "{C23CF113-47DE-4876-B903-39583414371C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.Core.External", "..\Door_of_Soul.Core\Door_of_Soul.Core.External\Door_of_Soul.Core.External.csproj", "{3F47BD5A-DD1C-47CB-91D6-80AEE16C052A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.Communication", "Door_of_Soul.Communication\Door_of_Soul.Communication.csproj", "{90C6178D-F9EE-4160-B7E6-D450AFE03BEC}"
 EndProject
@@ -28,6 +18,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.Communication.ProxyServer", "Door_of_Soul.Communication.ProxyServer\Door_of_Soul.Communication.ProxyServer.csproj", "{4F9EF772-8FE2-4DDD-9C96-2D62093DF94D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.Communication.SceneServer", "Door_of_Soul.Communication.SceneServer\Door_of_Soul.Communication.SceneServer.csproj", "{A6F253F2-6987-4FA8-98E7-F883741CE45F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.Communication.HexagramNodeServer", "Door_of_Soul.Communication.HexagramNodeServer\Door_of_Soul.Communication.HexagramNodeServer.csproj", "{9B95B70F-0310-43A6-8592-47C05FF610EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.Communication.HexagramEntranceServer", "Door_of_Soul.Communication.HexagramEntranceServer\Door_of_Soul.Communication.HexagramEntranceServer.csproj", "{C2D33AC7-1022-41C4-B7EE-37E61C58EB53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door_of_Soul.Communication.HexagramCentralServer", "Door_of_Soul.Communication.HexagramCentralServer\Door_of_Soul.Communication.HexagramCentralServer.csproj", "{BC5AE4E9-2EE3-49C7-9515-AB9B0DB47A6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,30 +43,10 @@ Global
 		{D82BD596-1A35-4E4C-BC1E-2E27CD3E9812}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D82BD596-1A35-4E4C-BC1E-2E27CD3E9812}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D82BD596-1A35-4E4C-BC1E-2E27CD3E9812}.Release|Any CPU.Build.0 = Release|Any CPU
-		{75697261-1EA9-4C40-AD12-9CD36D7993CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75697261-1EA9-4C40-AD12-9CD36D7993CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75697261-1EA9-4C40-AD12-9CD36D7993CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75697261-1EA9-4C40-AD12-9CD36D7993CD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C2D33AC7-1022-41C4-B7EE-37E61C58EB53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C2D33AC7-1022-41C4-B7EE-37E61C58EB53}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C2D33AC7-1022-41C4-B7EE-37E61C58EB53}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C2D33AC7-1022-41C4-B7EE-37E61C58EB53}.Release|Any CPU.Build.0 = Release|Any CPU
-		{743A4729-54AC-44BE-9CE7-18EB549E78F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{743A4729-54AC-44BE-9CE7-18EB549E78F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{743A4729-54AC-44BE-9CE7-18EB549E78F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{743A4729-54AC-44BE-9CE7-18EB549E78F0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7A33245-4CC4-4528-9603-3051D6022120}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D7A33245-4CC4-4528-9603-3051D6022120}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7A33245-4CC4-4528-9603-3051D6022120}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7A33245-4CC4-4528-9603-3051D6022120}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C23CF113-47DE-4876-B903-39583414371C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C23CF113-47DE-4876-B903-39583414371C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C23CF113-47DE-4876-B903-39583414371C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C23CF113-47DE-4876-B903-39583414371C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3F47BD5A-DD1C-47CB-91D6-80AEE16C052A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3F47BD5A-DD1C-47CB-91D6-80AEE16C052A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3F47BD5A-DD1C-47CB-91D6-80AEE16C052A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3F47BD5A-DD1C-47CB-91D6-80AEE16C052A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{90C6178D-F9EE-4160-B7E6-D450AFE03BEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{90C6178D-F9EE-4160-B7E6-D450AFE03BEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90C6178D-F9EE-4160-B7E6-D450AFE03BEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -87,6 +63,18 @@ Global
 		{A6F253F2-6987-4FA8-98E7-F883741CE45F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6F253F2-6987-4FA8-98E7-F883741CE45F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6F253F2-6987-4FA8-98E7-F883741CE45F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B95B70F-0310-43A6-8592-47C05FF610EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B95B70F-0310-43A6-8592-47C05FF610EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B95B70F-0310-43A6-8592-47C05FF610EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B95B70F-0310-43A6-8592-47C05FF610EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2D33AC7-1022-41C4-B7EE-37E61C58EB53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2D33AC7-1022-41C4-B7EE-37E61C58EB53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2D33AC7-1022-41C4-B7EE-37E61C58EB53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2D33AC7-1022-41C4-B7EE-37E61C58EB53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC5AE4E9-2EE3-49C7-9515-AB9B0DB47A6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC5AE4E9-2EE3-49C7-9515-AB9B0DB47A6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC5AE4E9-2EE3-49C7-9515-AB9B0DB47A6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC5AE4E9-2EE3-49C7-9515-AB9B0DB47A6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

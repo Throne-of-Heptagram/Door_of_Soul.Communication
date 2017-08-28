@@ -7,25 +7,25 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Client.Device.OperationResponseHandler
 {
-    class WorldOperationResponseBroker : OperationResponseHandler<Core.External.Device, DeviceOperationCode>
+    class WorldOperationResponseBroker : OperationResponseHandler<DeviceOperationCode>
     {
         public WorldOperationResponseBroker() : base(typeof(WorldOperationResponseParameterCode))
         {
         }
 
-        public override bool Handle(Core.External.Device subject, DeviceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(DeviceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(subject, operationCode, returnCode, operationMessage, parameters, out errorMessage))
+            if (base.Handle(operationCode, returnCode, operationMessage, parameters, out errorMessage))
             {
                 int worldId = (int)parameters[(byte)WorldOperationResponseParameterCode.WorldId];
-                WorldOperationCode worldOperationCode = (WorldOperationCode)parameters[(byte)WorldOperationResponseParameterCode.OperationCode];
-                OperationReturnCode answerOperationReturnCode = (OperationReturnCode)parameters[(byte)WorldOperationResponseParameterCode.OperationReturnCode];
-                string worldOperationMessage = (string)parameters[(byte)WorldOperationResponseParameterCode.OperationMessage];
-                Dictionary<byte, object> operationResponseParameters = (Dictionary<byte, object>)parameters[(byte)WorldOperationResponseParameterCode.Parameters];
+                WorldOperationCode resolvedOperationCode = (WorldOperationCode)parameters[(byte)WorldOperationResponseParameterCode.OperationCode];
+                OperationReturnCode resolvedperationReturnCode = (OperationReturnCode)parameters[(byte)WorldOperationResponseParameterCode.OperationReturnCode];
+                string resolvedOperationMessage = (string)parameters[(byte)WorldOperationResponseParameterCode.OperationMessage];
+                Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)WorldOperationResponseParameterCode.Parameters];
                 Core.World world;
                 if (CommunicationService.Instance.FindWorld(worldId, out world))
                 {
-                    return WorldOperationResponseRouter.Instance.Route(world, worldOperationCode, answerOperationReturnCode, worldOperationMessage, operationResponseParameters, out errorMessage);
+                    return WorldOperationResponseRouter.Instance.Route(world, resolvedOperationCode, resolvedperationReturnCode, resolvedOperationMessage, resolvedParameters, out errorMessage);
                 }
                 else
                 {

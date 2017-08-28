@@ -7,25 +7,25 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Client.Device.OperationResponseHandler
 {
-    class AnswerOperationResponseBroker : OperationResponseHandler<Core.External.Device, DeviceOperationCode>
+    class AnswerOperationResponseBroker : OperationResponseHandler<DeviceOperationCode>
     {
         public AnswerOperationResponseBroker() : base(typeof(AnswerOperationResponseParameterCode))
         {
         }
 
-        public override bool Handle(Core.External.Device subject, DeviceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(DeviceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if(base.Handle(subject, operationCode, returnCode, operationMessage, parameters, out errorMessage))
+            if(base.Handle(operationCode, returnCode, operationMessage, parameters, out errorMessage))
             {
                 int answerId = (int)parameters[(byte)AnswerOperationResponseParameterCode.AnswerId];
-                AnswerOperationCode answerOperationCode = (AnswerOperationCode)parameters[(byte)AnswerOperationResponseParameterCode.OperationCode];
-                OperationReturnCode answerOperationReturnCode = (OperationReturnCode)parameters[(byte)AnswerOperationResponseParameterCode.OperationReturnCode];
-                string answerOperationMessage = (string)parameters[(byte)AnswerOperationResponseParameterCode.OperationMessage];
-                Dictionary<byte, object> operationResponseParameters = (Dictionary<byte, object>)parameters[(byte)AnswerOperationResponseParameterCode.Parameters];
+                AnswerOperationCode resolvedOperationCode = (AnswerOperationCode)parameters[(byte)AnswerOperationResponseParameterCode.OperationCode];
+                OperationReturnCode resolvedOperationReturnCode = (OperationReturnCode)parameters[(byte)AnswerOperationResponseParameterCode.OperationReturnCode];
+                string resolvedOperationMessage = (string)parameters[(byte)AnswerOperationResponseParameterCode.OperationMessage];
+                Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)AnswerOperationResponseParameterCode.Parameters];
                 Core.Answer answer;
                 if (CommunicationService.Instance.FindAnswer(answerId, out answer))
                 {
-                    return AnswerOperationResponseRouter.Instance.Route(answer, answerOperationCode, answerOperationReturnCode, answerOperationMessage, operationResponseParameters, out errorMessage);
+                    return AnswerOperationResponseRouter.Instance.Route(answer, resolvedOperationCode, resolvedOperationReturnCode, resolvedOperationMessage, resolvedParameters, out errorMessage);
                 }
                 else
                 {

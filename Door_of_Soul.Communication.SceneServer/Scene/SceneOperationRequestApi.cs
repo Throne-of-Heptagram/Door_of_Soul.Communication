@@ -6,9 +6,9 @@ namespace Door_of_Soul.Communication.SceneServer.Scene
 {
     public static class SceneOperationRequestApi
     {
-        public static void SendOperationRequest(int deviceId, int sceneId, SceneOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void SendOperationRequest(int deviceId, int worldId, int sceneId, SceneOperationCode operationCode, Dictionary<byte, object> parameters)
         {
-            EndPointOperationRequestApi.SceneOperationRequest(deviceId, sceneId, operationCode, parameters);
+            EndPointOperationRequestApi.SceneOperationRequest(deviceId, worldId, sceneId, operationCode, parameters);
         }
     }
 }

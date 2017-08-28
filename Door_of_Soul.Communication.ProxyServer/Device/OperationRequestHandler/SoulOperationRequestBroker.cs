@@ -7,29 +7,31 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.ProxyServer.Device.OperationRequestHandler
 {
-    class SoulOperationRequestBroker : OperationRequestHandler<TerminalDevice, TerminalDevice, DeviceOperationCode>
+    class SoulOperationRequestBroker : OperationRequestHandler<TerminalDevice, DeviceOperationCode>
     {
         public SoulOperationRequestBroker() : base(typeof(SoulOperationRequestParameterCode))
         {
         }
 
-        public override void SendResponse(TerminalDevice terminal, TerminalDevice target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(TerminalDevice target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             DeviceOperationResponseApi.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
         }
 
-        public override bool Handle(TerminalDevice terminal, TerminalDevice requester, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(TerminalDevice terminal, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(terminal, requester, operationCode, parameters, out errorMessage))
+            if (base.Handle(terminal, operationCode, parameters, out errorMessage))
             {
                 int answerId = (int)parameters[(byte)SoulOperationRequestParameterCode.AnswerId];
                 int soulId = (int)parameters[(byte)SoulOperationRequestParameterCode.SoulId];
-                SoulOperationCode soulOperationCode = (SoulOperationCode)parameters[(byte)SoulOperationRequestParameterCode.OperationCode];
-                Dictionary<byte, object> operationRequestParameters = (Dictionary<byte, object>)parameters[(byte)SoulOperationRequestParameterCode.Parameters];
+                SoulOperationCode resolvedOperationCode = (SoulOperationCode)parameters[(byte)SoulOperationRequestParameterCode.OperationCode];
+                Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SoulOperationRequestParameterCode.Parameters];
                 Core.Soul soul;
-                if (requester.IsAnswerLinked(answerId) && requester.Answer.FindSoul(soulId, out soul))
+                if (terminal.IsAnswerLinked(answerId) && 
+                    CommunicationService.Instance.FindSoul(soulId, out soul) &&
+                    soul.AnswerId == answerId)
                 {
-                    return SoulOperationRequestRouter.Instance.Route(terminal, soul, soulOperationCode, operationRequestParameters, out errorMessage);
+                    return SoulOperationRequestRouter.Instance.Route(terminal, soul, resolvedOperationCode, resolvedParameters, out errorMessage);
                 }
                 else
                 {

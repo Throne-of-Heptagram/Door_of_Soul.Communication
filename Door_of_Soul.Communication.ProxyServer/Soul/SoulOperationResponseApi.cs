@@ -7,9 +7,9 @@ namespace Door_of_Soul.Communication.ProxyServer.Soul
 {
     public static class SoulOperationResponseApi
     {
-        public static void SendOperationResponse(TerminalDevice terminal, Core.Soul target, SoulOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SendOperationResponse(TerminalDevice terminal, int soulId, SoulOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            DeviceOperationResponseApi.SoulOperationResponse(terminal, target, operationCode, operationReturnCode, operationMessage, parameters);
+            DeviceOperationResponseApi.SoulOperationResponse(terminal, soulId, operationCode, operationReturnCode, operationMessage, parameters);
         }
     }
 }

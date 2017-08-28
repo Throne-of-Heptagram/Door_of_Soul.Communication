@@ -26,11 +26,11 @@ namespace Door_of_Soul.Communication.ProxyServer.Device
             };
             SendOperationResponse(terminal, DeviceOperationCode.SystemOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
         }
-        public static void AnswerOperationResponse(TerminalDevice terminal, TerminalAnswer target, AnswerOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void AnswerOperationResponse(TerminalDevice terminal, int answerId, AnswerOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationResponseParameters = new Dictionary<byte, object>
             {
-                { (byte)AnswerOperationResponseParameterCode.AnswerId, target.AnswerId },
+                { (byte)AnswerOperationResponseParameterCode.AnswerId, answerId },
                 { (byte)AnswerOperationResponseParameterCode.OperationCode, operationCode },
                 { (byte)AnswerOperationResponseParameterCode.OperationReturnCode, operationReturnCode },
                 { (byte)AnswerOperationResponseParameterCode.OperationMessage, operationMessage },
@@ -38,11 +38,11 @@ namespace Door_of_Soul.Communication.ProxyServer.Device
             };
             SendOperationResponse(terminal, DeviceOperationCode.AnswerOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
         }
-        public static void SoulOperationResponse(TerminalDevice terminal, Core.Soul target, SoulOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SoulOperationResponse(TerminalDevice terminal, int soulId, SoulOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationResponseParameters = new Dictionary<byte, object>
             {
-                { (byte)SoulOperationResponseParameterCode.SoulId, target.SoulId },
+                { (byte)SoulOperationResponseParameterCode.SoulId, soulId },
                 { (byte)SoulOperationResponseParameterCode.OperationCode, operationCode },
                 { (byte)SoulOperationResponseParameterCode.OperationReturnCode, operationReturnCode },
                 { (byte)SoulOperationResponseParameterCode.OperationMessage, operationMessage },
@@ -50,11 +50,11 @@ namespace Door_of_Soul.Communication.ProxyServer.Device
             };
             SendOperationResponse(terminal, DeviceOperationCode.SoulOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
         }
-        public static void AvatarOperationResponse(TerminalDevice terminal, Core.Avatar target, AvatarOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void AvatarOperationResponse(TerminalDevice terminal, int avatarId, AvatarOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationResponseParameters = new Dictionary<byte, object>
             {
-                { (byte)AvatarOperationResponseParameterCode.AvatarId, target.AvatarId },
+                { (byte)AvatarOperationResponseParameterCode.AvatarId, avatarId },
                 { (byte)AvatarOperationResponseParameterCode.OperationCode, operationCode },
                 { (byte)AvatarOperationResponseParameterCode.OperationReturnCode, operationReturnCode },
                 { (byte)AvatarOperationResponseParameterCode.OperationMessage, operationMessage },

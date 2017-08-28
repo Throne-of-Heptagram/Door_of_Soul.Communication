@@ -7,8 +7,8 @@
     <ProjectGuid>{90C6178D-F9EE-4160-B7E6-D450AFE03BEC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Door_of_Soul.Communication.Infrastructure</RootNamespace>
-    <AssemblyName>Door_of_Soul.Communication.Infrastructure</AssemblyName>
+    <RootNamespace>Door_of_Soul.Communication</RootNamespace>
+    <AssemblyName>Door_of_Soul.Communication</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,6 +40,8 @@
   <ItemGroup>
     <Compile Include="EventHandler.cs" />
     <Compile Include="EventRouter.cs" />
+    <Compile Include="ForwardOperationHandler.cs" />
+    <Compile Include="ForwardOperationRouter.cs" />
     <Compile Include="OperationRequestHandler.cs" />
     <Compile Include="OperationRequestRouter.cs" />
     <Compile Include="OperationResponseHandler.cs" />

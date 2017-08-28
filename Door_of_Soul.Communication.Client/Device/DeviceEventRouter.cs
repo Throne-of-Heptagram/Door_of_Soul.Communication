@@ -3,11 +3,11 @@ using Door_of_Soul.Communication.Protocol.External.Device;
 
 namespace Door_of_Soul.Communication.Client.Device
 {
-    class DeviceEventRouter : EventRouter<Core.External.Device, DeviceEventCode>
+    class DeviceEventRouter : EventRouter<DeviceEventCode>
     {
         public static DeviceEventRouter Instance { get; private set; } = new DeviceEventRouter();
 
-        private DeviceEventRouter()
+        private DeviceEventRouter() : base("Device")
         {
             EventTable.Add(DeviceEventCode.SystemEvent, new SystemEventBroker());
             EventTable.Add(DeviceEventCode.AnswerEvent, new AnswerEventBroker());

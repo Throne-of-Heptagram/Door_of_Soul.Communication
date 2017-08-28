@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9B95B70F-0310-43A6-8592-47C05FF610EF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Door_of_Soul.Communication.HexagramNodeServer</RootNamespace>
+    <AssemblyName>Door_of_Soul.Communication.HexagramNodeServer</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CentralCommunicationService.cs" />
+    <Compile Include="Destiny\DestinyEventApi.cs" />
+    <Compile Include="Destiny\DestinyOperationRequestApi.cs" />
+    <Compile Include="Destiny\DestinyOperationRequestRouter.cs" />
+    <Compile Include="Destiny\DestinyOperationResponseApi.cs" />
+    <Compile Include="Element\ElementEventApi.cs" />
+    <Compile Include="Element\ElementOperationRequestApi.cs" />
+    <Compile Include="Element\ElementOperationRequestRouter.cs" />
+    <Compile Include="Element\ElementOperationResponseApi.cs" />
+    <Compile Include="EntranceCommunicationService.cs" />
+    <Compile Include="Eternity\EternityEventApi.cs" />
+    <Compile Include="Eternity\EternityOperationRequestApi.cs" />
+    <Compile Include="Eternity\EternityOperationRequestRouter.cs" />
+    <Compile Include="Eternity\EternityOperationResponseApi.cs" />
+    <Compile Include="Hexagram\HexagramForwardOperationRouter.cs" />
+    <Compile Include="Hexagram\HexagramOperationRequestRouter.cs" />
+    <Compile Include="Hexagram\HexagramOperationRequestApi.cs" />
+    <Compile Include="Hexagram\OperationRequestHandler\DestinyForwardOperationBroker.cs" />
+    <Compile Include="Hexagram\OperationRequestHandler\ElementForwardOperationBroker.cs" />
+    <Compile Include="Hexagram\OperationRequestHandler\EternityForwardOperationBroker.cs" />
+    <Compile Include="Hexagram\OperationRequestHandler\HistoryForwardOperationBroker.cs" />
+    <Compile Include="Hexagram\OperationRequestHandler\InfiniteForwardOperationBroker.cs" />
+    <Compile Include="Hexagram\OperationRequestHandler\KnowledgeForwardOperationBroker.cs" />
+    <Compile Include="Hexagram\OperationRequestHandler\LifeForwardOperationBroker.cs" />
+    <Compile Include="Hexagram\OperationRequestHandler\LoveForwardOperationBroker.cs" />
+    <Compile Include="Hexagram\OperationRequestHandler\ShadowForwardOperationBroker.cs" />
+    <Compile Include="Hexagram\OperationRequestHandler\SpaceForwardOperationBroker.cs" />
+    <Compile Include="Hexagram\OperationRequestHandler\ThroneForwardOperationBroker.cs" />
+    <Compile Include="Hexagram\OperationRequestHandler\WillForwardOperationBroker.cs" />
+    <Compile Include="Hexagram\OperationRouter\DestinyForwardOperationRouter.cs" />
+    <Compile Include="Hexagram\OperationRouter\ElementForwardOperationRouter.cs" />
+    <Compile Include="Hexagram\OperationRouter\EternityForwardOperationRouter.cs" />
+    <Compile Include="Hexagram\OperationRouter\HistoryForwardOperationRouter.cs" />
+    <Compile Include="Hexagram\OperationRouter\InfiniteForwardOperationRouter.cs" />
+    <Compile Include="Hexagram\OperationRouter\KnowledgeForwardOperationRouter.cs" />
+    <Compile Include="Hexagram\OperationRouter\LifeForwardOperationRouter.cs" />
+    <Compile Include="Hexagram\OperationRouter\LoveForwardOperationRouter.cs" />
+    <Compile Include="Hexagram\OperationRouter\ShadowForwardOperationRouter.cs" />
+    <Compile Include="Hexagram\OperationRouter\SpaceForwardOperationRouter.cs" />
+    <Compile Include="Hexagram\OperationRouter\ThroneForwardOperationRouter.cs" />
+    <Compile Include="Hexagram\OperationRouter\WillForwardOperationRouter.cs" />
+    <Compile Include="History\HistoryEventApi.cs" />
+    <Compile Include="History\HistoryOperationRequestApi.cs" />
+    <Compile Include="History\HistoryOperationRequestRouter.cs" />
+    <Compile Include="History\HistoryOperationResponseApi.cs" />
+    <Compile Include="Infinite\InfiniteEventApi.cs" />
+    <Compile Include="Infinite\InfiniteOperationRequestApi.cs" />
+    <Compile Include="Infinite\InfiniteOperationRequestRouter.cs" />
+    <Compile Include="Infinite\InfiniteOperationResponseApi.cs" />
+    <Compile Include="Knowledge\KnowledgeEventApi.cs" />
+    <Compile Include="Knowledge\KnowledgeOperationRequestApi.cs" />
+    <Compile Include="Knowledge\KnowledgeOperationRequestRouter.cs" />
+    <Compile Include="Knowledge\KnowledgeOperationResponseApi.cs" />
+    <Compile Include="Life\LifeEventApi.cs" />
+    <Compile Include="Life\LifeOperationRequestApi.cs" />
+    <Compile Include="Life\LifeOperationRequestRouter.cs" />
+    <Compile Include="Life\LifeOperationResponseApi.cs" />
+    <Compile Include="Love\LoveEventApi.cs" />
+    <Compile Include="Love\LoveOperationRequestApi.cs" />
+    <Compile Include="Love\LoveOperationRequestRouter.cs" />
+    <Compile Include="Love\LoveOperationResponseApi.cs" />
+    <Compile Include="Shadow\ShadowEventApi.cs" />
+    <Compile Include="Shadow\ShadowOperationRequestApi.cs" />
+    <Compile Include="Shadow\ShadowOperationRequestRouter.cs" />
+    <Compile Include="Shadow\ShadowOperationResponseApi.cs" />
+    <Compile Include="Space\SpaceOperationRequestApi.cs" />
+    <Compile Include="Space\OperationRequestHandler\SceneOperationRequestBroker.cs" />
+    <Compile Include="Space\OperationRequestHandler\WorldOperationRequestBroker.cs" />
+    <Compile Include="Space\Scene\SceneOperationRequestRouter.cs" />
+    <Compile Include="Space\SpaceEventApi.cs" />
+    <Compile Include="Space\SpaceOperationRequestRouter.cs" />
+    <Compile Include="Space\SpaceOperationResponseApi.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Space\World\WorldOperationRequestRouter.cs" />
+    <Compile Include="TerminalHexagramEntrance.cs" />
+    <Compile Include="Throne\ThroneEventApi.cs" />
+    <Compile Include="Throne\ThroneOperationRequestApi.cs" />
+    <Compile Include="Throne\ThroneOperationRequestRouter.cs" />
+    <Compile Include="Throne\ThroneOperationResponseApi.cs" />
+    <Compile Include="Will\WillEventApi.cs" />
+    <Compile Include="Will\WillOperationRequestApi.cs" />
+    <Compile Include="Will\WillOperationRequestRouter.cs" />
+    <Compile Include="Will\WillOperationResponseApi.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core\Door_of_Soul.Core.csproj">
+      <Project>{34c59e1e-eee2-4b13-9802-39dae818abfd}</Project>
+      <Name>Door_of_Soul.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Door_of_Soul.Communication.Protocol.Hexagram\Door_of_Soul.Communication.Protocol.Hexagram.csproj">
+      <Project>{d7a33245-4cc4-4528-9603-3051d6022120}</Project>
+      <Name>Door_of_Soul.Communication.Protocol.Hexagram</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Door_of_Soul.Communication.Protocol.Internal\Door_of_Soul.Communication.Protocol.Internal.csproj">
+      <Project>{d82bd596-1a35-4e4c-bc1e-2e27cd3e9812}</Project>
+      <Name>Door_of_Soul.Communication.Protocol.Internal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Door_of_Soul.Communication\Door_of_Soul.Communication.csproj">
+      <Project>{90c6178d-f9ee-4160-b7e6-d450afe03bec}</Project>
+      <Name>Door_of_Soul.Communication</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

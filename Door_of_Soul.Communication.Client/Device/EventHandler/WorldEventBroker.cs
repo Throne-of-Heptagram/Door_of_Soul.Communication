@@ -6,23 +6,23 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Client.Device.EventHandler
 {
-    class WorldEventBroker : EventHandler<Core.External.Device, DeviceEventCode>
+    class WorldEventBroker : EventHandler<DeviceEventCode>
     {
         public WorldEventBroker() : base(typeof(WorldEventParameterCode))
         {
         }
 
-        public override bool Handle(Core.External.Device subject, DeviceEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(DeviceEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(subject, eventCode, parameters, out errorMessage))
+            if (base.Handle(eventCode, parameters, out errorMessage))
             {
                 int worldId = (int)parameters[(byte)WorldEventParameterCode.WorldId];
-                WorldEventCode worldEventCode = (WorldEventCode)parameters[(byte)WorldEventParameterCode.EventCode];
-                Dictionary<byte, object> eventParameters = (Dictionary<byte, object>)parameters[(byte)WorldEventParameterCode.Parameters];
+                WorldEventCode resolvedEventCode = (WorldEventCode)parameters[(byte)WorldEventParameterCode.EventCode];
+                Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)WorldEventParameterCode.Parameters];
                 Core.World world;
                 if (CommunicationService.Instance.FindWorld(worldId, out world))
                 {
-                    return WorldEventRouter.Instance.Route(world, worldEventCode, eventParameters, out errorMessage);
+                    return WorldEventRouter.Instance.Route(world, resolvedEventCode, resolvedParameters, out errorMessage);
                 }
                 else
                 {

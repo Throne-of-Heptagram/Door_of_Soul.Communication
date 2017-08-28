@@ -6,23 +6,23 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.SceneServer.EndPoint.EventHandler
 {
-    class SceneEventBroker : EventHandler<Core.Internal.EndPoint, EndPointEventCode>
+    class SceneEventBroker : EventHandler<EndPointEventCode>
     {
         public SceneEventBroker() : base(typeof(SceneEventParameterCode))
         {
         }
 
-        public override bool Handle(Core.Internal.EndPoint subject, EndPointEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(EndPointEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(subject, eventCode, parameters, out errorMessage))
+            if (base.Handle(eventCode, parameters, out errorMessage))
             {
                 int sceneId = (int)parameters[(byte)SceneEventParameterCode.SceneId];
-                SceneEventCode sceneEventCode = (SceneEventCode)parameters[(byte)SceneEventParameterCode.EventCode];
-                Dictionary<byte, object> eventParameters = (Dictionary<byte, object>)parameters[(byte)SceneEventParameterCode.Parameters];
+                SceneEventCode resolvedEventCode = (SceneEventCode)parameters[(byte)SceneEventParameterCode.EventCode];
+                Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SceneEventParameterCode.Parameters];
                 TerminalScene scene;
                 if (CommunicationService.Instance.FindScene(sceneId, out scene))
                 {
-                    return SceneEventRouter.Instance.Route(scene, sceneEventCode, eventParameters, out errorMessage);
+                    return SceneEventRouter.Instance.Route(scene, resolvedEventCode, resolvedParameters, out errorMessage);
                 }
                 else
                 {

@@ -7,31 +7,33 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.ProxyServer.Device.OperationRequestHandler
 {
-    class AvatarOperationRequestBroker : OperationRequestHandler<TerminalDevice, TerminalDevice, DeviceOperationCode>
+    class AvatarOperationRequestBroker : OperationRequestHandler<TerminalDevice, DeviceOperationCode>
     {
         public AvatarOperationRequestBroker() : base(typeof(AvatarOperationRequestParameterCode))
         {
         }
 
-        public override void SendResponse(TerminalDevice terminal, TerminalDevice target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(TerminalDevice target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             DeviceOperationResponseApi.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
         }
 
-        public override bool Handle(TerminalDevice terminal, TerminalDevice requester, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(TerminalDevice terminal, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(terminal, requester, operationCode, parameters, out errorMessage))
+            if (base.Handle(terminal, operationCode, parameters, out errorMessage))
             {
                 int answerId = (int)parameters[(byte)AvatarOperationRequestParameterCode.AnswerId];
                 int soulId = (int)parameters[(byte)AvatarOperationRequestParameterCode.SoulId];
                 int avatarId = (int)parameters[(byte)AvatarOperationRequestParameterCode.AvatarId];
-                AvatarOperationCode avatarOperationCode = (AvatarOperationCode)parameters[(byte)AnswerOperationRequestParameterCode.OperationCode];
-                Dictionary<byte, object> operationRequestParameters = (Dictionary<byte, object>)parameters[(byte)AnswerOperationRequestParameterCode.Parameters];
-                Core.Soul soul;
+                AvatarOperationCode resolvedOperationCode = (AvatarOperationCode)parameters[(byte)AnswerOperationRequestParameterCode.OperationCode];
+                Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)AnswerOperationRequestParameterCode.Parameters];
                 Core.Avatar avatar;
-                if (requester.IsAnswerLinked(answerId) && requester.Answer.FindSoul(soulId, out soul) && soul.FindAvatar(avatarId, out avatar))
+                if (terminal.IsAnswerLinked(answerId) && 
+                    terminal.Answer.IsSoulLinked(soulId) && 
+                    CommunicationService.Instance.FindAvatar(avatarId, out avatar) &&
+                    avatar.IsSoulLinked(soulId))
                 {
-                    return AvatarOperationRequestRouter.Instance.Route(terminal, avatar, avatarOperationCode, operationRequestParameters, out errorMessage);
+                    return AvatarOperationRequestRouter.Instance.Route(terminal, avatar, resolvedOperationCode, resolvedParameters, out errorMessage);
                 }
                 else
                 {

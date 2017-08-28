@@ -1,5 +1,5 @@
 ﻿using Door_of_Soul.Communication.ProxyServer.Answer;
-using Door_of_Soul.Communication.Protocol.Internal.Answer;
+using Door_of_Soul.Communication.Protocol.External.Answer;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint.OperationResponseParameter;
 using Door_of_Soul.Core.Protocol;
@@ -7,29 +7,31 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.ProxyServer.EndPoint.OperationResponseHandler
 {
-    class AnswerOperationResponseBroker : OperationResponseHandler<Core.Internal.EndPoint, Core.Internal.EndPoint, EndPointOperationCode>
+    class AnswerOperationResponseBroker : OperationResponseHandler<EndPointOperationCode>
     {
         public AnswerOperationResponseBroker() : base(typeof(AnswerOperationResponseParameterCode))
         {
         }
 
-        public override bool Handle(Core.Internal.EndPoint terminal, Core.Internal.EndPoint subject, EndPointOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(EndPointOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if(base.Handle(terminal, subject, operationCode, returnCode, operationMessage, parameters, out errorMessage))
+            if(base.Handle(operationCode, returnCode, operationMessage, parameters, out errorMessage))
             {
+                int deviceId = (int)parameters[(byte)AnswerOperationResponseParameterCode.DeviceId];
                 int answerId = (int)parameters[(byte)AnswerOperationResponseParameterCode.AnswerId];
-                AnswerOperationCode answerOperationCode = (AnswerOperationCode)parameters[(byte)AnswerOperationResponseParameterCode.OperationCode];
-                OperationReturnCode answerOperationReturnCode = (OperationReturnCode)parameters[(byte)AnswerOperationResponseParameterCode.OperationReturnCode];
-                string answerOperationMessage = (string)parameters[(byte)AnswerOperationResponseParameterCode.OperationMessage];
-                Dictionary<byte, object> operationResponseParameters = (Dictionary<byte, object>)parameters[(byte)AnswerOperationResponseParameterCode.Parameters];
-                TerminalAnswer answer;
-                if (CommunicationService.Instance.FindAnswer(answerId, out answer))
+                AnswerOperationCode resolvedOperationCode = (AnswerOperationCode)parameters[(byte)AnswerOperationResponseParameterCode.OperationCode];
+                OperationReturnCode resolvedOperationReturnCode = (OperationReturnCode)parameters[(byte)AnswerOperationResponseParameterCode.OperationReturnCode];
+                string resolvedOperationMessage = (string)parameters[(byte)AnswerOperationResponseParameterCode.OperationMessage];
+                Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)AnswerOperationResponseParameterCode.Parameters];
+                TerminalDevice device;
+                if (CommunicationService.Instance.FindDevice(deviceId, out device))
                 {
-                    return AnswerOperationResponseRouter.Instance.Route(terminal, answer, answerOperationCode, answerOperationReturnCode, answerOperationMessage, operationResponseParameters, out errorMessage);
+                    AnswerOperationResponseApi.SendOperationResponse(device, answerId, resolvedOperationCode, resolvedOperationReturnCode, resolvedOperationMessage, resolvedParameters);
+                    return true;
                 }
                 else
                 {
-                    errorMessage = $"Can not find AnswerId:{answerId}";
+                    errorMessage = $"Can not find DeviceId:{deviceId}";
                     return false;
                 }
             }

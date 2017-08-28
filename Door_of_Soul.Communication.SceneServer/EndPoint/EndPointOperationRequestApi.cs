@@ -1,7 +1,6 @@
 ﻿using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint.OperationRequestParameter;
 using Door_of_Soul.Communication.Protocol.Internal.Scene;
-using Door_of_Soul.Communication.Protocol.Internal.System;
 using Door_of_Soul.Communication.Protocol.Internal.World;
 using System.Collections.Generic;
 
@@ -12,16 +11,6 @@ namespace Door_of_Soul.Communication.SceneServer.EndPoint
         public static void SendOperationRequest(EndPointOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             CommunicationService.Instance.SendOperation(operationCode, parameters);
-        }
-        public static void SystemOperationRequest(int devicdId, SystemOperationCode operationCode, Dictionary<byte, object> parameters)
-        {
-            Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
-            {
-                { (byte)SystemOperationRequestParameterCode.DeviceId, devicdId },
-                { (byte)SystemOperationRequestParameterCode.OperationCode, operationCode },
-                { (byte)SystemOperationRequestParameterCode.Parameters, parameters }
-            };
-            SendOperationRequest(EndPointOperationCode.SystemOperation, operationRequestParameters);
         }
         public static void WorldOperationRequest(int devicdId, int worldId, WorldOperationCode operationCode, Dictionary<byte, object> parameters)
         {
@@ -34,11 +23,12 @@ namespace Door_of_Soul.Communication.SceneServer.EndPoint
             };
             SendOperationRequest(EndPointOperationCode.WorldOperation, operationRequestParameters);
         }
-        public static void SceneOperationRequest(int devicdId, int sceneId, SceneOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void SceneOperationRequest(int devicdId, int worldId, int sceneId, SceneOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
                 { (byte)SceneOperationRequestParameterCode.DeviceId, devicdId },
+                { (byte)SceneOperationRequestParameterCode.WorldId, worldId },
                 { (byte)SceneOperationRequestParameterCode.SceneId, sceneId },
                 { (byte)SceneOperationRequestParameterCode.OperationCode, operationCode },
                 { (byte)SceneOperationRequestParameterCode.Parameters, parameters }

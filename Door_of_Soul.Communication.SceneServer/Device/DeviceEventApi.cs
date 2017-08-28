@@ -13,18 +13,6 @@ namespace Door_of_Soul.Communication.SceneServer.Device
         {
             CommunicationService.Instance.SendEvent(target, eventCode, parameters);
         }
-        public static void SystemEvent(SystemEventCode eventCode, Dictionary<byte, object> parameters)
-        {
-            Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
-            {
-                { (byte)SystemEventParameterCode.EventCode, eventCode },
-                { (byte)SystemEventParameterCode.Parameters, parameters }
-            };
-            foreach(var device in CommunicationService.Instance.GetAllDevices())
-            {
-                SendEvent(device, DeviceEventCode.SystemEvent, eventParameters);
-            }
-        }
         public static void WorldEvent(Core.World target, WorldEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
@@ -34,11 +22,15 @@ namespace Door_of_Soul.Communication.SceneServer.Device
                 { (byte)WorldEventParameterCode.Parameters, parameters }
             };
             HashSet<TerminalDevice> deviceSet = new HashSet<TerminalDevice>();
-            foreach(var scene in target.Scenes)
+            foreach (var sceneId in target.SceneIds)
             {
-                foreach (var device in (scene as TerminalScene).Devices)
+                TerminalScene scene;
+                if(CommunicationService.Instance.FindScene(sceneId, out scene))
                 {
-                    deviceSet.Add(device);
+                    foreach (var device in scene.Devices)
+                    {
+                        deviceSet.Add(device);
+                    }
                 }
             }
             foreach (var device in deviceSet)

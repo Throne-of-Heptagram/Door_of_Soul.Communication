@@ -72,10 +72,11 @@ namespace Door_of_Soul.Communication.Client.Device
             };
             SendSceneServerOperationRequest(sceneServerName, DeviceOperationCode.WorldOperation, operationRequestParameters);
         }
-        public static void SceneOperationRequest(string sceneServerName, int sceneId, SceneOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void SceneOperationRequest(string sceneServerName, int worldId, int sceneId, SceneOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
+                { (byte)SceneOperationRequestParameterCode.WorldId, worldId },
                 { (byte)SceneOperationRequestParameterCode.SceneId, sceneId },
                 { (byte)SceneOperationRequestParameterCode.OperationCode, operationCode },
                 { (byte)SceneOperationRequestParameterCode.Parameters, parameters }

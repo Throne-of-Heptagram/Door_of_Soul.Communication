@@ -3,6 +3,7 @@
     public enum SceneOperationRequestParameterCode : byte
     {
         DeviceId,
+        WorldId,
         SceneId,
         OperationCode,
         Parameters

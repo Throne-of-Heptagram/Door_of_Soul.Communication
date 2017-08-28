@@ -6,19 +6,19 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.SceneServer.EndPoint.EventHandler
 {
-    class SystemEventBroker : EventHandler<Core.Internal.EndPoint, EndPointEventCode>
+    class SystemEventBroker : EventHandler<EndPointEventCode>
     {
         public SystemEventBroker() : base(typeof(SystemEventParameterCode))
         {
         }
 
-        public override bool Handle(Core.Internal.EndPoint subject, EndPointEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(EndPointEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(subject, eventCode, parameters, out errorMessage))
+            if (base.Handle(eventCode, parameters, out errorMessage))
             {
-                SystemEventCode systemEventCode = (SystemEventCode)parameters[(byte)SystemEventParameterCode.EventCode];
-                Dictionary<byte, object> eventParameters = (Dictionary<byte, object>)parameters[(byte)SystemEventParameterCode.Parameters];
-                return SystemEventRouter.Instance.Route(Core.System.Instance, systemEventCode, eventParameters, out errorMessage);
+                SystemEventCode resolvedEventCode = (SystemEventCode)parameters[(byte)SystemEventParameterCode.EventCode];
+                Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SystemEventParameterCode.Parameters];
+                return SystemEventRouter.Instance.Route(Core.System.Instance, resolvedEventCode, resolvedParameters, out errorMessage);
             }
             else
             {

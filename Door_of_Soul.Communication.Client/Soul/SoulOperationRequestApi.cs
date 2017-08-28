@@ -8,9 +8,9 @@ namespace Door_of_Soul.Communication.Client.Soul
     {
         public static void SendOperationRequest(Core.Soul sender, SoulOperationCode operationCode, Dictionary<byte, object> parameters)
         {
-            if (sender.Answer == null)
+            if (sender.AnswerId != 0)
                 return;
-            DeviceOperationRequestApi.SoulOperationRequest(sender.Answer.AnswerId, sender.SoulId, operationCode, parameters);
+            DeviceOperationRequestApi.SoulOperationRequest(sender.AnswerId, sender.SoulId, operationCode, parameters);
         }
     }
 }

@@ -3,11 +3,11 @@ using Door_of_Soul.Communication.Protocol.External.Device;
 
 namespace Door_of_Soul.Communication.Client.Device
 {
-    class DeviceOperationResponseRouter : OperationResponseRouter<Core.External.Device, DeviceOperationCode>
+    class DeviceOperationResponseRouter : OperationResponseRouter<DeviceOperationCode>
     {
         public static DeviceOperationResponseRouter Instance { get; private set; } = new DeviceOperationResponseRouter();
 
-        private DeviceOperationResponseRouter()
+        private DeviceOperationResponseRouter() : base("Device")
         {
             OperationTable.Add(DeviceOperationCode.SystemOperation, new SystemOperationResponseBroker());
             OperationTable.Add(DeviceOperationCode.AnswerOperation, new AnswerOperationResponseBroker());

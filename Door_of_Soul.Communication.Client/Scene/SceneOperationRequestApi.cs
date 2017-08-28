@@ -8,9 +8,10 @@ namespace Door_of_Soul.Communication.Client.Scene
     {
         public static void SendOperationRequest(Core.Scene sender, SceneOperationCode operationCode, Dictionary<byte, object> parameters)
         {
-            if (sender.BelongingWorld == null)
+            string sceneServerName = null;
+            if (sender.WorldId != 0 && CommunicationService.Instance.FindSceneServerName(sender.SceneId, out sceneServerName))
                 return;
-            DeviceOperationRequestApi.SceneOperationRequest(sender.SceneServerName, sender.SceneId, operationCode, parameters);
+            DeviceOperationRequestApi.SceneOperationRequest(sceneServerName, sender.WorldId, sender.SceneId, operationCode, parameters);
         }
     }
 }

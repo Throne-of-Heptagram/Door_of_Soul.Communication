@@ -29,8 +29,6 @@ namespace Door_of_Soul.Communication.SceneServer
             }
         }
 
-        public abstract Core.Internal.EndPoint GetEndPoint();
-        public abstract List<TerminalDevice> GetAllDevices();
         public abstract bool FindDevice(int deviceId, out TerminalDevice device);
         public abstract bool FindWorld(int worldId, out Core.World world);
         public abstract bool FindScene(int sceneId, out TerminalScene scene);
@@ -38,17 +36,17 @@ namespace Door_of_Soul.Communication.SceneServer
 
         protected bool HandleOperationRequest(TerminalDevice device, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            return DeviceOperationRequestRouter.Instance.Route(device, device, operationCode, parameters, out errorMessage);
+            return DeviceOperationRequestRouter.Instance.Route(device, operationCode, parameters, out errorMessage);
         }
 
-        protected bool HandleEvent(Core.Internal.EndPoint endPoint, EndPointEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
+        protected bool HandleEvent(EndPointEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            return EndPointEventRouter.Instance.Route(GetEndPoint(), eventCode, parameters, out errorMessage);
+            return EndPointEventRouter.Instance.Route(eventCode, parameters, out errorMessage);
         }
 
         protected bool HandleOperationResponse(EndPointOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            return EndPointOperationResponseRouter.Instance.Route(GetEndPoint(), GetEndPoint(), operationCode, returnCode, operationMessage, parameters, out errorMessage);
+            return EndPointOperationResponseRouter.Instance.Route(operationCode, returnCode, operationMessage, parameters, out errorMessage);
         }
 
         public abstract void SendEvent(TerminalDevice target, DeviceEventCode eventCode, Dictionary<byte, object> parameters);

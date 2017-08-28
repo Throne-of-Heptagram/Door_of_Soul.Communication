@@ -11,10 +11,6 @@ namespace Door_of_Soul.Communication.ProxyServer
         private object devicesLock = new object();
         private List<TerminalDevice> devices = new List<TerminalDevice>();
 
-        public TerminalAnswer(int answerId) : base(answerId)
-        {
-        }
-
         public IEnumerable<TerminalDevice> Devices
         {
             get

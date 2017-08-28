@@ -7,9 +7,9 @@ namespace Door_of_Soul.Communication.ProxyServer.Avatar
 {
     public static class AvatarOperationResponseApi
     {
-        public static void SendOperationResponse(TerminalDevice terminal, Core.Avatar target, AvatarOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SendOperationResponse(TerminalDevice terminal, int avatarId, AvatarOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            DeviceOperationResponseApi.AvatarOperationResponse(terminal, target, operationCode, operationReturnCode, operationMessage, parameters);
+            DeviceOperationResponseApi.AvatarOperationResponse(terminal, avatarId, operationCode, operationReturnCode, operationMessage, parameters);
         }
     }
 }

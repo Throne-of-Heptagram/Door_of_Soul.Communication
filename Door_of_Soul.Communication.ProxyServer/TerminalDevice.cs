@@ -2,11 +2,12 @@
 
 namespace Door_of_Soul.Communication.ProxyServer
 {
-    public abstract class TerminalDevice : Core.External.Device
+    public abstract class TerminalDevice
     {
         public event Action<TerminalDevice, TerminalAnswer> OnAnswerLinked;
         public event Action<TerminalDevice, TerminalAnswer> OnAnswerUnlinked;
 
+        public int DeviceId { get; private set; }
         public TerminalAnswer Answer { get; private set; }
 
         public bool IsAnswerLinked(int answerId)

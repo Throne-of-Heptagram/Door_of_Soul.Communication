@@ -7,25 +7,25 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Client.Device.OperationResponseHandler
 {
-    class SoulOperationResponseBroker : OperationResponseHandler<Core.External.Device, DeviceOperationCode>
+    class SoulOperationResponseBroker : OperationResponseHandler<DeviceOperationCode>
     {
         public SoulOperationResponseBroker() : base(typeof(SoulOperationResponseParameterCode))
         {
         }
 
-        public override bool Handle(Core.External.Device subject, DeviceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(DeviceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(subject, operationCode, returnCode, operationMessage, parameters, out errorMessage))
+            if (base.Handle(operationCode, returnCode, operationMessage, parameters, out errorMessage))
             {
                 int soulId = (int)parameters[(byte)SoulOperationResponseParameterCode.SoulId];
-                SoulOperationCode soulOperationCode = (SoulOperationCode)parameters[(byte)SoulOperationResponseParameterCode.OperationCode];
-                OperationReturnCode soulOperationReturnCode = (OperationReturnCode)parameters[(byte)SoulOperationResponseParameterCode.OperationReturnCode];
-                string soulOperationMessage = (string)parameters[(byte)SoulOperationResponseParameterCode.OperationMessage];
-                Dictionary<byte, object> operationResponseParameters = (Dictionary<byte, object>)parameters[(byte)SoulOperationResponseParameterCode.Parameters];
+                SoulOperationCode resolvedOperationCode = (SoulOperationCode)parameters[(byte)SoulOperationResponseParameterCode.OperationCode];
+                OperationReturnCode resolvedOperationReturnCode = (OperationReturnCode)parameters[(byte)SoulOperationResponseParameterCode.OperationReturnCode];
+                string resolvedOperationMessage = (string)parameters[(byte)SoulOperationResponseParameterCode.OperationMessage];
+                Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SoulOperationResponseParameterCode.Parameters];
                 Core.Soul soul;
                 if (CommunicationService.Instance.FindSoul(soulId, out soul))
                 {
-                    return SoulOperationResponseRouter.Instance.Route(soul, soulOperationCode, soulOperationReturnCode, soulOperationMessage, operationResponseParameters, out errorMessage);
+                    return SoulOperationResponseRouter.Instance.Route(soul, resolvedOperationCode, resolvedOperationReturnCode, resolvedOperationMessage, resolvedParameters, out errorMessage);
                 }
                 else
                 {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication
 {
-    public abstract class OperationResponseHandler<TSubject, TOperationCode>
+    public abstract class OperationResponseHandler<TOperationCode>
     {
         protected int CorrectParameterCount { get; private set; }
 
@@ -13,7 +13,7 @@ namespace Door_of_Soul.Communication
             CorrectParameterCount = Enum.GetNames(typeOfOperationResponseParameterCode).Length;
         }
 
-        public virtual bool Handle(TSubject subject, TOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
+        public virtual bool Handle(TOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
             return CheckOperationReturn(returnCode, operationMessage, parameters, out errorMessage);
         }
@@ -43,7 +43,7 @@ namespace Door_of_Soul.Communication
         }
     }
 
-    public abstract class OperationResponseHandler<TTerminal, TSubject, TOperationCode>
+    public abstract class OperationResponseHandler<TSubject, TOperationCode>
     {
         protected int CorrectParameterCount { get; private set; }
 
@@ -52,7 +52,7 @@ namespace Door_of_Soul.Communication
             CorrectParameterCount = Enum.GetNames(typeOfOperationResponseParameterCode).Length;
         }
 
-        public virtual bool Handle(TTerminal terminal, TSubject subject, TOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
+        public virtual bool Handle(TSubject subject, TOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
             return CheckOperationReturn(returnCode, operationMessage, parameters, out errorMessage);
         }

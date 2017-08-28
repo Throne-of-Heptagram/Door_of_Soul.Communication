@@ -1,35 +1,37 @@
 ﻿using Door_of_Soul.Communication.SceneServer.Scene;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint.OperationResponseParameter;
-using Door_of_Soul.Communication.Protocol.Internal.Scene;
+using Door_of_Soul.Communication.Protocol.External.Scene;
 using Door_of_Soul.Core.Protocol;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.SceneServer.EndPoint.OperationResponseHandler
 {
-    class SceneOperationResponseBroker : OperationResponseHandler<Core.Internal.EndPoint, Core.Internal.EndPoint, EndPointOperationCode>
+    class SceneOperationResponseBroker : OperationResponseHandler<EndPointOperationCode>
     {
         public SceneOperationResponseBroker() : base(typeof(SceneOperationResponseParameterCode))
         {
         }
 
-        public override bool Handle(Core.Internal.EndPoint terminal, Core.Internal.EndPoint subject, EndPointOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(EndPointOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(terminal, subject, operationCode, returnCode, operationMessage, parameters, out errorMessage))
+            if (base.Handle(operationCode, returnCode, operationMessage, parameters, out errorMessage))
             {
+                int deviceId = (int)parameters[(byte)SceneOperationResponseParameterCode.DeviceId];
                 int sceneId = (int)parameters[(byte)SceneOperationResponseParameterCode.SceneId];
-                SceneOperationCode sceneOperationCode = (SceneOperationCode)parameters[(byte)SceneOperationResponseParameterCode.OperationCode];
-                OperationReturnCode sceneOperationReturnCode = (OperationReturnCode)parameters[(byte)SceneOperationResponseParameterCode.OperationReturnCode];
-                string answerOperationMessage = (string)parameters[(byte)SceneOperationResponseParameterCode.OperationMessage];
-                Dictionary<byte, object> operationResponseParameters = (Dictionary<byte, object>)parameters[(byte)SceneOperationResponseParameterCode.Parameters];
-                TerminalScene scene;
-                if (CommunicationService.Instance.FindScene(sceneId, out scene))
+                SceneOperationCode resolvedOperationCode = (SceneOperationCode)parameters[(byte)SceneOperationResponseParameterCode.OperationCode];
+                OperationReturnCode resolvedOperationReturnCode = (OperationReturnCode)parameters[(byte)SceneOperationResponseParameterCode.OperationReturnCode];
+                string resolvedOperationMessage = (string)parameters[(byte)SceneOperationResponseParameterCode.OperationMessage];
+                Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SceneOperationResponseParameterCode.Parameters];
+                TerminalDevice device;
+                if (CommunicationService.Instance.FindDevice(deviceId, out device))
                 {
-                    return SceneOperationResponseRouter.Instance.Route(terminal, scene, sceneOperationCode, sceneOperationReturnCode, answerOperationMessage, operationResponseParameters, out errorMessage);
+                    SceneOperationResponseApi.SendOperationResponse(device, sceneId, resolvedOperationCode, resolvedOperationReturnCode, resolvedOperationMessage, resolvedParameters);
+                    return true;
                 }
                 else
                 {
-                    errorMessage = $"Can not find SceneId:{sceneId}";
+                    errorMessage = $"Can not find DeviceId:{deviceId}";
                     return false;
                 }
             }
