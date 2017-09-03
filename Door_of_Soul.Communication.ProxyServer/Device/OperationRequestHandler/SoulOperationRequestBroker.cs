@@ -1,8 +1,9 @@
-﻿using Door_of_Soul.Communication.ProxyServer.Soul;
-using Door_of_Soul.Communication.Protocol.External.Device;
+﻿using Door_of_Soul.Communication.Protocol.External.Device;
 using Door_of_Soul.Communication.Protocol.External.Device.OperationRequestParameter;
 using Door_of_Soul.Communication.Protocol.External.Soul;
+using Door_of_Soul.Communication.ProxyServer.Soul;
 using Door_of_Soul.Core.Protocol;
+using Door_of_Soul.Core.ProxyServer;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.ProxyServer.Device.OperationRequestHandler
@@ -26,7 +27,7 @@ namespace Door_of_Soul.Communication.ProxyServer.Device.OperationRequestHandler
                 int soulId = (int)parameters[(byte)SoulOperationRequestParameterCode.SoulId];
                 SoulOperationCode resolvedOperationCode = (SoulOperationCode)parameters[(byte)SoulOperationRequestParameterCode.OperationCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SoulOperationRequestParameterCode.Parameters];
-                Core.Soul soul;
+                VirtualSoul soul;
                 if (terminal.IsAnswerLinked(answerId) && 
                     CommunicationService.Instance.FindSoul(soulId, out soul) &&
                     soul.AnswerId == answerId)

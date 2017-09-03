@@ -4,6 +4,7 @@ using Door_of_Soul.Communication.Protocol.External.Device;
 using Door_of_Soul.Communication.Protocol.External.Device.EventParameter;
 using Door_of_Soul.Communication.Protocol.External.Soul;
 using Door_of_Soul.Communication.Protocol.External.System;
+using Door_of_Soul.Core.ProxyServer;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.ProxyServer.Device
@@ -12,7 +13,7 @@ namespace Door_of_Soul.Communication.ProxyServer.Device
     {
         public static void SendEvent(TerminalDevice target, DeviceEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            CommunicationService.Instance.SendEvent(target, eventCode, parameters);
+            target.SendEvent(eventCode, parameters);
         }
         public static void SystemEvent(SystemEventCode eventCode, Dictionary<byte, object> parameters)
         {
@@ -21,7 +22,7 @@ namespace Door_of_Soul.Communication.ProxyServer.Device
                 { (byte)SystemEventParameterCode.EventCode, eventCode },
                 { (byte)SystemEventParameterCode.Parameters, parameters }
             };
-            foreach(var device in CommunicationService.Instance.AllDevices)
+            foreach(var device in DeviceFactory.Instance.Subjects)
             {
                 SendEvent(device, DeviceEventCode.SystemEvent, eventParameters);
             }
@@ -39,7 +40,7 @@ namespace Door_of_Soul.Communication.ProxyServer.Device
                 SendEvent(device, DeviceEventCode.AnswerEvent, eventParameters);
             }
         }
-        public static void SoulEvent(Core.Soul target, SoulEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SoulEvent(VirtualSoul target, SoulEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
             {
@@ -56,7 +57,7 @@ namespace Door_of_Soul.Communication.ProxyServer.Device
                 }
             }
         }
-        public static void AvatarEvent(Core.Avatar target, AvatarEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void AvatarEvent(VirtualAvatar target, AvatarEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
             {
@@ -67,7 +68,7 @@ namespace Door_of_Soul.Communication.ProxyServer.Device
             HashSet<TerminalDevice> deviceSet = new HashSet<TerminalDevice>();
             foreach (var soulId in target.SoulIds)
             {
-                Core.Soul soul;
+                VirtualSoul soul;
                 if(CommunicationService.Instance.FindSoul(soulId, out soul))
                 {
                     TerminalAnswer answer;

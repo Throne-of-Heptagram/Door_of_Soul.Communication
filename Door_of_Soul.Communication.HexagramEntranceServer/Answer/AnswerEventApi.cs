@@ -1,5 +1,6 @@
 ﻿using Door_of_Soul.Communication.HexagramEntranceServer.EndPoint;
 using Door_of_Soul.Communication.Protocol.Internal.Answer;
+using Door_of_Soul.Core.HexagramEntranceServer;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Answer

@@ -1,5 +1,6 @@
 ﻿using Door_of_Soul.Communication.Client.Device;
 using Door_of_Soul.Communication.Protocol.External.Device;
+using Door_of_Soul.Core.Client;
 using Door_of_Soul.Core.Protocol;
 using System;
 using System.Collections.Generic;
@@ -29,11 +30,11 @@ namespace Door_of_Soul.Communication.Client
 
         public abstract bool IsSceneServerConnected(string sceneServerName);
 
-        public abstract bool FindAnswer(int answerId, out Core.Answer answer);
-        public abstract bool FindSoul(int soulId, out Core.Soul soul);
-        public abstract bool FindAvatar(int avatarId, out Core.Avatar avatar);
-        public abstract bool FindWorld(int worldId, out Core.World world);
-        public abstract bool FindScene(int sceneId, out Core.Scene scene);
+        public abstract bool FindAnswer(int answerId, out VirtualAnswer answer);
+        public abstract bool FindSoul(int soulId, out VirtualSoul soul);
+        public abstract bool FindAvatar(int avatarId, out VirtualAvatar avatar);
+        public abstract bool FindWorld(int worldId, out VirtualWorld world);
+        public abstract bool FindScene(int sceneId, out VirtualScene scene);
         public abstract bool FindSceneServerName(int sceneId, out string sceneServerName);
 
         protected bool HandleEvent(DeviceEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)

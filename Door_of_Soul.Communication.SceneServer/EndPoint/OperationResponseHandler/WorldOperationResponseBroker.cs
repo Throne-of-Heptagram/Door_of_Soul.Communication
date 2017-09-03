@@ -24,7 +24,7 @@ namespace Door_of_Soul.Communication.SceneServer.EndPoint.OperationResponseHandl
                 string resolvedOperationMessage = (string)parameters[(byte)WorldOperationResponseParameterCode.OperationMessage];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)WorldOperationResponseParameterCode.Parameters];
                 TerminalDevice device;
-                if (CommunicationService.Instance.FindDevice(deviceId, out device))
+                if (DeviceFactory.Instance.Find(deviceId, out device))
                 {
                     WorldOperationResponseApi.SendOperationResponse(device, worldId, resolvedOperationCode, resolvedOperationReturnCode, resolvedOperationMessage, resolvedParameters);
                     return true;

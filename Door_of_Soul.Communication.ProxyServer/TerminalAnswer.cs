@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Door_of_Soul.Core.ProxyServer;
+using System;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.ProxyServer
 {
-    public class TerminalAnswer : Core.Answer
+    public class TerminalAnswer : VirtualAnswer
     {
         public event Action<TerminalAnswer, TerminalDevice> OnDeviceLinked;
         public event Action<TerminalAnswer, TerminalDevice> OnDeviceUnlinked;

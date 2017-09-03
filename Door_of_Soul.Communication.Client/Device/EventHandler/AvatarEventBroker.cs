@@ -2,6 +2,7 @@
 using Door_of_Soul.Communication.Protocol.External.Avatar;
 using Door_of_Soul.Communication.Protocol.External.Device;
 using Door_of_Soul.Communication.Protocol.External.Device.EventParameter;
+using Door_of_Soul.Core.Client;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Client.Device.EventHandler
@@ -19,7 +20,7 @@ namespace Door_of_Soul.Communication.Client.Device.EventHandler
                 int avatarId = (int)parameters[(byte)AvatarEventParameterCode.AvatarId];
                 AvatarEventCode resolvedEventCode = (AvatarEventCode)parameters[(byte)AvatarEventParameterCode.EventCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)AvatarEventParameterCode.Parameters];
-                Core.Avatar avatar;
+                VirtualAvatar avatar;
                 if (CommunicationService.Instance.FindAvatar(avatarId, out avatar))
                 {
                     return AvatarEventRouter.Instance.Route(avatar, resolvedEventCode, resolvedParameters, out errorMessage);

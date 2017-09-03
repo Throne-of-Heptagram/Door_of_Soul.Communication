@@ -1,8 +1,9 @@
 ﻿using Door_of_Soul.Communication.Protocol.External.World;
+using Door_of_Soul.Core.Client;
 
 namespace Door_of_Soul.Communication.Client.World
 {
-    class WorldEventRouter : EventRouter<Core.World, WorldEventCode>
+    class WorldEventRouter : EventRouter<VirtualWorld, WorldEventCode>
     {
         public static WorldEventRouter Instance { get; private set; } = new WorldEventRouter();
 

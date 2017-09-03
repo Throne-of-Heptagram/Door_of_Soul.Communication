@@ -10,7 +10,7 @@ namespace Door_of_Soul.Communication.HexagramCentralServer
         {
             Instance = instance;
         }
-        protected void HandleForwardOperationRequest(HexagramForwardOperationCode operationCode, Dictionary<byte, object> parameters)
+        public void HandleForwardOperationRequest(HexagramForwardOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             SendForwardOperation(operationCode, parameters);
         }

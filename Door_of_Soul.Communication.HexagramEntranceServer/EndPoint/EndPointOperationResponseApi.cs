@@ -15,7 +15,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
     {
         public static void SendOperationResponse(TerminalEndPoint target, EndPointOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            CommunicationService.Instance.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
+            target.SendOperationResponse(operationCode, operationReturnCode, operationMessage, parameters);
         }
         public static void SystemOperationResponse(TerminalEndPoint terminal, int deviceId, SystemOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {

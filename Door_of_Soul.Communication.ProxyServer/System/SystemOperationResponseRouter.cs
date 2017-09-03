@@ -1,8 +1,9 @@
 ﻿using Door_of_Soul.Communication.Protocol.Internal.System;
+using Door_of_Soul.Core.ProxyServer;
 
 namespace Door_of_Soul.Communication.ProxyServer.System
 {
-    class SystemOperationResponseRouter : OperationResponseRouter<Core.System, SystemOperationCode>
+    class SystemOperationResponseRouter : OperationResponseRouter<VirtualSystem, SystemOperationCode>
     {
         public static SystemOperationResponseRouter Instance { get; private set; } = new SystemOperationResponseRouter();
 

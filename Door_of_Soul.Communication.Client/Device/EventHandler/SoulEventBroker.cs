@@ -2,6 +2,7 @@
 using Door_of_Soul.Communication.Protocol.External.Device;
 using Door_of_Soul.Communication.Protocol.External.Device.EventParameter;
 using Door_of_Soul.Communication.Protocol.External.Soul;
+using Door_of_Soul.Core.Client;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Client.Device.EventHandler
@@ -19,7 +20,7 @@ namespace Door_of_Soul.Communication.Client.Device.EventHandler
                 int soulId = (int)parameters[(byte)SoulEventParameterCode.SoulId];
                 SoulEventCode resolvedEventCode = (SoulEventCode)parameters[(byte)SoulEventParameterCode.EventCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SoulEventParameterCode.Parameters];
-                Core.Soul soul;
+                VirtualSoul soul;
                 if (CommunicationService.Instance.FindSoul(soulId, out soul))
                 {
                     return SoulEventRouter.Instance.Route(soul, resolvedEventCode, resolvedParameters, out errorMessage);

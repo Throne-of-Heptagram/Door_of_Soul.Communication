@@ -1,7 +1,8 @@
-﻿using Door_of_Soul.Communication.SceneServer.World;
-using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
+﻿using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint.EventParameter;
 using Door_of_Soul.Communication.Protocol.Internal.World;
+using Door_of_Soul.Communication.SceneServer.World;
+using Door_of_Soul.Core.SceneServer;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.SceneServer.EndPoint.EventHandler
@@ -19,7 +20,7 @@ namespace Door_of_Soul.Communication.SceneServer.EndPoint.EventHandler
                 int worldId = (int)parameters[(byte)WorldEventParameterCode.WorldId];
                 WorldEventCode resolvedEventCode = (WorldEventCode)parameters[(byte)WorldEventParameterCode.EventCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)WorldEventParameterCode.Parameters];
-                Core.World world;
+                VirtualWorld world;
                 if (CommunicationService.Instance.FindWorld(worldId, out world))
                 {
                     return WorldEventRouter.Instance.Route(world, resolvedEventCode, resolvedParameters, out errorMessage);

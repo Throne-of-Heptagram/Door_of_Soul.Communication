@@ -7,6 +7,7 @@ using Door_of_Soul.Communication.Protocol.Internal.Soul;
 using Door_of_Soul.Communication.Protocol.Internal.System;
 using Door_of_Soul.Communication.Protocol.Internal.World;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
 {
@@ -14,7 +15,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
     {
         public static void SendEvent(TerminalEndPoint target, EndPointEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            CommunicationService.Instance.SendEvent(target, eventCode, parameters);
+            target.SendEvent(eventCode, parameters);
         }
         public static void SystemEvent(SystemEventCode eventCode, Dictionary<byte, object> parameters)
         {
@@ -23,7 +24,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
                 { (byte)SystemEventParameterCode.EventCode, eventCode },
                 { (byte)SystemEventParameterCode.Parameters, parameters }
             };
-            foreach (var endPoint in CommunicationService.Instance.AllEndPoints)
+            foreach (var endPoint in EndPointFactory.Instance.Subjects)
             {
                 SendEvent(endPoint, EndPointEventCode.SystemEvent, eventParameters);
             }
@@ -36,7 +37,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
                 { (byte)AnswerEventParameterCode.EventCode, eventCode },
                 { (byte)AnswerEventParameterCode.Parameters, parameters }
             };
-            foreach (var endPoint in CommunicationService.Instance.AllProxyEndPoints)
+            foreach (var endPoint in EndPointFactory.Instance.Subjects.Where(x => x.EndPointType == EndPointType.ProxyServer))
             {
                 SendEvent(endPoint, EndPointEventCode.AnswerEvent, eventParameters);
             }
@@ -49,7 +50,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
                 { (byte)SoulEventParameterCode.EventCode, eventCode },
                 { (byte)SoulEventParameterCode.Parameters, parameters }
             };
-            foreach (var endPoint in CommunicationService.Instance.AllProxyEndPoints)
+            foreach (var endPoint in EndPointFactory.Instance.Subjects.Where(x => x.EndPointType == EndPointType.ProxyServer))
             {
                 SendEvent(endPoint, EndPointEventCode.SoulEvent, eventParameters);
             }
@@ -62,7 +63,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
                 { (byte)AvatarEventParameterCode.EventCode, eventCode },
                 { (byte)AvatarEventParameterCode.Parameters, parameters }
             };
-            foreach (var endPoint in CommunicationService.Instance.AllProxyEndPoints)
+            foreach (var endPoint in EndPointFactory.Instance.Subjects.Where(x => x.EndPointType == EndPointType.ProxyServer))
             {
                 SendEvent(endPoint, EndPointEventCode.AvatarEvent, eventParameters);
             }
@@ -75,7 +76,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
                 { (byte)WorldEventParameterCode.EventCode, eventCode },
                 { (byte)WorldEventParameterCode.Parameters, parameters }
             };
-            foreach (var endPoint in CommunicationService.Instance.AllSceneEndPoints)
+            foreach (var endPoint in EndPointFactory.Instance.Subjects.Where(x => x.EndPointType == EndPointType.SceneServer))
             {
                 SendEvent(endPoint, EndPointEventCode.WorldEvent, eventParameters);
             }
@@ -88,7 +89,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
                 { (byte)SceneEventParameterCode.EventCode, eventCode },
                 { (byte)SceneEventParameterCode.Parameters, parameters }
             };
-            foreach (var endPoint in CommunicationService.Instance.AllSceneEndPoints)
+            foreach (var endPoint in EndPointFactory.Instance.Subjects.Where(x => x.EndPointType == EndPointType.SceneServer))
             {
                 SendEvent(endPoint, EndPointEventCode.SceneEvent, eventParameters);
             }

@@ -1,8 +1,9 @@
-﻿using Door_of_Soul.Communication.ProxyServer.System;
-using Door_of_Soul.Communication.Protocol.External.Device;
+﻿using Door_of_Soul.Communication.Protocol.External.Device;
 using Door_of_Soul.Communication.Protocol.External.Device.OperationRequestParameter;
 using Door_of_Soul.Communication.Protocol.External.System;
+using Door_of_Soul.Communication.ProxyServer.System;
 using Door_of_Soul.Core.Protocol;
+using Door_of_Soul.Core.ProxyServer;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.ProxyServer.Device.OperationRequestHandler
@@ -24,7 +25,7 @@ namespace Door_of_Soul.Communication.ProxyServer.Device.OperationRequestHandler
             {
                 SystemOperationCode resolvedOperationCode = (SystemOperationCode)parameters[(byte)SystemOperationRequestParameterCode.OperationCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SystemOperationRequestParameterCode.Parameters];
-                return SystemOperationRequestRouter.Instance.Route(terminal, Core.System.Instance, resolvedOperationCode, resolvedParameters, out errorMessage);
+                return SystemOperationRequestRouter.Instance.Route(terminal, VirtualSystem.Instance, resolvedOperationCode, resolvedParameters, out errorMessage);
             }
             else
             {

@@ -2,6 +2,7 @@
 using Door_of_Soul.Communication.Protocol.External.Avatar;
 using Door_of_Soul.Communication.Protocol.External.Device;
 using Door_of_Soul.Communication.Protocol.External.Device.OperationResponseParameter;
+using Door_of_Soul.Core.Client;
 using Door_of_Soul.Core.Protocol;
 using System.Collections.Generic;
 
@@ -22,7 +23,7 @@ namespace Door_of_Soul.Communication.Client.Device.OperationResponseHandler
                 OperationReturnCode resolvedOperationReturnCode = (OperationReturnCode)parameters[(byte)AvatarOperationResponseParameterCode.OperationReturnCode];
                 string resolvedOperationMessage = (string)parameters[(byte)AvatarOperationResponseParameterCode.OperationMessage];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)AvatarOperationResponseParameterCode.Parameters];
-                Core.Avatar avatar;
+                VirtualAvatar avatar;
                 if (CommunicationService.Instance.FindAvatar(avatarId, out avatar))
                 {
                     return AvatarOperationResponseRouter.Instance.Route(avatar, resolvedOperationCode, resolvedOperationReturnCode, resolvedOperationMessage, resolvedParameters, out errorMessage);

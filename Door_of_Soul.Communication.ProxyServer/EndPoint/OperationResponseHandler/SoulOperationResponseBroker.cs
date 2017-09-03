@@ -24,7 +24,7 @@ namespace Door_of_Soul.Communication.ProxyServer.EndPoint.OperationResponseHandl
                 string resolvedOperationMessage = (string)parameters[(byte)SoulOperationResponseParameterCode.OperationMessage];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SoulOperationResponseParameterCode.Parameters];
                 TerminalDevice device;
-                if (CommunicationService.Instance.FindDevice(deviceId, out device))
+                if (DeviceFactory.Instance.Find(deviceId, out device))
                 {
                     SoulOperationResponseApi.SendOperationResponse(device, soulId, resolvedOperationCode, resolvedOperationReturnCode, resolvedOperationMessage, resolvedParameters);
                     return true;

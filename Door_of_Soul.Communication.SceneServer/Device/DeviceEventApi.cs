@@ -4,6 +4,7 @@ using Door_of_Soul.Communication.Protocol.External.Scene;
 using Door_of_Soul.Communication.Protocol.External.System;
 using Door_of_Soul.Communication.Protocol.External.World;
 using System.Collections.Generic;
+using Door_of_Soul.Core.SceneServer;
 
 namespace Door_of_Soul.Communication.SceneServer.Device
 {
@@ -11,9 +12,9 @@ namespace Door_of_Soul.Communication.SceneServer.Device
     {
         public static void SendEvent(TerminalDevice target, DeviceEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            CommunicationService.Instance.SendEvent(target, eventCode, parameters);
+            target.SendEvent(eventCode, parameters);
         }
-        public static void WorldEvent(Core.World target, WorldEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void WorldEvent(VirtualWorld target, WorldEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
             {

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Door_of_Soul.Core.SceneServer;
+using System;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.SceneServer
 {
-    public class TerminalScene : Core.Scene
+    public abstract class TerminalScene : VirtualScene
     {
         public event Action<TerminalScene, TerminalDevice> OnDeviceLinked;
         public event Action<TerminalScene, TerminalDevice> OnDeviceUnlinked;

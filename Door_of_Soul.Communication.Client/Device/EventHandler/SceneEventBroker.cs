@@ -2,6 +2,7 @@
 using Door_of_Soul.Communication.Protocol.External.Device;
 using Door_of_Soul.Communication.Protocol.External.Device.EventParameter;
 using Door_of_Soul.Communication.Protocol.External.Scene;
+using Door_of_Soul.Core.Client;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Client.Device.EventHandler
@@ -19,7 +20,7 @@ namespace Door_of_Soul.Communication.Client.Device.EventHandler
                 int sceneId = (int)parameters[(byte)SceneEventParameterCode.SceneId];
                 SceneEventCode resolvedEventCode = (SceneEventCode)parameters[(byte)SceneEventParameterCode.EventCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SceneEventParameterCode.Parameters];
-                Core.Scene scene;
+                VirtualScene scene;
                 if (CommunicationService.Instance.FindScene(sceneId, out scene))
                 {
                     return SceneEventRouter.Instance.Route(scene, resolvedEventCode, resolvedParameters, out errorMessage);

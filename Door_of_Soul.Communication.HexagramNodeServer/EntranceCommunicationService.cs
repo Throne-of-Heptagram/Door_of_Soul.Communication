@@ -12,7 +12,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer
             Instance = instance;
         }
 
-        protected bool HandleOperationRequest(TerminalHexagramEntrance hexagramEntrance, TOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public bool HandleOperationRequest(TerminalHexagramEntrance hexagramEntrance, TOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
             return HexagramOperationRequestRouter<TOperationCode>.Instance.Route(hexagramEntrance, operationCode, parameters, out errorMessage);
         }

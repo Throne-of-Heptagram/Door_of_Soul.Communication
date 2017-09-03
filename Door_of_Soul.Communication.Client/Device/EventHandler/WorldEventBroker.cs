@@ -2,6 +2,7 @@
 using Door_of_Soul.Communication.Protocol.External.Device;
 using Door_of_Soul.Communication.Protocol.External.Device.EventParameter;
 using Door_of_Soul.Communication.Protocol.External.World;
+using Door_of_Soul.Core.Client;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Client.Device.EventHandler
@@ -19,7 +20,7 @@ namespace Door_of_Soul.Communication.Client.Device.EventHandler
                 int worldId = (int)parameters[(byte)WorldEventParameterCode.WorldId];
                 WorldEventCode resolvedEventCode = (WorldEventCode)parameters[(byte)WorldEventParameterCode.EventCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)WorldEventParameterCode.Parameters];
-                Core.World world;
+                VirtualWorld world;
                 if (CommunicationService.Instance.FindWorld(worldId, out world))
                 {
                     return WorldEventRouter.Instance.Route(world, resolvedEventCode, resolvedParameters, out errorMessage);

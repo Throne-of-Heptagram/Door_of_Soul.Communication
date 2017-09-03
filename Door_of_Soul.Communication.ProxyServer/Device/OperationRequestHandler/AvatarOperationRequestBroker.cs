@@ -1,8 +1,9 @@
-﻿using Door_of_Soul.Communication.ProxyServer.Avatar;
-using Door_of_Soul.Communication.Protocol.External.Avatar;
+﻿using Door_of_Soul.Communication.Protocol.External.Avatar;
 using Door_of_Soul.Communication.Protocol.External.Device;
 using Door_of_Soul.Communication.Protocol.External.Device.OperationRequestParameter;
+using Door_of_Soul.Communication.ProxyServer.Avatar;
 using Door_of_Soul.Core.Protocol;
+using Door_of_Soul.Core.ProxyServer;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.ProxyServer.Device.OperationRequestHandler
@@ -27,7 +28,7 @@ namespace Door_of_Soul.Communication.ProxyServer.Device.OperationRequestHandler
                 int avatarId = (int)parameters[(byte)AvatarOperationRequestParameterCode.AvatarId];
                 AvatarOperationCode resolvedOperationCode = (AvatarOperationCode)parameters[(byte)AnswerOperationRequestParameterCode.OperationCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)AnswerOperationRequestParameterCode.Parameters];
-                Core.Avatar avatar;
+                VirtualAvatar avatar;
                 if (terminal.IsAnswerLinked(answerId) && 
                     terminal.Answer.IsSoulLinked(soulId) && 
                     CommunicationService.Instance.FindAvatar(avatarId, out avatar) &&

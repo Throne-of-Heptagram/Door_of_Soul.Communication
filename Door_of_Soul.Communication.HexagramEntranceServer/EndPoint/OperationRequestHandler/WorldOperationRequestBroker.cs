@@ -3,6 +3,7 @@ using Door_of_Soul.Communication.HexagramEntranceServer.World;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint.OperationRequestParameter;
 using Door_of_Soul.Communication.Protocol.Internal.World;
+using Door_of_Soul.Core.HexagramEntranceServer;
 using Door_of_Soul.Core.Protocol;
 using System.Collections.Generic;
 

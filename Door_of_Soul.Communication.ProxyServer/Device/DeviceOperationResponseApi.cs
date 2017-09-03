@@ -13,7 +13,7 @@ namespace Door_of_Soul.Communication.ProxyServer.Device
     {
         public static void SendOperationResponse(TerminalDevice target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            CommunicationService.Instance.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
+            target.SendOperationResponse(operationCode, operationReturnCode, operationMessage, parameters);
         }
         public static void SystemOperationResponse(TerminalDevice terminal, SystemOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {

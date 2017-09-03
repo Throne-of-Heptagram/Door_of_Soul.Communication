@@ -2,6 +2,7 @@
 using Door_of_Soul.Communication.Protocol.External.Device;
 using Door_of_Soul.Communication.Protocol.External.Device.OperationResponseParameter;
 using Door_of_Soul.Communication.Protocol.External.Scene;
+using Door_of_Soul.Core.Client;
 using Door_of_Soul.Core.Protocol;
 using System.Collections.Generic;
 
@@ -22,7 +23,7 @@ namespace Door_of_Soul.Communication.Client.Device.OperationResponseHandler
                 OperationReturnCode resolvedOperationReturnCode = (OperationReturnCode)parameters[(byte)SceneOperationResponseParameterCode.OperationReturnCode];
                 string resolvedOperationMessage = (string)parameters[(byte)SceneOperationResponseParameterCode.OperationMessage];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SceneOperationResponseParameterCode.Parameters];
-                Core.Scene scene;
+                VirtualScene scene;
                 if (CommunicationService.Instance.FindScene(sceneId, out scene))
                 {
                     return SceneOperationResponseRouter.Instance.Route(scene, resolvedOperationCode, resolvedOperationReturnCode, resolvedOperationMessage, resolvedParameters, out errorMessage);

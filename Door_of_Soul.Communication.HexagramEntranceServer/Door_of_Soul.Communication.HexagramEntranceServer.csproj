@@ -55,6 +55,8 @@
     <Compile Include="Element\ElementEventRouter.cs" />
     <Compile Include="Element\ElementOperationRequestApi.cs" />
     <Compile Include="Element\ElementOperationResponseRouter.cs" />
+    <Compile Include="EndPointFactory.cs" />
+    <Compile Include="EndPointType.cs" />
     <Compile Include="EndPoint\EndPointEventApi.cs" />
     <Compile Include="EndPoint\EndPointOperationRequestRouter.cs" />
     <Compile Include="EndPoint\EndPointOperationResponseApi.cs" />
@@ -124,6 +126,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core.HexagramEntranceServer\Door_of_Soul.Core.HexagramEntranceServer.csproj">
+      <Project>{e02fb674-13e0-403e-a6f3-88aa421de13a}</Project>
+      <Name>Door_of_Soul.Core.HexagramEntranceServer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core\Door_of_Soul.Core.csproj">
       <Project>{34c59e1e-eee2-4b13-9802-39dae818abfd}</Project>
       <Name>Door_of_Soul.Core</Name>

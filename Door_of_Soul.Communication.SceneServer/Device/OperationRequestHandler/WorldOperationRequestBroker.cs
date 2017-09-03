@@ -1,8 +1,9 @@
-﻿using Door_of_Soul.Communication.SceneServer.World;
-using Door_of_Soul.Communication.Protocol.External.Device;
+﻿using Door_of_Soul.Communication.Protocol.External.Device;
 using Door_of_Soul.Communication.Protocol.External.Device.OperationRequestParameter;
 using Door_of_Soul.Communication.Protocol.External.World;
+using Door_of_Soul.Communication.SceneServer.World;
 using Door_of_Soul.Core.Protocol;
+using Door_of_Soul.Core.SceneServer;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.SceneServer.Device.OperationRequestHandler
@@ -25,7 +26,7 @@ namespace Door_of_Soul.Communication.SceneServer.Device.OperationRequestHandler
                 int worldId = (int)parameters[(byte)WorldOperationRequestParameterCode.WorldId];
                 WorldOperationCode resolvedOperationCode = (WorldOperationCode)parameters[(byte)WorldOperationRequestParameterCode.OperationCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)WorldOperationRequestParameterCode.Parameters];
-                Core.World world;
+                VirtualWorld world;
                 if (CommunicationService.Instance.FindWorld(worldId, out world))
                 {
                     return WorldOperationRequestRouter.Instance.Route(terminal, world, resolvedOperationCode, resolvedParameters, out errorMessage);

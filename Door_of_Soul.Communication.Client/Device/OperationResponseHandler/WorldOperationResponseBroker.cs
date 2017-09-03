@@ -2,6 +2,7 @@
 using Door_of_Soul.Communication.Protocol.External.Device;
 using Door_of_Soul.Communication.Protocol.External.Device.OperationResponseParameter;
 using Door_of_Soul.Communication.Protocol.External.World;
+using Door_of_Soul.Core.Client;
 using Door_of_Soul.Core.Protocol;
 using System.Collections.Generic;
 
@@ -22,7 +23,7 @@ namespace Door_of_Soul.Communication.Client.Device.OperationResponseHandler
                 OperationReturnCode resolvedperationReturnCode = (OperationReturnCode)parameters[(byte)WorldOperationResponseParameterCode.OperationReturnCode];
                 string resolvedOperationMessage = (string)parameters[(byte)WorldOperationResponseParameterCode.OperationMessage];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)WorldOperationResponseParameterCode.Parameters];
-                Core.World world;
+                VirtualWorld world;
                 if (CommunicationService.Instance.FindWorld(worldId, out world))
                 {
                     return WorldOperationResponseRouter.Instance.Route(world, resolvedOperationCode, resolvedperationReturnCode, resolvedOperationMessage, resolvedParameters, out errorMessage);

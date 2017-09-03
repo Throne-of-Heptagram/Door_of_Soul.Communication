@@ -1,7 +1,8 @@
-﻿using Door_of_Soul.Communication.SceneServer.System;
-using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
+﻿using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint.EventParameter;
 using Door_of_Soul.Communication.Protocol.Internal.System;
+using Door_of_Soul.Communication.SceneServer.System;
+using Door_of_Soul.Core.SceneServer;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.SceneServer.EndPoint.EventHandler
@@ -18,7 +19,7 @@ namespace Door_of_Soul.Communication.SceneServer.EndPoint.EventHandler
             {
                 SystemEventCode resolvedEventCode = (SystemEventCode)parameters[(byte)SystemEventParameterCode.EventCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SystemEventParameterCode.Parameters];
-                return SystemEventRouter.Instance.Route(Core.System.Instance, resolvedEventCode, resolvedParameters, out errorMessage);
+                return SystemEventRouter.Instance.Route(VirtualSystem.Instance, resolvedEventCode, resolvedParameters, out errorMessage);
             }
             else
             {

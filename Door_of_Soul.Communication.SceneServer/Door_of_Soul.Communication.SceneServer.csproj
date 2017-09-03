@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommunicationService.cs" />
+    <Compile Include="DeviceFactory.cs" />
     <Compile Include="Device\DeviceEventApi.cs" />
     <Compile Include="Device\DeviceOperationRequestRouter.cs" />
     <Compile Include="Device\DeviceOperationResponseApi.cs" />
@@ -74,6 +75,10 @@
     <Compile Include="World\WorldOperationResponseRouter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core.SceneServer\Door_of_Soul.Core.SceneServer.csproj">
+      <Project>{5a302081-1757-489d-81f3-125a92c5ca55}</Project>
+      <Name>Door_of_Soul.Core.SceneServer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core\Door_of_Soul.Core.csproj">
       <Project>{34c59e1e-eee2-4b13-9802-39dae818abfd}</Project>
       <Name>Door_of_Soul.Core</Name>

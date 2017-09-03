@@ -11,7 +11,7 @@ namespace Door_of_Soul.Communication.SceneServer.Device
     {
         public static void SendOperationResponse(TerminalDevice target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            CommunicationService.Instance.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
+            target.SendOperationResponse(operationCode, operationReturnCode, operationMessage, parameters);
         }
         public static void WorldOperationResponse(TerminalDevice terminal, int worldId, WorldOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
