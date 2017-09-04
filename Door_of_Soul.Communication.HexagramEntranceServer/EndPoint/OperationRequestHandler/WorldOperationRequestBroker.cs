@@ -1,5 +1,4 @@
-﻿using Door_of_Soul.Communication.HexagramEntranceServer.Space;
-using Door_of_Soul.Communication.HexagramEntranceServer.World;
+﻿using Door_of_Soul.Communication.HexagramEntranceServer.World;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint.OperationRequestParameter;
 using Door_of_Soul.Communication.Protocol.Internal.World;
@@ -28,20 +27,15 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint.OperationRe
                 int worldId = (int)parameters[(byte)WorldOperationRequestParameterCode.WorldId];
                 WorldOperationCode resolvedOperationCode = (WorldOperationCode)parameters[(byte)WorldOperationRequestParameterCode.OperationCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)WorldOperationRequestParameterCode.Parameters];
-                Core.World world;
+                VirtualWorld world;
                 if (CommunicationService.Instance.FindWorld(worldId, out world))
                 {
                     return WorldOperationRequestRouter.Instance.Route(terminal, deviceId, world, resolvedOperationCode, resolvedParameters, out errorMessage);
                 }
                 else
                 {
-                    SpaceOperationRequestApi.WorldOperationRequest(
-                        endPointId: terminal.EndPointId,
-                        devicdId: deviceId,
-                        worldId: worldId,
-                        operationCode: resolvedOperationCode,
-                        parameters: resolvedParameters);
-                    return true;
+                    errorMessage = $"Can not find WorldId:{worldId}";
+                    return false;
                 }
             }
             else

@@ -5,9 +5,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Element
 {
     public static class ElementEventApi
     {
-        public static void SendEvent(TerminalHexagramEntrance target, ElementEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SendEvent(ElementHexagramEntrance target, ElementEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            EntranceCommunicationService<ElementEventCode, ElementOperationCode>.Instance.SendEvent(target, eventCode, parameters);
+            target.SendEvent(eventCode, parameters);
         }
     }
 }

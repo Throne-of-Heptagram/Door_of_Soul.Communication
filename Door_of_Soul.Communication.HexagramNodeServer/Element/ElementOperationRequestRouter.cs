@@ -4,7 +4,7 @@ using Door_of_Soul.Communication.Protocol.Hexagram.Element;
 
 namespace Door_of_Soul.Communication.HexagramNodeServer.Element
 {
-    class ElementOperationRequestRouter : HexagramOperationRequestRouter<ElementOperationCode>
+    class ElementOperationRequestRouter : HexagramOperationRequestRouter<ElementEventCode, ElementOperationCode>
     {
         private ElementOperationRequestRouter() : base("Element")
         {

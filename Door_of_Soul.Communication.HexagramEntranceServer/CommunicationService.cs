@@ -13,7 +13,6 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer
             Instance = instance;
         }
 
-        public abstract bool FindEndPoint(int endPointId, out TerminalEndPoint endPoint);
         public abstract bool FindAnswer(int answerId, out VirtualAnswer answer);
         public abstract bool FindSoul(int soulId, out VirtualSoul soul);
         public abstract bool FindAvatar(int avatarId, out VirtualAvatar avatar);

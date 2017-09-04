@@ -103,8 +103,6 @@
     <Compile Include="Soul\SoulOperationRequestRouter.cs" />
     <Compile Include="Soul\SoulOperationResponseApi.cs" />
     <Compile Include="SpaceCommunicationService.cs" />
-    <Compile Include="Space\OperationResponseHandler\SceneOperationResponseBroker.cs" />
-    <Compile Include="Space\OperationResponseHandler\WorldOperationResponseBroker.cs" />
     <Compile Include="Space\SpaceEventRouter.cs" />
     <Compile Include="Space\SpaceOperationRequestApi.cs" />
     <Compile Include="Space\SpaceOperationResponseRouter.cs" />

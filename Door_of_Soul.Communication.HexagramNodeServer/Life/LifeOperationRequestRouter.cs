@@ -4,7 +4,7 @@ using Door_of_Soul.Communication.Protocol.Hexagram.Life;
 
 namespace Door_of_Soul.Communication.HexagramNodeServer.Life
 {
-    class LifeOperationRequestRouter : HexagramOperationRequestRouter<LifeOperationCode>
+    class LifeOperationRequestRouter : HexagramOperationRequestRouter<LifeEventCode, LifeOperationCode>
     {
         private LifeOperationRequestRouter() : base("Life")
         {

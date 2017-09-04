@@ -1,8 +1,8 @@
 ﻿using Door_of_Soul.Communication.HexagramEntranceServer.Scene;
-using Door_of_Soul.Communication.HexagramEntranceServer.Space;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint.OperationRequestParameter;
 using Door_of_Soul.Communication.Protocol.Internal.Scene;
+using Door_of_Soul.Core.HexagramEntranceServer;
 using Door_of_Soul.Core.Protocol;
 using System.Collections.Generic;
 
@@ -28,21 +28,15 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint.OperationRe
                 int sceneId = (int)parameters[(byte)SceneOperationRequestParameterCode.SceneId];
                 SceneOperationCode resolvedOperationCode = (SceneOperationCode)parameters[(byte)SceneOperationRequestParameterCode.OperationCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SceneOperationRequestParameterCode.Parameters];
-                Core.Scene scene;
+                VirtualScene scene;
                 if (CommunicationService.Instance.FindScene(sceneId, out scene) && scene.WorldId == worldId)
                 {
                     return SceneOperationRequestRouter.Instance.Route(terminal, deviceId, scene, resolvedOperationCode, resolvedParameters, out errorMessage);
                 }
                 else
                 {
-                    SpaceOperationRequestApi.SceneOperationRequest(
-                        endPointId: terminal.EndPointId,
-                        devicdId: deviceId,
-                        worldId: worldId,
-                        sceneId: sceneId,
-                        operationCode: resolvedOperationCode,
-                        parameters: resolvedParameters);
-                    return true;
+                    errorMessage = $"Can not find SceneId:{sceneId} in WorldId:{worldId}";
+                    return false;
                 }
             }
             else

@@ -2,6 +2,7 @@
 using Door_of_Soul.Communication.Protocol.Internal.Answer;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint.OperationRequestParameter;
+using Door_of_Soul.Core.HexagramEntranceServer;
 using Door_of_Soul.Core.Protocol;
 using System.Collections.Generic;
 
@@ -26,7 +27,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint.OperationRe
                 int answerId = (int)parameters[(byte)AnswerOperationRequestParameterCode.AnswerId];
                 AnswerOperationCode resolvedOperationCode = (AnswerOperationCode)parameters[(byte)AnswerOperationRequestParameterCode.OperationCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)AnswerOperationRequestParameterCode.Parameters];
-                Core.Answer answer;
+                VirtualAnswer answer;
                 if (CommunicationService.Instance.FindAnswer(answerId, out answer))
                 {
                     return AnswerOperationRequestRouter.Instance.Route(terminal, deviceId, answer, resolvedOperationCode, resolvedParameters, out errorMessage);

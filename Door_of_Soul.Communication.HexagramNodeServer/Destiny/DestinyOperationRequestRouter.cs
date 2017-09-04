@@ -4,7 +4,7 @@ using Door_of_Soul.Communication.Protocol.Hexagram.Destiny;
 
 namespace Door_of_Soul.Communication.HexagramNodeServer.Destiny
 {
-    class DestinyOperationRequestRouter : HexagramOperationRequestRouter<DestinyOperationCode>
+    class DestinyOperationRequestRouter : HexagramOperationRequestRouter<DestinyEventCode, DestinyOperationCode>
     {
         private DestinyOperationRequestRouter() : base("Destiny")
         {

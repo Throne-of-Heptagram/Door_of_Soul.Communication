@@ -14,7 +14,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer
 
         }
 
-        public bool CreateDevice(EndPointType endPointType, TerminalEndPoint.SendEventDelegate sendEventMethod, TerminalEndPoint.SendOperationResponseDelegate sendOperationResponseMethod, out TerminalEndPoint endPoint)
+        public bool CreateEndPoint(EndPointType endPointType, TerminalEndPoint.SendEventDelegate sendEventMethod, TerminalEndPoint.SendOperationResponseDelegate sendOperationResponseMethod, out TerminalEndPoint endPoint)
         {
             lock (endPointCounterLock)
             {

@@ -1,5 +1,4 @@
-﻿using Door_of_Soul.Communication.HexagramEntranceServer.Space.OperationResponseHandler;
-using Door_of_Soul.Communication.Protocol.Hexagram.Space;
+﻿using Door_of_Soul.Communication.Protocol.Hexagram.Space;
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Space
 {
@@ -9,8 +8,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.Space
 
         private SpaceOperationResponseRouter() : base("Space")
         {
-            OperationTable.Add(SpaceOperationCode.WorldOperation, new WorldOperationResponseBroker());
-            OperationTable.Add(SpaceOperationCode.SceneOperation, new SceneOperationResponseBroker());
+
         }
     }
 }

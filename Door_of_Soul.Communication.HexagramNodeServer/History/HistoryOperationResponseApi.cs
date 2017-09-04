@@ -7,9 +7,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.History
 {
     public static class HistoryOperationResponseApi
     {
-        public static void SendOperationResponse(TerminalHexagramEntrance target, HistoryOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SendOperationResponse(HistoryHexagramEntrance target, HistoryOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            EntranceCommunicationService<HistoryEventCode, HistoryOperationCode>.Instance.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
+            target.SendOperationResponse(operationCode, operationReturnCode, operationMessage, parameters);
         }
     }
 }

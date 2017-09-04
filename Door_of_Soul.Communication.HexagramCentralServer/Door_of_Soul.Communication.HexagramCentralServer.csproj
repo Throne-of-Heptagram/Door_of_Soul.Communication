@@ -44,6 +44,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core\Door_of_Soul.Core.csproj">
+      <Project>{34c59e1e-eee2-4b13-9802-39dae818abfd}</Project>
+      <Name>Door_of_Soul.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Door_of_Soul.Communication.Protocol.Hexagram\Door_of_Soul.Communication.Protocol.Hexagram.csproj">
       <Project>{d7a33245-4cc4-4528-9603-3051d6022120}</Project>
       <Name>Door_of_Soul.Communication.Protocol.Hexagram</Name>

@@ -2,6 +2,7 @@
 using Door_of_Soul.Communication.Protocol.Internal.Avatar;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint.OperationRequestParameter;
+using Door_of_Soul.Core.HexagramEntranceServer;
 using Door_of_Soul.Core.Protocol;
 using System.Collections.Generic;
 
@@ -26,7 +27,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint.OperationRe
                 int avatarId = (int)parameters[(byte)AvatarOperationRequestParameterCode.AvatarId];
                 AvatarOperationCode resolvedOperationCode = (AvatarOperationCode)parameters[(byte)AnswerOperationRequestParameterCode.OperationCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)AnswerOperationRequestParameterCode.Parameters];
-                Core.Avatar avatar;
+                VirtualAvatar avatar;
                 if (CommunicationService.Instance.FindAvatar(avatarId, out avatar))
                 {
                     return AvatarOperationRequestRouter.Instance.Route(terminal, deviceId, avatar, resolvedOperationCode, resolvedParameters, out errorMessage);

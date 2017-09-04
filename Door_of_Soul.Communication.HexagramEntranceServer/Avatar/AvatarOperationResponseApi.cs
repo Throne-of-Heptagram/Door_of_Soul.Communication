@@ -8,7 +8,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.Avatar
 {
     public static class AvatarOperationResponseApi
     {
-        public static void SendOperationResponse(TerminalEndPoint terminal, int deviceId, Core.Avatar target, AvatarOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SendOperationResponse(TerminalEndPoint terminal, int deviceId, VirtualAvatar target, AvatarOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             EndPointOperationResponseApi.AvatarOperationResponse(terminal, deviceId, target, operationCode, operationReturnCode, operationMessage, parameters);
         }

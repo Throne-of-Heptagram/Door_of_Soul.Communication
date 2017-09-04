@@ -4,7 +4,7 @@ using Door_of_Soul.Communication.Protocol.Hexagram.History;
 
 namespace Door_of_Soul.Communication.HexagramNodeServer.History
 {
-    class HistoryOperationRequestRouter : HexagramOperationRequestRouter<HistoryOperationCode>
+    class HistoryOperationRequestRouter : HexagramOperationRequestRouter<HistoryEventCode, HistoryOperationCode>
     {
         private HistoryOperationRequestRouter() : base("History")
         {

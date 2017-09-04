@@ -3,7 +3,7 @@ using Door_of_Soul.Core.HexagramEntranceServer;
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Answer
 {
-    class AnswerOperationRequestRouter : OperationRequestRouter<TerminalEndPoint, int, Core.Answer, AnswerOperationCode>
+    class AnswerOperationRequestRouter : OperationRequestRouter<TerminalEndPoint, int, VirtualAnswer, AnswerOperationCode>
     {
         public static AnswerOperationRequestRouter Instance { get; private set; } = new AnswerOperationRequestRouter();
 

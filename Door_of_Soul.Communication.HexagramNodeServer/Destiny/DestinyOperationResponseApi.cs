@@ -7,9 +7,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Destiny
 {
     public static class DestinyOperationResponseApi
     {
-        public static void SendOperationResponse(TerminalHexagramEntrance target, DestinyOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SendOperationResponse(DestinyHexagramEntrance target, DestinyOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            EntranceCommunicationService<DestinyEventCode, DestinyOperationCode>.Instance.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
+            target.SendOperationResponse(operationCode, operationReturnCode, operationMessage, parameters);
         }
     }
 }

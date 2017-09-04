@@ -41,15 +41,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CentralCommunicationService.cs" />
+    <Compile Include="DestinyHexagramEntrance.cs" />
+    <Compile Include="DestinyHexagramEntranceFactory.cs" />
     <Compile Include="Destiny\DestinyEventApi.cs" />
     <Compile Include="Destiny\DestinyOperationRequestApi.cs" />
     <Compile Include="Destiny\DestinyOperationRequestRouter.cs" />
     <Compile Include="Destiny\DestinyOperationResponseApi.cs" />
+    <Compile Include="ElementHexagramEntrance.cs" />
+    <Compile Include="ElementHexagramEntranceFactory.cs" />
     <Compile Include="Element\ElementEventApi.cs" />
     <Compile Include="Element\ElementOperationRequestApi.cs" />
     <Compile Include="Element\ElementOperationRequestRouter.cs" />
     <Compile Include="Element\ElementOperationResponseApi.cs" />
     <Compile Include="EntranceCommunicationService.cs" />
+    <Compile Include="EternityHexagramEntrance.cs" />
+    <Compile Include="EternityHexagramEntranceFactory.cs" />
     <Compile Include="Eternity\EternityEventApi.cs" />
     <Compile Include="Eternity\EternityOperationRequestApi.cs" />
     <Compile Include="Eternity\EternityOperationRequestRouter.cs" />
@@ -81,50 +87,68 @@
     <Compile Include="Hexagram\OperationRouter\SpaceForwardOperationRouter.cs" />
     <Compile Include="Hexagram\OperationRouter\ThroneForwardOperationRouter.cs" />
     <Compile Include="Hexagram\OperationRouter\WillForwardOperationRouter.cs" />
+    <Compile Include="HistoryHexagramEntrance.cs" />
+    <Compile Include="HistoryHexagramEntranceFactory.cs" />
     <Compile Include="History\HistoryEventApi.cs" />
     <Compile Include="History\HistoryOperationRequestApi.cs" />
     <Compile Include="History\HistoryOperationRequestRouter.cs" />
     <Compile Include="History\HistoryOperationResponseApi.cs" />
+    <Compile Include="InfiniteHexagramEntrance.cs" />
+    <Compile Include="InfiniteHexagramEntranceFactory.cs" />
     <Compile Include="Infinite\InfiniteEventApi.cs" />
     <Compile Include="Infinite\InfiniteOperationRequestApi.cs" />
     <Compile Include="Infinite\InfiniteOperationRequestRouter.cs" />
     <Compile Include="Infinite\InfiniteOperationResponseApi.cs" />
+    <Compile Include="KnowledgeHexagramEntrance.cs" />
+    <Compile Include="KnowledgeHexagramEntranceFactory.cs" />
     <Compile Include="Knowledge\KnowledgeEventApi.cs" />
     <Compile Include="Knowledge\KnowledgeOperationRequestApi.cs" />
     <Compile Include="Knowledge\KnowledgeOperationRequestRouter.cs" />
     <Compile Include="Knowledge\KnowledgeOperationResponseApi.cs" />
+    <Compile Include="LifeHexagramEntrance.cs" />
+    <Compile Include="LifeHexagramEntranceFactory.cs" />
     <Compile Include="Life\LifeEventApi.cs" />
     <Compile Include="Life\LifeOperationRequestApi.cs" />
     <Compile Include="Life\LifeOperationRequestRouter.cs" />
     <Compile Include="Life\LifeOperationResponseApi.cs" />
+    <Compile Include="LoveHexagramEntrance.cs" />
+    <Compile Include="LoveHexagramEntranceFactory.cs" />
     <Compile Include="Love\LoveEventApi.cs" />
     <Compile Include="Love\LoveOperationRequestApi.cs" />
     <Compile Include="Love\LoveOperationRequestRouter.cs" />
     <Compile Include="Love\LoveOperationResponseApi.cs" />
+    <Compile Include="ShadowHexagramEntrance.cs" />
+    <Compile Include="ShadowHexagramEntranceFactory.cs" />
     <Compile Include="Shadow\ShadowEventApi.cs" />
     <Compile Include="Shadow\ShadowOperationRequestApi.cs" />
     <Compile Include="Shadow\ShadowOperationRequestRouter.cs" />
     <Compile Include="Shadow\ShadowOperationResponseApi.cs" />
+    <Compile Include="SpaceHexagramEntrance.cs" />
+    <Compile Include="SpaceHexagramEntranceFactory.cs" />
     <Compile Include="Space\SpaceOperationRequestApi.cs" />
-    <Compile Include="Space\OperationRequestHandler\SceneOperationRequestBroker.cs" />
-    <Compile Include="Space\OperationRequestHandler\WorldOperationRequestBroker.cs" />
-    <Compile Include="Space\Scene\SceneOperationRequestRouter.cs" />
     <Compile Include="Space\SpaceEventApi.cs" />
     <Compile Include="Space\SpaceOperationRequestRouter.cs" />
     <Compile Include="Space\SpaceOperationResponseApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Space\World\WorldOperationRequestRouter.cs" />
     <Compile Include="TerminalHexagramEntrance.cs" />
+    <Compile Include="ThroneHexagramEntrance.cs" />
+    <Compile Include="ThroneHexagramEntranceFactory.cs" />
     <Compile Include="Throne\ThroneEventApi.cs" />
     <Compile Include="Throne\ThroneOperationRequestApi.cs" />
     <Compile Include="Throne\ThroneOperationRequestRouter.cs" />
     <Compile Include="Throne\ThroneOperationResponseApi.cs" />
+    <Compile Include="WillHexagramEntrance.cs" />
+    <Compile Include="WillHexagramEntranceFactory.cs" />
     <Compile Include="Will\WillEventApi.cs" />
     <Compile Include="Will\WillOperationRequestApi.cs" />
     <Compile Include="Will\WillOperationRequestRouter.cs" />
     <Compile Include="Will\WillOperationResponseApi.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core.HexagramNodeServer\Door_of_Soul.Core.HexagramNodeServer.csproj">
+      <Project>{6dda6ed9-24fe-4036-9fa8-37279a2be41c}</Project>
+      <Name>Door_of_Soul.Core.HexagramNodeServer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core\Door_of_Soul.Core.csproj">
       <Project>{34c59e1e-eee2-4b13-9802-39dae818abfd}</Project>
       <Name>Door_of_Soul.Core</Name>

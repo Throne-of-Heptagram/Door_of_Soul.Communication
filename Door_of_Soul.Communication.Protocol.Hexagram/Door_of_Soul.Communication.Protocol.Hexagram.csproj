@@ -69,10 +69,6 @@
     <Compile Include="Shadow\ShadowEventCode.cs" />
     <Compile Include="Shadow\ShadowForwardOperationCode.cs" />
     <Compile Include="Shadow\ShadowOperationCode.cs" />
-    <Compile Include="Space\OperationRequestParameter\SceneOperationRequestParameterCode.cs" />
-    <Compile Include="Space\OperationRequestParameter\WorldOperationRequestParameterCode.cs" />
-    <Compile Include="Space\OperationResponseParameter\SceneOperationResponseParameterCode.cs" />
-    <Compile Include="Space\OperationResponseParameter\WorldOperationResponseParameterCode.cs" />
     <Compile Include="Space\SpaceEventCode.cs" />
     <Compile Include="Space\SpaceForwardOperationCode.cs" />
     <Compile Include="Space\SpaceOperationCode.cs" />
@@ -83,7 +79,10 @@
     <Compile Include="Will\WillForwardOperationCode.cs" />
     <Compile Include="Will\WillOperationCode.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Space\OperationRequestParameter\" />
+    <Folder Include="Space\OperationResponseParameter\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

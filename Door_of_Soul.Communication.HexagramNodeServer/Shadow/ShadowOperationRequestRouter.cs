@@ -4,7 +4,7 @@ using Door_of_Soul.Communication.Protocol.Hexagram.Shadow;
 
 namespace Door_of_Soul.Communication.HexagramNodeServer.Shadow
 {
-    class ShadowOperationRequestRouter : HexagramOperationRequestRouter<ShadowOperationCode>
+    class ShadowOperationRequestRouter : HexagramOperationRequestRouter<ShadowEventCode, ShadowOperationCode>
     {
         private ShadowOperationRequestRouter() : base("Shadow")
         {

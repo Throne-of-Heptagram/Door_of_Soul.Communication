@@ -2,7 +2,6 @@
 {
     public enum SpaceOperationCode : uint
     {
-        WorldOperation,
-        SceneOperation,
+
     }
 }
