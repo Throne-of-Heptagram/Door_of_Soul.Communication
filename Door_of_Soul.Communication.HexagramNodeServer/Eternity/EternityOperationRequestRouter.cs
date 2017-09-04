@@ -4,9 +4,9 @@ using Door_of_Soul.Communication.Protocol.Hexagram.Eternity;
 
 namespace Door_of_Soul.Communication.HexagramNodeServer.Eternity
 {
-    class EternityOperationRequestRouter : HexagramOperationRequestRouter<EternityEventCode, EternityOperationCode>
+    public class EternityOperationRequestRouter : HexagramOperationRequestRouter<EternityEventCode, EternityOperationCode>
     {
-        private EternityOperationRequestRouter() : base("Eternity")
+        public EternityOperationRequestRouter() : base("Eternity")
         {
 
         }

@@ -4,9 +4,9 @@ using Door_of_Soul.Communication.Protocol.Hexagram.Will;
 
 namespace Door_of_Soul.Communication.HexagramNodeServer.Will
 {
-    class WillOperationRequestRouter : HexagramOperationRequestRouter<WillEventCode, WillOperationCode>
+    public class WillOperationRequestRouter : HexagramOperationRequestRouter<WillEventCode, WillOperationCode>
     {
-        private WillOperationRequestRouter() : base("Will")
+        public WillOperationRequestRouter() : base("Will")
         {
 
         }

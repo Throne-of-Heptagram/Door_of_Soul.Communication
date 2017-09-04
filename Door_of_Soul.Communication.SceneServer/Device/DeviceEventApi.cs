@@ -26,7 +26,7 @@ namespace Door_of_Soul.Communication.SceneServer.Device
             foreach (var sceneId in target.SceneIds)
             {
                 TerminalScene scene;
-                if(CommunicationService.Instance.FindScene(sceneId, out scene))
+                if(ResourceService.Instance.FindScene(sceneId, out scene))
                 {
                     foreach (var device in scene.Devices)
                     {

@@ -4,9 +4,9 @@ using Door_of_Soul.Communication.Protocol.Hexagram.Knowledge;
 
 namespace Door_of_Soul.Communication.HexagramNodeServer.Knowledge
 {
-    class KnowledgeOperationRequestRouter : HexagramOperationRequestRouter<KnowledgeEventCode, KnowledgeOperationCode>
+    public class KnowledgeOperationRequestRouter : HexagramOperationRequestRouter<KnowledgeEventCode, KnowledgeOperationCode>
     {
-        private KnowledgeOperationRequestRouter() : base("Knowledge")
+        public KnowledgeOperationRequestRouter() : base("Knowledge")
         {
 
         }

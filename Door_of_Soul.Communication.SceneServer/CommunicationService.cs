@@ -12,7 +12,7 @@ namespace Door_of_Soul.Communication.SceneServer
     public abstract class CommunicationService
     {
         public static CommunicationService Instance { get; private set; }
-        public static void Initial(CommunicationService instance)
+        public static void Initialize(CommunicationService instance)
         {
             Instance = instance;
         }
@@ -29,10 +29,6 @@ namespace Door_of_Soul.Communication.SceneServer
                 OnHexagrameEntranceServerConnectStatusChanged?.Invoke(hexagrameEntranceServerConnected);
             }
         }
-
-        public abstract bool FindWorld(int worldId, out VirtualWorld world);
-        public abstract bool FindScene(int sceneId, out TerminalScene scene);
-
 
         public bool HandleOperationRequest(TerminalDevice device, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {

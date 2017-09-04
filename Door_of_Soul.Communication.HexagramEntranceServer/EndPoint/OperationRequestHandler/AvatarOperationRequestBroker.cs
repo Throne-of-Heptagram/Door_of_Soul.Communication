@@ -28,7 +28,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint.OperationRe
                 AvatarOperationCode resolvedOperationCode = (AvatarOperationCode)parameters[(byte)AnswerOperationRequestParameterCode.OperationCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)AnswerOperationRequestParameterCode.Parameters];
                 VirtualAvatar avatar;
-                if (CommunicationService.Instance.FindAvatar(avatarId, out avatar))
+                if (ResourceService.Instance.FindAvatar(avatarId, out avatar))
                 {
                     return AvatarOperationRequestRouter.Instance.Route(terminal, deviceId, avatar, resolvedOperationCode, resolvedParameters, out errorMessage);
                 }

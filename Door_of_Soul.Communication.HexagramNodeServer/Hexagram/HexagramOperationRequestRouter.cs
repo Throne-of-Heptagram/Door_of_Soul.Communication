@@ -3,7 +3,7 @@
     public abstract class HexagramOperationRequestRouter<TEventCode, TOperationCode> : OperationRequestRouter<TerminalHexagramEntrance<TEventCode, TOperationCode>, TOperationCode>
     {
         public static HexagramOperationRequestRouter<TEventCode, TOperationCode> Instance { get; private set; }
-        public static void Initial(HexagramOperationRequestRouter<TEventCode, TOperationCode> instance)
+        public static void Initialize(HexagramOperationRequestRouter<TEventCode, TOperationCode> instance)
         {
             Instance = instance;
         }

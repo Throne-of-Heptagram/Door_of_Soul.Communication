@@ -21,7 +21,7 @@ namespace Door_of_Soul.Communication.ProxyServer.EndPoint.EventHandler
                 SoulEventCode resolvedEventCode = (SoulEventCode)parameters[(byte)SoulEventParameterCode.EventCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SoulEventParameterCode.Parameters];
                 VirtualSoul soul;
-                if (CommunicationService.Instance.FindSoul(soulId, out soul))
+                if (ResourceService.Instance.FindSoul(soulId, out soul))
                 {
                     return SoulEventRouter.Instance.Route(soul, resolvedEventCode, resolvedParameters, out errorMessage);
                 }

@@ -8,7 +8,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer
     public abstract class InfiniteCommunicationService : HexagramCommunicationService
     {
         public static InfiniteCommunicationService Instance { get; private set; }
-        public static void Initial(InfiniteCommunicationService instance)
+        public static void Initialize(InfiniteCommunicationService instance)
         {
             Instance = instance;
         }

@@ -21,7 +21,7 @@ namespace Door_of_Soul.Communication.SceneServer.EndPoint.EventHandler
                 WorldEventCode resolvedEventCode = (WorldEventCode)parameters[(byte)WorldEventParameterCode.EventCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)WorldEventParameterCode.Parameters];
                 VirtualWorld world;
-                if (CommunicationService.Instance.FindWorld(worldId, out world))
+                if (ResourceService.Instance.FindWorld(worldId, out world))
                 {
                     return WorldEventRouter.Instance.Route(world, resolvedEventCode, resolvedParameters, out errorMessage);
                 }

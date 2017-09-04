@@ -3,7 +3,6 @@ using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 using Door_of_Soul.Communication.ProxyServer.Device;
 using Door_of_Soul.Communication.ProxyServer.EndPoint;
 using Door_of_Soul.Core.Protocol;
-using Door_of_Soul.Core.ProxyServer;
 using System;
 using System.Collections.Generic;
 
@@ -12,7 +11,7 @@ namespace Door_of_Soul.Communication.ProxyServer
     public abstract class CommunicationService
     {
         public static CommunicationService Instance { get; private set; }
-        public static void Initial(CommunicationService instance)
+        public static void Initialize(CommunicationService instance)
         {
             Instance = instance;
         }
@@ -29,11 +28,6 @@ namespace Door_of_Soul.Communication.ProxyServer
                 OnHexagrameEntranceServerConnectStatusChanged?.Invoke(HexagrameEntranceServerConnected);
             }
         }
-
-        public abstract bool FindAnswer(int answerId, out TerminalAnswer answer);
-        public abstract bool FindSoul(int soulId, out VirtualSoul soul);
-        public abstract bool FindAvatar(int avatarId, out VirtualAvatar avatar);
-
 
         public bool HandleOperationRequest(TerminalDevice device, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {

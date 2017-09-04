@@ -92,6 +92,7 @@
     <Compile Include="Love\LoveOperationRequestApi.cs" />
     <Compile Include="Love\LoveOperationResponseRouter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceService.cs" />
     <Compile Include="Scene\SceneEventApi.cs" />
     <Compile Include="Scene\SceneOperationRequestRouter.cs" />
     <Compile Include="Scene\SceneOperationResponseApi.cs" />

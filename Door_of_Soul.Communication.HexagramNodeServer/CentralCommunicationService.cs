@@ -7,7 +7,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer
     public abstract class CentralCommunicationService
     {
         public static CentralCommunicationService Instance { get; private set; }
-        public static void Initial(CentralCommunicationService instance)
+        public static void Initialize(CentralCommunicationService instance)
         {
             Instance = instance;
         }

@@ -29,7 +29,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint.OperationRe
                 SceneOperationCode resolvedOperationCode = (SceneOperationCode)parameters[(byte)SceneOperationRequestParameterCode.OperationCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SceneOperationRequestParameterCode.Parameters];
                 VirtualScene scene;
-                if (CommunicationService.Instance.FindScene(sceneId, out scene) && scene.WorldId == worldId)
+                if (ResourceService.Instance.FindScene(sceneId, out scene) && scene.WorldId == worldId)
                 {
                     return SceneOperationRequestRouter.Instance.Route(terminal, deviceId, scene, resolvedOperationCode, resolvedParameters, out errorMessage);
                 }

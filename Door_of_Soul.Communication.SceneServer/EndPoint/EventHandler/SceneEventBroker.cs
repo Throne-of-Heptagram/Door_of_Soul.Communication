@@ -20,7 +20,7 @@ namespace Door_of_Soul.Communication.SceneServer.EndPoint.EventHandler
                 SceneEventCode resolvedEventCode = (SceneEventCode)parameters[(byte)SceneEventParameterCode.EventCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SceneEventParameterCode.Parameters];
                 TerminalScene scene;
-                if (CommunicationService.Instance.FindScene(sceneId, out scene))
+                if (ResourceService.Instance.FindScene(sceneId, out scene))
                 {
                     return SceneEventRouter.Instance.Route(scene, resolvedEventCode, resolvedParameters, out errorMessage);
                 }

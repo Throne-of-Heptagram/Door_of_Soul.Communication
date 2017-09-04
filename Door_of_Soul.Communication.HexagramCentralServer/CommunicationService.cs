@@ -6,7 +6,7 @@ namespace Door_of_Soul.Communication.HexagramCentralServer
     public abstract class CommunicationService
     {
         public static CommunicationService Instance { get; private set; }
-        public static void Initial(CommunicationService instance)
+        public static void Initialize(CommunicationService instance)
         {
             Instance = instance;
         }

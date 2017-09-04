@@ -28,8 +28,8 @@ namespace Door_of_Soul.Communication.ProxyServer.Device.OperationRequestHandler
                 SoulOperationCode resolvedOperationCode = (SoulOperationCode)parameters[(byte)SoulOperationRequestParameterCode.OperationCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SoulOperationRequestParameterCode.Parameters];
                 VirtualSoul soul;
-                if (terminal.IsAnswerLinked(answerId) && 
-                    CommunicationService.Instance.FindSoul(soulId, out soul) &&
+                if (terminal.IsAnswerLinked(answerId) &&
+                    ResourceService.Instance.FindSoul(soulId, out soul) &&
                     soul.AnswerId == answerId)
                 {
                     return SoulOperationRequestRouter.Instance.Route(terminal, soul, resolvedOperationCode, resolvedParameters, out errorMessage);

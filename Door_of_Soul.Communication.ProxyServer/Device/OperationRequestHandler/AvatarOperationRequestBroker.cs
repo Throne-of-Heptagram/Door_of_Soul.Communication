@@ -30,8 +30,8 @@ namespace Door_of_Soul.Communication.ProxyServer.Device.OperationRequestHandler
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)AnswerOperationRequestParameterCode.Parameters];
                 VirtualAvatar avatar;
                 if (terminal.IsAnswerLinked(answerId) && 
-                    terminal.Answer.IsSoulLinked(soulId) && 
-                    CommunicationService.Instance.FindAvatar(avatarId, out avatar) &&
+                    terminal.Answer.IsSoulLinked(soulId) &&
+                    ResourceService.Instance.FindAvatar(avatarId, out avatar) &&
                     avatar.IsSoulLinked(soulId))
                 {
                     return AvatarOperationRequestRouter.Instance.Route(terminal, avatar, resolvedOperationCode, resolvedParameters, out errorMessage);

@@ -21,7 +21,7 @@ namespace Door_of_Soul.Communication.ProxyServer.EndPoint.EventHandler
                 AvatarEventCode resolvedEventCode = (AvatarEventCode)parameters[(byte)AvatarEventParameterCode.EventCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)AvatarEventParameterCode.Parameters];
                 VirtualAvatar avatar;
-                if (CommunicationService.Instance.FindAvatar(avatarId, out avatar))
+                if (ResourceService.Instance.FindAvatar(avatarId, out avatar))
                 {
                     return AvatarEventRouter.Instance.Route(avatar, resolvedEventCode, resolvedParameters, out errorMessage);
                 }

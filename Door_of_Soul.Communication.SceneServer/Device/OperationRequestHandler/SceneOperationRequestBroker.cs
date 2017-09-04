@@ -27,7 +27,7 @@ namespace Door_of_Soul.Communication.SceneServer.Device.OperationRequestHandler
                 SceneOperationCode resolvedOperationCode = (SceneOperationCode)parameters[(byte)SceneOperationRequestParameterCode.OperationCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SceneOperationRequestParameterCode.Parameters];
                 TerminalScene scene;
-                if (CommunicationService.Instance.FindScene(sceneId, out scene) && scene.WorldId == worldId)
+                if (ResourceService.Instance.FindScene(sceneId, out scene) && scene.WorldId == worldId)
                 {
                     return SceneOperationRequestRouter.Instance.Route(terminal, scene as TerminalScene, resolvedOperationCode, resolvedParameters, out errorMessage);
                 }

@@ -28,7 +28,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint.OperationRe
                 AnswerOperationCode resolvedOperationCode = (AnswerOperationCode)parameters[(byte)AnswerOperationRequestParameterCode.OperationCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)AnswerOperationRequestParameterCode.Parameters];
                 VirtualAnswer answer;
-                if (CommunicationService.Instance.FindAnswer(answerId, out answer))
+                if (ResourceService.Instance.FindAnswer(answerId, out answer))
                 {
                     return AnswerOperationRequestRouter.Instance.Route(terminal, deviceId, answer, resolvedOperationCode, resolvedParameters, out errorMessage);
                 }

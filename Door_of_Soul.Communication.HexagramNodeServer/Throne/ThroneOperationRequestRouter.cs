@@ -4,9 +4,9 @@ using Door_of_Soul.Communication.Protocol.Hexagram.Throne;
 
 namespace Door_of_Soul.Communication.HexagramNodeServer.Throne
 {
-    class ThroneOperationRequestRouter : HexagramOperationRequestRouter<ThroneEventCode, ThroneOperationCode>
+    public class ThroneOperationRequestRouter : HexagramOperationRequestRouter<ThroneEventCode, ThroneOperationCode>
     {
-        private ThroneOperationRequestRouter() : base("Throne")
+        public ThroneOperationRequestRouter() : base("Throne")
         {
 
         }

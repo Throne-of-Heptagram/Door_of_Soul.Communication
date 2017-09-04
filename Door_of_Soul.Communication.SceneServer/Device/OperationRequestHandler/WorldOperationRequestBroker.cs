@@ -27,7 +27,7 @@ namespace Door_of_Soul.Communication.SceneServer.Device.OperationRequestHandler
                 WorldOperationCode resolvedOperationCode = (WorldOperationCode)parameters[(byte)WorldOperationRequestParameterCode.OperationCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)WorldOperationRequestParameterCode.Parameters];
                 VirtualWorld world;
-                if (CommunicationService.Instance.FindWorld(worldId, out world))
+                if (ResourceService.Instance.FindWorld(worldId, out world))
                 {
                     return WorldOperationRequestRouter.Instance.Route(terminal, world, resolvedOperationCode, resolvedParameters, out errorMessage);
                 }

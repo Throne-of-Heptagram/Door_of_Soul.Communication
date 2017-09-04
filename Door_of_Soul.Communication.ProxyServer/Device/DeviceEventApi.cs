@@ -49,7 +49,7 @@ namespace Door_of_Soul.Communication.ProxyServer.Device
                 { (byte)SoulEventParameterCode.Parameters, parameters }
             };
             TerminalAnswer answer;
-            if(CommunicationService.Instance.FindAnswer(target.AnswerId, out answer))
+            if(ResourceService.Instance.FindAnswer(target.AnswerId, out answer))
             {
                 foreach (var device in answer.Devices)
                 {
@@ -69,10 +69,10 @@ namespace Door_of_Soul.Communication.ProxyServer.Device
             foreach (var soulId in target.SoulIds)
             {
                 VirtualSoul soul;
-                if(CommunicationService.Instance.FindSoul(soulId, out soul))
+                if(ResourceService.Instance.FindSoul(soulId, out soul))
                 {
                     TerminalAnswer answer;
-                    if(CommunicationService.Instance.FindAnswer(soul.AnswerId, out answer))
+                    if(ResourceService.Instance.FindAnswer(soul.AnswerId, out answer))
                     {
                         foreach (var device in answer.Devices)
                         {
