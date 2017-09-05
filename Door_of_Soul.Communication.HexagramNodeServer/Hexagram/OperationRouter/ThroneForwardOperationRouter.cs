@@ -2,10 +2,8 @@
 
 namespace Door_of_Soul.Communication.HexagramNodeServer.Hexagram.OperationRouter
 {
-    class ThroneForwardOperationRouter : ForwardOperationRouter<ThroneForwardOperationCode>
+    public class ThroneForwardOperationRouter : HexagramForwardOperationRouter<ThroneForwardOperationCode>
     {
-        public static ThroneForwardOperationRouter Instance { get; private set; } = new ThroneForwardOperationRouter();
-
         public ThroneForwardOperationRouter() : base("Throne")
         {
         }

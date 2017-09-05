@@ -2,10 +2,8 @@
 
 namespace Door_of_Soul.Communication.HexagramNodeServer.Hexagram.OperationRouter
 {
-    class LoveForwardOperationRouter : ForwardOperationRouter<LoveForwardOperationCode>
+    public class LoveForwardOperationRouter : HexagramForwardOperationRouter<LoveForwardOperationCode>
     {
-        public static LoveForwardOperationRouter Instance { get; private set; } = new LoveForwardOperationRouter();
-
         public LoveForwardOperationRouter() : base("Love")
         {
         }

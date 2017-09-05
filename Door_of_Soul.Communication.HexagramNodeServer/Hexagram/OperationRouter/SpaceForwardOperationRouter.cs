@@ -2,10 +2,8 @@
 
 namespace Door_of_Soul.Communication.HexagramNodeServer.Hexagram.OperationRouter
 {
-    class SpaceForwardOperationRouter : ForwardOperationRouter<SpaceForwardOperationCode>
+    public class SpaceForwardOperationRouter : HexagramForwardOperationRouter<SpaceForwardOperationCode>
     {
-        public static SpaceForwardOperationRouter Instance { get; private set; } = new SpaceForwardOperationRouter();
-
         public SpaceForwardOperationRouter() : base("Space")
         {
         }

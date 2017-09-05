@@ -2,10 +2,8 @@
 
 namespace Door_of_Soul.Communication.HexagramNodeServer.Hexagram.OperationRouter
 {
-    class HistoryForwardOperationRouter : ForwardOperationRouter<HistoryForwardOperationCode>
+    public class HistoryForwardOperationRouter : HexagramForwardOperationRouter<HistoryForwardOperationCode>
     {
-        public static HistoryForwardOperationRouter Instance { get; private set; } = new HistoryForwardOperationRouter();
-
         public HistoryForwardOperationRouter() : base("History")
         {
         }
