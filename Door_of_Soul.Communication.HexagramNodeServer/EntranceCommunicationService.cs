@@ -3,13 +3,9 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.HexagramNodeServer
 {
-    public abstract class EntranceCommunicationService<TEventCode, TOperationCode>
+    public class EntranceCommunicationService<TEventCode, TOperationCode>
     {
-        public static EntranceCommunicationService<TEventCode, TOperationCode> Instance { get; private set; }
-        public static void Initialize(EntranceCommunicationService<TEventCode, TOperationCode> instance)
-        {
-            Instance = instance;
-        }
+        public static EntranceCommunicationService<TEventCode, TOperationCode> Instance { get; private set; } = new EntranceCommunicationService<TEventCode, TOperationCode>();
 
         public bool HandleOperationRequest(TerminalHexagramEntrance<TEventCode, TOperationCode> hexagramEntrance, TOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
