@@ -51,7 +51,7 @@ namespace Door_of_Soul.Communication.Client
         public abstract bool ConnectSceneServer(string serverAddress, int port, string applicationName);
         public abstract void Process();
         public abstract void DisconnectProxyServer();
-        public abstract void DisconnectPhysicsServer();
+        public abstract void DisconnectSceneServer(string sceneServerName);
         public abstract void SendProxyServerOperation(DeviceOperationCode operationCode, Dictionary<byte, object> parameters);
         public abstract void SendSceneServerOperation(string sceneServerName, DeviceOperationCode operationCode, Dictionary<byte, object> parameters);
     }
