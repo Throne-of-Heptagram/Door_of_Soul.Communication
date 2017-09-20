@@ -2,5 +2,6 @@
 {
     public enum SystemEventCode : byte
     {
+        LoadProxyAnswer
     }
 }

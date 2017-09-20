@@ -7,9 +7,14 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.World
 {
     public static class WorldOperationResponseApi
     {
-        public static void SendOperationResponse(TerminalEndPoint terminal, int deviceId, int worldId, WorldOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SendDeviceOperationResponse(TerminalEndPoint terminal, int deviceId, int worldId, WorldOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            EndPointOperationResponseApi.WorldOperationResponse(terminal, deviceId, worldId, operationCode, operationReturnCode, operationMessage, parameters);
+            EndPointOperationResponseApi.DeviceWorldOperationResponse(terminal, deviceId, worldId, operationCode, operationReturnCode, operationMessage, parameters);
+        }
+
+        public static void SendEndPointOperationResponse(TerminalEndPoint terminal, int worldId, WorldOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        {
+            EndPointOperationResponseApi.EndPointWorldOperationResponse(terminal, worldId, operationCode, operationReturnCode, operationMessage, parameters);
         }
     }
 }

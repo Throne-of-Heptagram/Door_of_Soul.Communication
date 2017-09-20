@@ -9,10 +9,14 @@ namespace Door_of_Soul.Communication.ProxyServer.EndPoint
 
         private EndPointOperationResponseRouter() : base("EndPoint")
         {
-            OperationTable.Add(EndPointOperationCode.SystemOperation, new SystemOperationResponseBroker());
-            OperationTable.Add(EndPointOperationCode.AnswerOperation, new AnswerOperationResponseBroker());
-            OperationTable.Add(EndPointOperationCode.SoulOperation, new SoulOperationResponseBroker());
-            OperationTable.Add(EndPointOperationCode.AvatarOperation, new AvatarOperationResponseBroker());
+            OperationTable.Add(EndPointOperationCode.DeviceSystemOperation, new DeviceSystemOperationResponseBroker());
+            OperationTable.Add(EndPointOperationCode.DeviceAnswerOperation, new DeviceAnswerOperationResponseBroker());
+            OperationTable.Add(EndPointOperationCode.DeviceSoulOperation, new DeviceSoulOperationResponseBroker());
+            OperationTable.Add(EndPointOperationCode.DeviceAvatarOperation, new DeviceAvatarOperationResponseBroker());
+            OperationTable.Add(EndPointOperationCode.EndPointSystemOperation, new EndPointSystemOperationResponseBroker());
+            OperationTable.Add(EndPointOperationCode.EndPointAnswerOperation, new EndPointAnswerOperationResponseBroker());
+            OperationTable.Add(EndPointOperationCode.EndPointSoulOperation, new EndPointSoulOperationResponseBroker());
+            OperationTable.Add(EndPointOperationCode.EndPointAvatarOperation, new EndPointAvatarOperationResponseBroker());
         }
     }
 }

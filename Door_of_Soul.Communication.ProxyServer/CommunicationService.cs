@@ -5,6 +5,7 @@ using Door_of_Soul.Communication.ProxyServer.EndPoint;
 using Door_of_Soul.Core.Protocol;
 using System;
 using System.Collections.Generic;
+using Door_of_Soul.Communication.ProxyServer.System;
 
 namespace Door_of_Soul.Communication.ProxyServer
 {
@@ -27,6 +28,23 @@ namespace Door_of_Soul.Communication.ProxyServer
                 hexagrameEntranceServerConnected = value;
                 OnHexagrameEntranceServerConnectStatusChanged?.Invoke(HexagrameEntranceServerConnected);
             }
+        }
+        public TerminalDevice Device { get; private set; }
+
+        protected CommunicationService()
+        {
+            TerminalDevice device;
+            DeviceFactory.Instance.CreateDevice(
+                sendEventMethod: (eventCode, parameters) => 
+                {
+
+                },
+                sendOperationResponseMethod: (operationCode, returnCode, operationMessage, parameters) => 
+                {
+
+                },
+                device: out device);
+            Device = device;
         }
 
         public bool HandleOperationRequest(TerminalDevice device, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)

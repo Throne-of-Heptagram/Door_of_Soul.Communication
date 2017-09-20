@@ -1,4 +1,5 @@
 ﻿using Door_of_Soul.Communication.Protocol.Internal.Answer;
+using Door_of_Soul.Communication.ProxyServer.Answer.OperationResponseHandler;
 
 namespace Door_of_Soul.Communication.ProxyServer.Answer
 {
@@ -8,6 +9,7 @@ namespace Door_of_Soul.Communication.ProxyServer.Answer
 
         private AnswerOperationResponseRouter()
         {
+            OperationTable.Add(AnswerOperationCode.GetHexagramEntranceSoul, new GetHexagramEntranceSoulResponseHandler());
         }
     }
 }

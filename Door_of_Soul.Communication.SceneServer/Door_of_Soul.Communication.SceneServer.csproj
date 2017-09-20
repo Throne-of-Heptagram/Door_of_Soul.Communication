@@ -53,8 +53,11 @@
     <Compile Include="EndPoint\EventHandler\SceneEventBroker.cs" />
     <Compile Include="EndPoint\EventHandler\SystemEventBroker.cs" />
     <Compile Include="EndPoint\EventHandler\WorldEventBroker.cs" />
-    <Compile Include="EndPoint\OperationResponseHandler\SceneOperationResponseBroker.cs" />
-    <Compile Include="EndPoint\OperationResponseHandler\WorldOperationResponseBroker.cs" />
+    <Compile Include="EndPoint\OperationResponseHandler\DeviceSceneOperationResponseBroker.cs" />
+    <Compile Include="EndPoint\OperationResponseHandler\DeviceWorldOperationResponseBroker.cs" />
+    <Compile Include="EndPoint\OperationResponseHandler\EndPointSceneOperationResponseBroker.cs" />
+    <Compile Include="EndPoint\OperationResponseHandler\EndPointSystemOperationResponseBroker.cs" />
+    <Compile Include="EndPoint\OperationResponseHandler\EndPointWorldOperationResponseBroker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceService.cs" />
     <Compile Include="Scene\SceneEventApi.cs" />
@@ -64,6 +67,7 @@
     <Compile Include="Scene\SceneOperationResponseApi.cs" />
     <Compile Include="Scene\SceneOperationResponseRouter.cs" />
     <Compile Include="System\SystemEventRouter.cs" />
+    <Compile Include="System\SystemOperationRequestApi.cs" />
     <Compile Include="System\SystemOperationRequestRouter.cs" />
     <Compile Include="System\SystemOperationResponseRouter.cs" />
     <Compile Include="TerminalScene.cs" />

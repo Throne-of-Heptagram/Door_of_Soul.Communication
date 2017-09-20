@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Answer\AnswerOperationCode.cs" />
     <Compile Include="Answer\AnswerEventCode.cs" />
+    <Compile Include="Answer\EventParameter\LoadProxySoulParameterCode.cs" />
     <Compile Include="Avatar\AvatarEventCode.cs" />
     <Compile Include="Avatar\AvatarOperationCode.cs" />
     <Compile Include="Device\DeviceEventCode.cs" />
@@ -65,15 +66,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scene\SceneEventCode.cs" />
     <Compile Include="Scene\SceneOperationCode.cs" />
+    <Compile Include="Soul\EventParameter\LoadProxyAvatarParameterCode.cs" />
     <Compile Include="Soul\SoulEventCode.cs" />
     <Compile Include="Soul\SoulOperationCode.cs" />
+    <Compile Include="System\EventParameter\LoadProxyAnswerParameterCode.cs" />
+    <Compile Include="System\OperationRequestParameter\LoginRequestParameterCode.cs" />
+    <Compile Include="System\OperationRequestParameter\RegisterRequestParameterCode.cs" />
+    <Compile Include="System\OperationResponseParameter\LoginResponseParameterCode.cs" />
+    <Compile Include="System\OperationResponseParameter\RegisterResponseParameterCode.cs" />
     <Compile Include="System\SystemEventCode.cs" />
     <Compile Include="System\SystemOperationCode.cs" />
     <Compile Include="World\WorldEventCode.cs" />
     <Compile Include="World\WorldOperationCode.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Answer\EventParameter\" />
     <Folder Include="Answer\OperationRequestParameter\" />
     <Folder Include="Answer\OperationResponseParameter\" />
     <Folder Include="Avatar\EventParameter\" />
@@ -82,12 +88,8 @@
     <Folder Include="Scene\EventParameter\" />
     <Folder Include="Scene\OperationRequestParameter\" />
     <Folder Include="Scene\OperationResponseParameter\" />
-    <Folder Include="Soul\EventParameter\" />
     <Folder Include="Soul\OperationRequestParameter\" />
     <Folder Include="Soul\OperationResponseParameter\" />
-    <Folder Include="System\EventParameter\" />
-    <Folder Include="System\OperationRequestParameter\" />
-    <Folder Include="System\OperationResponseParameter\" />
     <Folder Include="World\EventParameter\" />
     <Folder Include="World\OperationRequestParameter\" />
     <Folder Include="World\OperationResponseParameter\" />

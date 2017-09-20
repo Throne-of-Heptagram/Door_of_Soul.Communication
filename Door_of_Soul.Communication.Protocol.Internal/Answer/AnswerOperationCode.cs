@@ -2,6 +2,6 @@
 {
     public enum AnswerOperationCode : byte
     {
-
+        GetHexagramEntranceSoul
     }
 }

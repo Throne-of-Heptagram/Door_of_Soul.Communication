@@ -6,9 +6,14 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.System
 {
     public static class SystemEventApi
     {
-        public static void SendEvent(SystemEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SendEvent(TerminalEndPoint terminal, SystemEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            EndPointEventApi.SystemEvent(eventCode, parameters);
+            EndPointEventApi.SystemEvent(terminal, eventCode, parameters);
+        }
+
+        public static void SendBroadcastEvent(SystemEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            EndPointEventApi.BroadcastSystemEvent(eventCode, parameters);
         }
     }
 }

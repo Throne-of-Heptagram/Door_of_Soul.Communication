@@ -14,48 +14,87 @@ namespace Door_of_Soul.Communication.ProxyServer.EndPoint
         {
             CommunicationService.Instance.SendOperation(operationCode, parameters);
         }
-        public static void SystemOperationRequest(int devicdId, SystemOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void DeviceSystemOperationRequest(int devicdId, SystemOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
-                { (byte)SystemOperationRequestParameterCode.DeviceId, devicdId },
-                { (byte)SystemOperationRequestParameterCode.OperationCode, operationCode },
-                { (byte)SystemOperationRequestParameterCode.Parameters, parameters }
+                { (byte)DeviceSystemOperationRequestParameterCode.DeviceId, devicdId },
+                { (byte)DeviceSystemOperationRequestParameterCode.OperationCode, operationCode },
+                { (byte)DeviceSystemOperationRequestParameterCode.Parameters, parameters }
             };
-            SendOperationRequest(EndPointOperationCode.SystemOperation, operationRequestParameters);
+            SendOperationRequest(EndPointOperationCode.DeviceSystemOperation, operationRequestParameters);
         }
-        public static void AnswerOperationRequest(int devicdId, int answerId, AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void DeviceAnswerOperationRequest(int devicdId, int answerId, AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
-                { (byte)AnswerOperationRequestParameterCode.DeviceId, devicdId },
-                { (byte)AnswerOperationRequestParameterCode.AnswerId, answerId },
-                { (byte)AnswerOperationRequestParameterCode.OperationCode, operationCode },
-                { (byte)AnswerOperationRequestParameterCode.Parameters, parameters }
+                { (byte)DeviceAnswerOperationRequestParameterCode.DeviceId, devicdId },
+                { (byte)DeviceAnswerOperationRequestParameterCode.AnswerId, answerId },
+                { (byte)DeviceAnswerOperationRequestParameterCode.OperationCode, operationCode },
+                { (byte)DeviceAnswerOperationRequestParameterCode.Parameters, parameters }
             };
-            SendOperationRequest(EndPointOperationCode.AnswerOperation, operationRequestParameters);
+            SendOperationRequest(EndPointOperationCode.DeviceAnswerOperation, operationRequestParameters);
         }
-        public static void SoulOperationRequest(int devicdId, int soulId, SoulOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void DeviceSoulOperationRequest(int devicdId, int soulId, SoulOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
-                { (byte)SoulOperationRequestParameterCode.DeviceId, devicdId },
-                { (byte)SoulOperationRequestParameterCode.SoulId, soulId },
-                { (byte)SoulOperationRequestParameterCode.OperationCode, operationCode },
-                { (byte)SoulOperationRequestParameterCode.Parameters, parameters }
+                { (byte)DeviceSoulOperationRequestParameterCode.DeviceId, devicdId },
+                { (byte)DeviceSoulOperationRequestParameterCode.SoulId, soulId },
+                { (byte)DeviceSoulOperationRequestParameterCode.OperationCode, operationCode },
+                { (byte)DeviceSoulOperationRequestParameterCode.Parameters, parameters }
             };
-            SendOperationRequest(EndPointOperationCode.SoulOperation, operationRequestParameters);
+            SendOperationRequest(EndPointOperationCode.DeviceSoulOperation, operationRequestParameters);
         }
-        public static void AvatarOperationRequest(int devicdId, int avatarId, AvatarOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void DeviceAvatarOperationRequest(int devicdId, int avatarId, AvatarOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
-                { (byte)AvatarOperationRequestParameterCode.DeviceId, devicdId },
-                { (byte)AvatarOperationRequestParameterCode.AvatarId, avatarId },
-                { (byte)AvatarOperationRequestParameterCode.OperationCode, operationCode },
-                { (byte)AvatarOperationRequestParameterCode.Parameters, parameters }
+                { (byte)DeviceAvatarOperationRequestParameterCode.DeviceId, devicdId },
+                { (byte)DeviceAvatarOperationRequestParameterCode.AvatarId, avatarId },
+                { (byte)DeviceAvatarOperationRequestParameterCode.OperationCode, operationCode },
+                { (byte)DeviceAvatarOperationRequestParameterCode.Parameters, parameters }
             };
-            SendOperationRequest(EndPointOperationCode.AvatarOperation, operationRequestParameters);
+            SendOperationRequest(EndPointOperationCode.DeviceAvatarOperation, operationRequestParameters);
+        }
+        public static void EndPointSystemOperationRequest(SystemOperationCode operationCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
+            {
+                { (byte)EndPointSystemOperationRequestParameterCode.OperationCode, operationCode },
+                { (byte)EndPointSystemOperationRequestParameterCode.Parameters, parameters }
+            };
+            SendOperationRequest(EndPointOperationCode.EndPointSystemOperation, operationRequestParameters);
+        }
+        public static void EndPointAnswerOperationRequest(int answerId, AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
+            {
+                { (byte)EndPointAnswerOperationRequestParameterCode.AnswerId, answerId },
+                { (byte)EndPointAnswerOperationRequestParameterCode.OperationCode, operationCode },
+                { (byte)EndPointAnswerOperationRequestParameterCode.Parameters, parameters }
+            };
+            SendOperationRequest(EndPointOperationCode.EndPointAnswerOperation, operationRequestParameters);
+        }
+        public static void EndPointSoulOperationRequest(int soulId, SoulOperationCode operationCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
+            {
+                { (byte)EndPointSoulOperationRequestParameterCode.SoulId, soulId },
+                { (byte)EndPointSoulOperationRequestParameterCode.OperationCode, operationCode },
+                { (byte)EndPointSoulOperationRequestParameterCode.Parameters, parameters }
+            };
+            SendOperationRequest(EndPointOperationCode.EndPointSoulOperation, operationRequestParameters);
+        }
+        public static void EndPointAvatarOperationRequest(int avatarId, AvatarOperationCode operationCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
+            {
+                { (byte)EndPointAvatarOperationRequestParameterCode.AvatarId, avatarId },
+                { (byte)EndPointAvatarOperationRequestParameterCode.OperationCode, operationCode },
+                { (byte)EndPointAvatarOperationRequestParameterCode.Parameters, parameters }
+            };
+            SendOperationRequest(EndPointOperationCode.EndPointAvatarOperation, operationRequestParameters);
         }
     }
 }

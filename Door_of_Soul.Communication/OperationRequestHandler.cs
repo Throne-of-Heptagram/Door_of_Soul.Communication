@@ -80,7 +80,7 @@ namespace Door_of_Soul.Communication
         }
     }
 
-    public abstract class OperationRequestHandler<TTerminal, TDeviceId, TSubject, TOperationCode>
+    public abstract class OperationRequestHandler<TTerminal, TSubterminalId, TSubject, TOperationCode>
     {
         protected int CorrectParameterCount { get; private set; }
 
@@ -89,9 +89,9 @@ namespace Door_of_Soul.Communication
             CorrectParameterCount = Enum.GetNames(typeOfOperationRequestParameterCode).Length;
         }
 
-        public abstract void SendResponse(TTerminal terminal, TDeviceId deviceId, TSubject target, TOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters);
+        public abstract void SendResponse(TTerminal terminal, TSubterminalId subterminalId, TSubject target, TOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters);
 
-        public virtual bool Handle(TTerminal terminal, TDeviceId deviceId, TSubject requester, TOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public virtual bool Handle(TTerminal terminal, TSubterminalId subterminalId, TSubject requester, TOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
             if (CheckParameterCount(parameters, out errorMessage))
             {
@@ -99,7 +99,7 @@ namespace Door_of_Soul.Communication
             }
             else
             {
-                SendResponse(terminal, deviceId, requester, operationCode, OperationReturnCode.ParameterCountError, errorMessage, new Dictionary<byte, object>());
+                SendResponse(terminal, subterminalId, requester, operationCode, OperationReturnCode.ParameterCountError, errorMessage, new Dictionary<byte, object>());
                 return false;
             }
         }
@@ -118,7 +118,7 @@ namespace Door_of_Soul.Communication
         }
     }
 
-    public abstract class OperationRequestHandler<TTerminal, TEndPoint, TDeviceId, TSubject, TOperationCode>
+    public abstract class OperationRequestHandler<TTerminal, TSubterminalId, TEndTerminalId, TSubject, TOperationCode>
     {
         protected int CorrectParameterCount { get; private set; }
 
@@ -127,9 +127,9 @@ namespace Door_of_Soul.Communication
             CorrectParameterCount = Enum.GetNames(typeOfOperationRequestParameterCode).Length;
         }
 
-        public abstract void SendResponse(TTerminal terminal, TEndPoint endPointId, TDeviceId deviceId, TSubject target, TOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters);
+        public abstract void SendResponse(TTerminal terminal, TSubterminalId subterminalId, TEndTerminalId endTerminalId, TSubject target, TOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters);
 
-        public virtual bool Handle(TTerminal terminal, TEndPoint endPointId, TDeviceId deviceId, TSubject requester, TOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public virtual bool Handle(TTerminal terminal, TSubterminalId subterminalId, TEndTerminalId endTerminalId, TSubject requester, TOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
             if (CheckParameterCount(parameters, out errorMessage))
             {
@@ -137,7 +137,7 @@ namespace Door_of_Soul.Communication
             }
             else
             {
-                SendResponse(terminal, endPointId, deviceId, requester, operationCode, OperationReturnCode.ParameterCountError, errorMessage, new Dictionary<byte, object>());
+                SendResponse(terminal, subterminalId, endTerminalId, requester, operationCode, OperationReturnCode.ParameterCountError, errorMessage, new Dictionary<byte, object>());
                 return false;
             }
         }

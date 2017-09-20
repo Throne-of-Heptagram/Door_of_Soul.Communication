@@ -7,9 +7,14 @@ namespace Door_of_Soul.Communication.SceneServer.World
 {
     public static class WorldEventApi
     {
-        public static void SendEvent(VirtualWorld target, WorldEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SendEvent(TerminalDevice terminal, VirtualWorld target, WorldEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            DeviceEventApi.WorldEvent(target, eventCode, parameters);
+            DeviceEventApi.WorldEvent(terminal, target, eventCode, parameters);
+        }
+
+        public static void SendBroadcastEvent(VirtualWorld target, WorldEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            DeviceEventApi.BroadcastWorldEvent(target, eventCode, parameters);
         }
     }
 }

@@ -62,6 +62,8 @@
     <Compile Include="Life\LifeEventCode.cs" />
     <Compile Include="Life\LifeForwardOperationCode.cs" />
     <Compile Include="Life\LifeOperationCode.cs" />
+    <Compile Include="Life\OperationRequestParameter\GetLifeAvatarRequestParameterCode.cs" />
+    <Compile Include="Life\OperationResponseParameter\GetLifeAvatarResponseParameterCode.cs" />
     <Compile Include="Love\LoveEventCode.cs" />
     <Compile Include="Love\LoveForwardOperationCode.cs" />
     <Compile Include="Love\LoveOperationCode.cs" />
@@ -72,16 +74,22 @@
     <Compile Include="Space\SpaceEventCode.cs" />
     <Compile Include="Space\SpaceForwardOperationCode.cs" />
     <Compile Include="Space\SpaceOperationCode.cs" />
+    <Compile Include="Throne\OperationRequestParameter\GetThroneAnswerRequestParameterCode.cs" />
+    <Compile Include="Throne\OperationResponseParameter\GetThroneAnswerResponseParameterCode.cs" />
     <Compile Include="Throne\ThroneEventCode.cs" />
     <Compile Include="Throne\ThroneForwardOperationCode.cs" />
     <Compile Include="Throne\ThroneOperationCode.cs" />
+    <Compile Include="Will\OperationRequestParameter\GetWillSoulRequestParameterCode.cs" />
+    <Compile Include="Will\OperationResponseParameter\GetWillSoulResponseParameterCode.cs" />
     <Compile Include="Will\WillEventCode.cs" />
     <Compile Include="Will\WillForwardOperationCode.cs" />
     <Compile Include="Will\WillOperationCode.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Life\EventParameter\" />
     <Folder Include="Space\OperationRequestParameter\" />
     <Folder Include="Space\OperationResponseParameter\" />
+    <Folder Include="Will\EventParameter\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

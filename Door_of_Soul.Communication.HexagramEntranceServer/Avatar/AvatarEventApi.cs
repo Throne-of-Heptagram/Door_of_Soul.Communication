@@ -7,9 +7,14 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.Avatar
 {
     public static class AvatarEventApi
     {
-        public static void SendEvent(VirtualAvatar target, AvatarEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SendEvent(TerminalEndPoint terminal, VirtualAvatar target, AvatarEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            EndPointEventApi.AvatarEvent(target, eventCode, parameters);
+            EndPointEventApi.AvatarEvent(terminal, target, eventCode, parameters);
+        }
+
+        public static void SendBroadcastEvent(VirtualAvatar target, AvatarEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            EndPointEventApi.BroadcastAvatarEvent(target, eventCode, parameters);
         }
     }
 }

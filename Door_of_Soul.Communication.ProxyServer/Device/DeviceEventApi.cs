@@ -15,7 +15,48 @@ namespace Door_of_Soul.Communication.ProxyServer.Device
         {
             target.SendEvent(eventCode, parameters);
         }
-        public static void SystemEvent(SystemEventCode eventCode, Dictionary<byte, object> parameters)
+
+        public static void SystemEvent(TerminalDevice terminal, SystemEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
+            {
+                { (byte)SystemEventParameterCode.EventCode, eventCode },
+                { (byte)SystemEventParameterCode.Parameters, parameters }
+            };
+            SendEvent(terminal, DeviceEventCode.SystemEvent, eventParameters);
+        }
+        public static void AnswerEvent(TerminalDevice terminal, TerminalAnswer target, AnswerEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
+            {
+                { (byte)AnswerEventParameterCode.AnswerId, target.AnswerId },
+                { (byte)AnswerEventParameterCode.EventCode, eventCode },
+                { (byte)AnswerEventParameterCode.Parameters, parameters }
+            };
+            SendEvent(terminal, DeviceEventCode.AnswerEvent, eventParameters);
+        }
+        public static void SoulEvent(TerminalDevice terminal, VirtualSoul target, SoulEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
+            {
+                { (byte)SoulEventParameterCode.SoulId, target.SoulId },
+                { (byte)SoulEventParameterCode.EventCode, eventCode },
+                { (byte)SoulEventParameterCode.Parameters, parameters }
+            };
+            SendEvent(terminal, DeviceEventCode.SoulEvent, eventParameters);
+        }
+        public static void AvatarEvent(TerminalDevice terminal, VirtualAvatar target, AvatarEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
+            {
+                { (byte)AvatarEventParameterCode.AvatarId, target.AvatarId },
+                { (byte)AvatarEventParameterCode.EventCode, eventCode },
+                { (byte)AvatarEventParameterCode.Parameters, parameters }
+            };
+            SendEvent(terminal, DeviceEventCode.AvatarEvent, eventParameters);
+        }
+
+        public static void BroadcastSystemEvent(SystemEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
             {
@@ -27,7 +68,7 @@ namespace Door_of_Soul.Communication.ProxyServer.Device
                 SendEvent(device, DeviceEventCode.SystemEvent, eventParameters);
             }
         }
-        public static void AnswerEvent(TerminalAnswer target, AnswerEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void BroadcastAnswerEvent(TerminalAnswer target, AnswerEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
             {
@@ -40,7 +81,7 @@ namespace Door_of_Soul.Communication.ProxyServer.Device
                 SendEvent(device, DeviceEventCode.AnswerEvent, eventParameters);
             }
         }
-        public static void SoulEvent(VirtualSoul target, SoulEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void BroadcastSoulEvent(VirtualSoul target, SoulEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
             {
@@ -57,7 +98,7 @@ namespace Door_of_Soul.Communication.ProxyServer.Device
                 }
             }
         }
-        public static void AvatarEvent(VirtualAvatar target, AvatarEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void BroadcastAvatarEvent(VirtualAvatar target, AvatarEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
             {

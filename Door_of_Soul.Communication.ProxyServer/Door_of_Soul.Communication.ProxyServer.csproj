@@ -46,6 +46,7 @@
     <Compile Include="Answer\AnswerOperationRequestRouter.cs" />
     <Compile Include="Answer\AnswerOperationResponseApi.cs" />
     <Compile Include="Answer\AnswerOperationResponseRouter.cs" />
+    <Compile Include="Answer\OperationResponseHandler\GetHexagramEntranceSoulResponseHandler.cs" />
     <Compile Include="Avatar\AvatarEventApi.cs" />
     <Compile Include="Avatar\AvatarEventRouter.cs" />
     <Compile Include="Avatar\AvatarOperationRequestApi.cs" />
@@ -68,11 +69,19 @@
     <Compile Include="EndPoint\EventHandler\AvatarEventBroker.cs" />
     <Compile Include="EndPoint\EventHandler\SoulEventBroker.cs" />
     <Compile Include="EndPoint\EventHandler\SystemEventBroker.cs" />
-    <Compile Include="EndPoint\OperationResponseHandler\AnswerOperationResponseBroker.cs" />
-    <Compile Include="EndPoint\OperationResponseHandler\AvatarOperationResponseBroker.cs" />
-    <Compile Include="EndPoint\OperationResponseHandler\SoulOperationResponseBroker.cs" />
-    <Compile Include="EndPoint\OperationResponseHandler\SystemOperationResponseBroker.cs" />
+    <Compile Include="EndPoint\OperationResponseHandler\DeviceAnswerOperationResponseBroker.cs" />
+    <Compile Include="EndPoint\OperationResponseHandler\DeviceAvatarOperationResponseBroker.cs" />
+    <Compile Include="EndPoint\OperationResponseHandler\DeviceSoulOperationResponseBroker.cs" />
+    <Compile Include="EndPoint\OperationResponseHandler\DeviceSystemOperationResponseBroker.cs" />
+    <Compile Include="EndPoint\OperationResponseHandler\EndPointAnswerOperationResponseBroker.cs" />
+    <Compile Include="EndPoint\OperationResponseHandler\EndPointAvatarOperationResponseBroker.cs" />
+    <Compile Include="EndPoint\OperationResponseHandler\EndPointSoulOperationResponseBroker.cs" />
+    <Compile Include="EndPoint\OperationResponseHandler\EndPointSystemOperationResponseBroker.cs" />
     <Compile Include="ResourceService.cs" />
+    <Compile Include="Soul\OperationResponseHandler\GetHexagramEntranceAvatarResponseHandler.cs" />
+    <Compile Include="System\OperationRequestHandler\LoginRequestHandler.cs" />
+    <Compile Include="System\OperationRequestHandler\RegisterRequestHandler.cs" />
+    <Compile Include="System\OperationResponseHandler\GetHexagramEntranceAnswerResponseHandler.cs" />
     <Compile Include="TerminalAnswer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TerminalDevice.cs" />
@@ -110,6 +119,10 @@
       <Project>{90c6178d-f9ee-4160-b7e6-d450afe03bec}</Project>
       <Name>Door_of_Soul.Communication</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Answer\OperationRequestHandler\" />
+    <Folder Include="Soul\OperationRequestHandler\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

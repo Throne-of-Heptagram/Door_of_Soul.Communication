@@ -6,9 +6,14 @@ namespace Door_of_Soul.Communication.SceneServer.Scene
 {
     public static class SceneEventApi
     {
-        public static void SendEvent(TerminalScene target, SceneEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SendEvent(TerminalDevice terminal, TerminalScene target, SceneEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            DeviceEventApi.SceneEvent(target, eventCode, parameters);
+            DeviceEventApi.SceneEvent(terminal, target, eventCode, parameters);
+        }
+
+        public static void SendBroadcastEvent(TerminalScene target, SceneEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            DeviceEventApi.BroadcastSceneEvent(target, eventCode, parameters);
         }
     }
 }

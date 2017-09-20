@@ -1,4 +1,5 @@
-﻿using Door_of_Soul.Communication.Protocol.Internal.System;
+﻿using Door_of_Soul.Communication.HexagramEntranceServer.System.OperationRequestHandler;
+using Door_of_Soul.Communication.Protocol.Internal.System;
 using Door_of_Soul.Core.HexagramEntranceServer;
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.System
@@ -9,7 +10,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.System
 
         private SystemOperationRequestRouter()
         {
-
+            OperationTable.Add(SystemOperationCode.GetHexagramEntranceAnswer, new GetHexagramEntranceAnswerRequestHandler());
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Door_of_Soul.Communication.Protocol.External.System;
+﻿using Door_of_Soul.Communication.Infrastructure.Client.System.EventHandler;
+using Door_of_Soul.Communication.Protocol.External.System;
 using Door_of_Soul.Core.Client;
 
 namespace Door_of_Soul.Communication.Client.System
@@ -9,6 +10,7 @@ namespace Door_of_Soul.Communication.Client.System
 
         private SystemEventRouter()
         {
+            EventTable.Add(SystemEventCode.LoadProxyAnswer, new LoadProxyAnswerHandler());
         }
     }
 }

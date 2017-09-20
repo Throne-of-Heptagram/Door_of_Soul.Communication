@@ -7,9 +7,14 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.World
 {
     public static class WorldEventApi
     {
-        public static void SendEvent(VirtualWorld target, WorldEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SendEvent(TerminalEndPoint terminal, VirtualWorld target, WorldEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            EndPointEventApi.WorldEvent(target, eventCode, parameters);
+            EndPointEventApi.WorldEvent(terminal, target, eventCode, parameters);
+        }
+
+        public static void SendBroadcastEvent(VirtualWorld target, WorldEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            EndPointEventApi.BroadcastWorldEvent(target, eventCode, parameters);
         }
     }
 }

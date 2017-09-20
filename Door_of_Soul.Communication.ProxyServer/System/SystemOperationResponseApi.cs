@@ -1,5 +1,5 @@
-﻿using Door_of_Soul.Communication.ProxyServer.Device;
-using Door_of_Soul.Communication.Protocol.External.System;
+﻿using Door_of_Soul.Communication.Protocol.External.System;
+using Door_of_Soul.Communication.ProxyServer.Device;
 using Door_of_Soul.Core.Protocol;
 using System.Collections.Generic;
 

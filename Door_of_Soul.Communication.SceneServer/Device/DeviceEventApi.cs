@@ -1,10 +1,9 @@
 ﻿using Door_of_Soul.Communication.Protocol.External.Device;
 using Door_of_Soul.Communication.Protocol.External.Device.EventParameter;
 using Door_of_Soul.Communication.Protocol.External.Scene;
-using Door_of_Soul.Communication.Protocol.External.System;
 using Door_of_Soul.Communication.Protocol.External.World;
-using System.Collections.Generic;
 using Door_of_Soul.Core.SceneServer;
+using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.SceneServer.Device
 {
@@ -14,7 +13,29 @@ namespace Door_of_Soul.Communication.SceneServer.Device
         {
             target.SendEvent(eventCode, parameters);
         }
-        public static void WorldEvent(VirtualWorld target, WorldEventCode eventCode, Dictionary<byte, object> parameters)
+
+        public static void WorldEvent(TerminalDevice terminal, VirtualWorld target, WorldEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
+            {
+                { (byte)WorldEventParameterCode.WorldId, target.WorldId },
+                { (byte)WorldEventParameterCode.EventCode, eventCode },
+                { (byte)WorldEventParameterCode.Parameters, parameters }
+            };
+            SendEvent(terminal, DeviceEventCode.WorldEvent, eventParameters);
+        }
+        public static void SceneEvent(TerminalDevice terminal, TerminalScene target, SceneEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
+            {
+                { (byte)SceneEventParameterCode.SceneId, target.SceneId },
+                { (byte)SceneEventParameterCode.EventCode, eventCode },
+                { (byte)SceneEventParameterCode.Parameters, parameters }
+            };
+            SendEvent(terminal, DeviceEventCode.SceneEvent, eventParameters);
+        }
+
+        public static void BroadcastWorldEvent(VirtualWorld target, WorldEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
             {
@@ -39,7 +60,7 @@ namespace Door_of_Soul.Communication.SceneServer.Device
                 SendEvent(device, DeviceEventCode.WorldEvent, eventParameters);
             }
         }
-        public static void SceneEvent(TerminalScene target, SceneEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void BroadcastSceneEvent(TerminalScene target, SceneEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
             {

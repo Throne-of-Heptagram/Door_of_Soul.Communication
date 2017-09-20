@@ -2,5 +2,6 @@
 {
     public enum WillOperationCode : uint
     {
+        GetWillSoul
     }
 }

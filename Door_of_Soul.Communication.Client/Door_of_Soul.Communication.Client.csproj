@@ -41,6 +41,7 @@
     <Compile Include="Answer\AnswerEventRouter.cs" />
     <Compile Include="Answer\AnswerOperationRequestApi.cs" />
     <Compile Include="Answer\AnswerOperationResponseRouter.cs" />
+    <Compile Include="Answer\EventHandler\LoadProxySoulHandler.cs" />
     <Compile Include="Avatar\AvatarEventRouter.cs" />
     <Compile Include="Avatar\AvatarOperationRequestApi.cs" />
     <Compile Include="Avatar\AvatarOperationResponseRouter.cs" />
@@ -64,9 +65,13 @@
     <Compile Include="Scene\SceneEventRouter.cs" />
     <Compile Include="Scene\SceneOperationRequestApi.cs" />
     <Compile Include="Scene\SceneOperationResponseRouter.cs" />
+    <Compile Include="Soul\EventHandler\LoadProxyAvatarHandler.cs" />
     <Compile Include="Soul\SoulEventRouter.cs" />
     <Compile Include="Soul\SoulOperationRequestApi.cs" />
     <Compile Include="Soul\SoulOperationResponseRouter.cs" />
+    <Compile Include="System\EventHandler\LoadProxyAnswerHandler.cs" />
+    <Compile Include="System\OperationResponseHandler\LoginResponseHandler.cs" />
+    <Compile Include="System\OperationResponseHandler\RegisterResponseHandler.cs" />
     <Compile Include="System\SystemEventRouter.cs" />
     <Compile Include="System\SystemOperationRequestApi.cs" />
     <Compile Include="System\SystemOperationResponseRouter.cs" />
@@ -93,16 +98,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Answer\EventHandler\" />
     <Folder Include="Answer\OperationResponseHandler\" />
     <Folder Include="Avatar\EventHandler\" />
     <Folder Include="Avatar\OperationResponseHandler\" />
     <Folder Include="Scene\EventHandler\" />
     <Folder Include="Scene\OperationResponseHandler\" />
-    <Folder Include="Soul\EventHandler\" />
     <Folder Include="Soul\OperationResponseHandler\" />
-    <Folder Include="System\EventHandler\" />
-    <Folder Include="System\OperationResponseHandler\" />
     <Folder Include="World\EventHandler\" />
     <Folder Include="World\OperationResponseHandler\" />
   </ItemGroup>

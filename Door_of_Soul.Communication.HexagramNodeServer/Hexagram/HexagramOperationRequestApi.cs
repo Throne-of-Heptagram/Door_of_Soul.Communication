@@ -23,7 +23,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Hexagram
             CentralCommunicationService.Instance.SendForwardOperation(operationCode, parameters);
         }
         
-        public static void KnowledgeOperationRequest(KnowledgeOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void KnowledgeOperationRequest(KnowledgeForwardOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
@@ -32,7 +32,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Hexagram
             };
             SendOperationRequest(HexagramForwardOperationCode.KnowledgeForwardOperation, operationRequestParameters);
         }
-        public static void LifeOperationRequest(LifeOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void LifeOperationRequest(LifeForwardOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
@@ -41,7 +41,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Hexagram
             };
             SendOperationRequest(HexagramForwardOperationCode.LifeForwardOperation, operationRequestParameters);
         }
-        public static void ElementOperationRequest(ElementOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void ElementOperationRequest(ElementForwardOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
@@ -50,7 +50,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Hexagram
             };
             SendOperationRequest(HexagramForwardOperationCode.ElementForwardOperation, operationRequestParameters);
         }
-        public static void InfiniteOperationRequest(InfiniteOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void InfiniteOperationRequest(InfiniteForwardOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
@@ -59,7 +59,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Hexagram
             };
             SendOperationRequest(HexagramForwardOperationCode.InfiniteForwardOperation, operationRequestParameters);
         }
-        public static void LoveOperationRequest(LoveOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void LoveOperationRequest(LoveForwardOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
@@ -68,7 +68,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Hexagram
             };
             SendOperationRequest(HexagramForwardOperationCode.LoveForwardOperation, operationRequestParameters);
         }
-        public static void SpaceOperationRequest(SpaceOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void SpaceOperationRequest(SpaceForwardOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
@@ -77,7 +77,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Hexagram
             };
             SendOperationRequest(HexagramForwardOperationCode.SpaceForwardOperation, operationRequestParameters);
         }
-        public static void WillOperationRequest(WillOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void WillOperationRequest(WillForwardOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
@@ -86,7 +86,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Hexagram
             };
             SendOperationRequest(HexagramForwardOperationCode.WillForwardOperation, operationRequestParameters);
         }
-        public static void ShadowOperationRequest(ShadowOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void ShadowOperationRequest(ShadowForwardOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
@@ -95,7 +95,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Hexagram
             };
             SendOperationRequest(HexagramForwardOperationCode.ShadowForwardOperation, operationRequestParameters);
         }
-        public static void HistoryOperationRequest(HistoryOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void HistoryOperationRequest(HistoryForwardOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
@@ -104,7 +104,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Hexagram
             };
             SendOperationRequest(HexagramForwardOperationCode.HistoryForwardOperation, operationRequestParameters);
         }
-        public static void EternityOperationRequest(EternityOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void EternityOperationRequest(EternityForwardOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
@@ -113,7 +113,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Hexagram
             };
             SendOperationRequest(HexagramForwardOperationCode.EternityForwardOperation, operationRequestParameters);
         }
-        public static void DestinyOperationRequest(DestinyOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void DestinyOperationRequest(DestinyForwardOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
@@ -122,7 +122,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Hexagram
             };
             SendOperationRequest(HexagramForwardOperationCode.DestinyForwardOperation, operationRequestParameters);
         }
-        public static void ThroneOperationRequest(ThroneOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void ThroneOperationRequest(ThroneForwardOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {

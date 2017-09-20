@@ -2,11 +2,18 @@
 {
     public enum EndPointOperationCode : byte
     {
-        SystemOperation,
-        AnswerOperation,
-        SoulOperation,
-        AvatarOperation,
-        WorldOperation,
-        SceneOperation,
+        DeviceSystemOperation,
+        DeviceAnswerOperation,
+        DeviceSoulOperation,
+        DeviceAvatarOperation,
+        DeviceWorldOperation,
+        DeviceSceneOperation,
+
+        EndPointSystemOperation,
+        EndPointAnswerOperation,
+        EndPointSoulOperation,
+        EndPointAvatarOperation,
+        EndPointWorldOperation,
+        EndPointSceneOperation,
     }
 }

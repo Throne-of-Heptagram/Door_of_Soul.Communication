@@ -2,5 +2,6 @@
 {
     public enum SystemOperationCode : byte
     {
+        GetHexagramEntranceAnswer
     }
 }

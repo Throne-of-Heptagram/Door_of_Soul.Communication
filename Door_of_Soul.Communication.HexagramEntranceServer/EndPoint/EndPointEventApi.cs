@@ -18,7 +18,68 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
         {
             target.SendEvent(eventCode, parameters);
         }
-        public static void SystemEvent(SystemEventCode eventCode, Dictionary<byte, object> parameters)
+
+        public static void SystemEvent(TerminalEndPoint terminal, SystemEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
+            {
+                { (byte)SystemEventParameterCode.EventCode, eventCode },
+                { (byte)SystemEventParameterCode.Parameters, parameters }
+            };
+            SendEvent(terminal, EndPointEventCode.SystemEvent, eventParameters);
+        }
+        public static void AnswerEvent(TerminalEndPoint terminal, VirtualAnswer target, AnswerEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
+            {
+                { (byte)AnswerEventParameterCode.AnswerId, target.AnswerId },
+                { (byte)AnswerEventParameterCode.EventCode, eventCode },
+                { (byte)AnswerEventParameterCode.Parameters, parameters }
+            };
+            SendEvent(terminal, EndPointEventCode.AnswerEvent, eventParameters);
+        }
+        public static void SoulEvent(TerminalEndPoint terminal, VirtualSoul target, SoulEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
+            {
+                { (byte)SoulEventParameterCode.SoulId, target.SoulId },
+                { (byte)SoulEventParameterCode.EventCode, eventCode },
+                { (byte)SoulEventParameterCode.Parameters, parameters }
+            };
+            SendEvent(terminal, EndPointEventCode.SoulEvent, eventParameters);
+        }
+        public static void AvatarEvent(TerminalEndPoint terminal, VirtualAvatar target, AvatarEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
+            {
+                { (byte)AvatarEventParameterCode.AvatarId, target.AvatarId },
+                { (byte)AvatarEventParameterCode.EventCode, eventCode },
+                { (byte)AvatarEventParameterCode.Parameters, parameters }
+            };
+            SendEvent(terminal, EndPointEventCode.AvatarEvent, eventParameters);
+        }
+        public static void WorldEvent(TerminalEndPoint terminal, VirtualWorld target, WorldEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
+            {
+                { (byte)WorldEventParameterCode.WorldId, target.WorldId },
+                { (byte)WorldEventParameterCode.EventCode, eventCode },
+                { (byte)WorldEventParameterCode.Parameters, parameters }
+            };
+            SendEvent(terminal, EndPointEventCode.WorldEvent, eventParameters);
+        }
+        public static void SceneEvent(TerminalEndPoint terminal, VirtualScene target, SceneEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
+            {
+                { (byte)SceneEventParameterCode.SceneId, target.SceneId },
+                { (byte)SceneEventParameterCode.EventCode, eventCode },
+                { (byte)SceneEventParameterCode.Parameters, parameters }
+            };
+            SendEvent(terminal, EndPointEventCode.SceneEvent, eventParameters);
+        }
+
+        public static void BroadcastSystemEvent(SystemEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
             {
@@ -30,7 +91,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
                 SendEvent(endPoint, EndPointEventCode.SystemEvent, eventParameters);
             }
         }
-        public static void AnswerEvent(VirtualAnswer target, AnswerEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void BroadcastAnswerEvent(VirtualAnswer target, AnswerEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
             {
@@ -43,7 +104,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
                 SendEvent(endPoint, EndPointEventCode.AnswerEvent, eventParameters);
             }
         }
-        public static void SoulEvent(VirtualSoul target, SoulEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void BroadcastSoulEvent(VirtualSoul target, SoulEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
             {
@@ -56,7 +117,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
                 SendEvent(endPoint, EndPointEventCode.SoulEvent, eventParameters);
             }
         }
-        public static void AvatarEvent(VirtualAvatar target, AvatarEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void BroadcastAvatarEvent(VirtualAvatar target, AvatarEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
             {
@@ -69,7 +130,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
                 SendEvent(endPoint, EndPointEventCode.AvatarEvent, eventParameters);
             }
         }
-        public static void WorldEvent(VirtualWorld target, WorldEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void BroadcastWorldEvent(VirtualWorld target, WorldEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
             {
@@ -82,7 +143,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
                 SendEvent(endPoint, EndPointEventCode.WorldEvent, eventParameters);
             }
         }
-        public static void SceneEvent(VirtualScene target, SceneEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void BroadcastSceneEvent(VirtualScene target, SceneEventCode eventCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> eventParameters = new Dictionary<byte, object>
             {

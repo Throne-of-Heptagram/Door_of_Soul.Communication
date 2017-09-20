@@ -4,13 +4,17 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.ProxyServer
 {
-    public class TerminalAnswer : VirtualAnswer
+    public abstract class TerminalAnswer : VirtualAnswer
     {
         public event Action<TerminalAnswer, TerminalDevice> OnDeviceLinked;
         public event Action<TerminalAnswer, TerminalDevice> OnDeviceUnlinked;
 
         private object devicesLock = new object();
         private List<TerminalDevice> devices = new List<TerminalDevice>();
+
+        protected TerminalAnswer(int answerId, string answerName) : base(answerId, answerName)
+        {
+        }
 
         public IEnumerable<TerminalDevice> Devices
         {

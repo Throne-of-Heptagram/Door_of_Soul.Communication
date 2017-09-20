@@ -7,9 +7,14 @@ namespace Door_of_Soul.Communication.ProxyServer.Avatar
 {
     public static class AvatarEventApi
     {
-        public static void SendEvent(VirtualAvatar target, AvatarEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SendEvent(TerminalDevice terminal, VirtualAvatar target, AvatarEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            DeviceEventApi.AvatarEvent(target, eventCode, parameters);
+            DeviceEventApi.AvatarEvent(terminal, target, eventCode, parameters);
+        }
+
+        public static void SendBroadcastEvent(VirtualAvatar target, AvatarEventCode eventCode, Dictionary<byte, object> parameters)
+        {
+            DeviceEventApi.BroadcastAvatarEvent(target, eventCode, parameters);
         }
     }
 }
