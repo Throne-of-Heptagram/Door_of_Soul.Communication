@@ -7,7 +7,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Destiny
 {
     public class DestinyOperationRequestRouter : HexagramOperationRequestRouter<DestinyEventCode, DestinyOperationCode, VirtualDestiny>
     {
-        public DestinyOperationRequestRouter()
+        public DestinyOperationRequestRouter() : base("HexagramNodeServerDestiny")
         {
 
         }

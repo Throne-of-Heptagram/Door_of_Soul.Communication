@@ -2,6 +2,6 @@
 {
     public enum AnswerEventCode : byte
     {
-        LoadProxySoul
+
     }
 }

@@ -20,7 +20,7 @@ namespace Door_of_Soul.Communication
             }
             else
             {
-                errorMessage = $"Unknow {subjectName}ForwardOperation:{operationCode} from {subjectName}";
+                errorMessage = $"Unknow {subjectName}ForwardOperation ForwardOperationCode:{operationCode}";
                 return false;
             }
         }

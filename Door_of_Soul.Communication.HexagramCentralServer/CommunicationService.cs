@@ -1,8 +1,8 @@
 ﻿using Door_of_Soul.Communication.Protocol.Hexagram.Destiny;
 using Door_of_Soul.Communication.Protocol.Hexagram.Element;
 using Door_of_Soul.Communication.Protocol.Hexagram.Eternity;
-using Door_of_Soul.Communication.Protocol.Hexagram.Hexagram;
-using Door_of_Soul.Communication.Protocol.Hexagram.Hexagram.OperationForwardParameter;
+using Door_of_Soul.Communication.Protocol.Hexagram.HexagramCentral;
+using Door_of_Soul.Communication.Protocol.Hexagram.HexagramCentral.OperationForwardParameter;
 using Door_of_Soul.Communication.Protocol.Hexagram.History;
 using Door_of_Soul.Communication.Protocol.Hexagram.Infinite;
 using Door_of_Soul.Communication.Protocol.Hexagram.Knowledge;

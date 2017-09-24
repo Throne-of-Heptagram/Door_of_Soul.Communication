@@ -7,7 +7,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Knowledge
 {
     public class KnowledgeOperationRequestRouter : HexagramOperationRequestRouter<KnowledgeEventCode, KnowledgeOperationCode, VirtualKnowledge>
     {
-        public KnowledgeOperationRequestRouter()
+        public KnowledgeOperationRequestRouter() : base("HexagramNodeServerKnowledge")
         {
 
         }

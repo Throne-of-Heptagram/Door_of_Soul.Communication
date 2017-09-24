@@ -7,7 +7,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Shadow
 {
     public class ShadowOperationRequestRouter : HexagramOperationRequestRouter<ShadowEventCode, ShadowOperationCode, VirtualShadow>
     {
-        public ShadowOperationRequestRouter()
+        public ShadowOperationRequestRouter() : base("HexagramNodeServerShadow")
         {
 
         }

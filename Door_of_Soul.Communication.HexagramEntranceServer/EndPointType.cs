@@ -2,7 +2,8 @@
 {
     public enum EndPointType : byte
     {
-        ProxyServer,
-        SceneServer
+        LoginServer,
+        TrinityServer,
+        ObserverServer
     }
 }

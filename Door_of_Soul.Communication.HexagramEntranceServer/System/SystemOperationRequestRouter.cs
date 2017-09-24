@@ -4,13 +4,13 @@ using Door_of_Soul.Core.HexagramEntranceServer;
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.System
 {
-    class SystemOperationRequestRouter : OperationRequestRouter<TerminalEndPoint, int, VirtualSystem, SystemOperationCode>
+    class SystemOperationRequestRouter : L2SubjectOperationRequestRouter<TerminalEndPoint, int, VirtualSystem, SystemOperationCode>
     {
         public static SystemOperationRequestRouter Instance { get; private set; } = new SystemOperationRequestRouter();
 
-        private SystemOperationRequestRouter()
+        private SystemOperationRequestRouter() : base("HexagramEntranceServerSystem")
         {
-            OperationTable.Add(SystemOperationCode.GetHexagramEntranceAnswer, new GetHexagramEntranceAnswerRequestHandler());
+            L2OperationTable.Add(SystemOperationCode.DeviceRegister, new DeviceRegisterRequestHandler());
         }
     }
 }

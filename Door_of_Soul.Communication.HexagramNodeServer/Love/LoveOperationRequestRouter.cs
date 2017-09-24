@@ -7,7 +7,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Love
 {
     public class LoveOperationRequestRouter : HexagramOperationRequestRouter<LoveEventCode, LoveOperationCode, VirtualLove>
     {
-        public LoveOperationRequestRouter()
+        public LoveOperationRequestRouter() : base("HexagramNodeServerLove")
         {
 
         }

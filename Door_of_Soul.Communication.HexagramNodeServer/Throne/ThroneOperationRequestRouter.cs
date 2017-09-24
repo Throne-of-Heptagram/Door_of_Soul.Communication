@@ -7,9 +7,10 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Throne
 {
     public class ThroneOperationRequestRouter : HexagramOperationRequestRouter<ThroneEventCode, ThroneOperationCode, VirtualThrone>
     {
-        public ThroneOperationRequestRouter()
+        public ThroneOperationRequestRouter() : base("HexagramNodeServerThrone")
         {
-            OperationTable.Add(ThroneOperationCode.GetThroneAnswer, new GetThroneAnswerRequestHandler());
+            OperationTable.Add(ThroneOperationCode.EndPointThroneOperation, new EndPointThroneOperationRequestBroker());
+            OperationTable.Add(ThroneOperationCode.DeviceThroneOperation, new DeviceThroneOperationRequestBroker());
         }
     }
 }

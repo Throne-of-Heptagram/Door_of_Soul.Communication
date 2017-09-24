@@ -4,9 +4,9 @@ using Door_of_Soul.Core.Client;
 using Door_of_Soul.Core.Protocol;
 using System.Collections.Generic;
 
-namespace Door_of_Soul.Communication.Infrastructure.Client.System.OperationResponseHandler
+namespace Door_of_Soul.Communication.Client.System.OperationResponseHandler
 {
-    class LoginResponseHandler : OperationResponseHandler<VirtualSystem, SystemOperationCode>
+    class LoginResponseHandler : SubjectOperationResponseHandler<VirtualSystem, SystemOperationCode>
     {
         public LoginResponseHandler() : base(typeof(LoginResponseParameterCode))
         {
@@ -16,7 +16,12 @@ namespace Door_of_Soul.Communication.Infrastructure.Client.System.OperationRespo
         {
             if (base.Handle(subject, operationCode, returnCode, operationMessage, parameters, out errorMessage))
             {
-                subject.LoginResponse(returnCode, operationMessage);
+                string trinityServerAddress = (string)parameters[(byte)LoginResponseParameterCode.TrinityServerAddress];
+                int trinityServerPort = (int)parameters[(byte)LoginResponseParameterCode.TrinityServerPort];
+                string trinityServerApplicationName = (string)parameters[(byte)LoginResponseParameterCode.TrinityServerApplicationName];
+                int answerId = (int)parameters[(byte)LoginResponseParameterCode.AnswerId];
+                string answerAccessToken = (string)parameters[(byte)LoginResponseParameterCode.AnswerAccessToken];
+                subject.LoginResponse(returnCode, operationMessage, trinityServerAddress, trinityServerPort, trinityServerApplicationName, answerId, answerAccessToken);
                 return true;
             }
             else

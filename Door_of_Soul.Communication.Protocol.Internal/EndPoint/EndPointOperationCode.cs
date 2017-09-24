@@ -9,11 +9,11 @@
         DeviceWorldOperation,
         DeviceSceneOperation,
 
-        EndPointSystemOperation,
-        EndPointAnswerOperation,
-        EndPointSoulOperation,
-        EndPointAvatarOperation,
-        EndPointWorldOperation,
-        EndPointSceneOperation,
+        SystemOperation,
+        AnswerOperation,
+        SoulOperation,
+        AvatarOperation,
+        WorldOperation,
+        SceneOperation,
     }
 }

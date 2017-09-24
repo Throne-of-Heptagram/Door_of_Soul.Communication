@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Door_of_Soul.Communication</RootNamespace>
     <AssemblyName>Door_of_Soul.Communication</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -42,11 +45,27 @@
     <Compile Include="EventRouter.cs" />
     <Compile Include="ForwardOperationHandler.cs" />
     <Compile Include="ForwardOperationRouter.cs" />
+    <Compile Include="L2OperationRequestRouter.cs" />
+    <Compile Include="L2SubjectOperationRequestHandler.cs" />
+    <Compile Include="L2SubjectOperationRequestRouter.cs" />
+    <Compile Include="L2SubjectOperationResponseHandler.cs" />
+    <Compile Include="L2SubjectOperationResponseRouter.cs" />
+    <Compile Include="L3OperationRequestHandler.cs" />
+    <Compile Include="L3OperationRequestRouter.cs" />
+    <Compile Include="L3SubjectOperationRequestHandler.cs" />
+    <Compile Include="L3SubjectOperationRequestRouter.cs" />
     <Compile Include="OperationRequestHandler.cs" />
     <Compile Include="OperationRequestRouter.cs" />
     <Compile Include="OperationResponseHandler.cs" />
     <Compile Include="OperationResponseRouter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubjectEventHandler.cs" />
+    <Compile Include="SubjectEventRouter.cs" />
+    <Compile Include="SubjectOperationRequestHandler.cs" />
+    <Compile Include="SubjectOperationRequestRouter.cs" />
+    <Compile Include="SubjectOperationResponseHandler.cs" />
+    <Compile Include="SubjectOperationResponseRouter.cs" />
+    <Compile Include="L2OperationRequestHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core\Door_of_Soul.Core.csproj">
@@ -55,6 +74,10 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

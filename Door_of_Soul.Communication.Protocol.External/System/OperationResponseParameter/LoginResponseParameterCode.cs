@@ -2,6 +2,10 @@
 {
     public enum LoginResponseParameterCode : byte
     {
-        
+        TrinityServerAddress,
+        TrinityServerPort,
+        TrinityServerApplicationName,
+        AnswerId,
+        AnswerAccessToken,
     }
 }

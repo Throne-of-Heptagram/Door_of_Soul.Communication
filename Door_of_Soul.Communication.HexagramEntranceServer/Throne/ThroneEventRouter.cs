@@ -6,7 +6,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.Throne
     {
         public static ThroneEventRouter Instance { get; private set; } = new ThroneEventRouter();
 
-        private ThroneEventRouter() : base("Throne")
+        private ThroneEventRouter() : base("HexagramEntranceServerThrone")
         {
 
         }

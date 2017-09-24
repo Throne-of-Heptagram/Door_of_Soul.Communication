@@ -14,7 +14,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.Scene
 
         public static void SendEndPointOperationResponse(TerminalEndPoint terminal, int sceneId, SceneOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            EndPointOperationResponseApi.EndPointSceneOperationResponse(terminal, sceneId, operationCode, operationReturnCode, operationMessage, parameters);
+            EndPointOperationResponseApi.SceneOperationResponse(terminal, sceneId, operationCode, operationReturnCode, operationMessage, parameters);
         }
     }
 }

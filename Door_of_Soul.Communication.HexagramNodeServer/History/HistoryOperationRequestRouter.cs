@@ -7,7 +7,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.History
 {
     public class HistoryOperationRequestRouter : HexagramOperationRequestRouter<HistoryEventCode, HistoryOperationCode, VirtualHistory>
     {
-        public HistoryOperationRequestRouter()
+        public HistoryOperationRequestRouter() : base("HexagramNodeServerHistory")
         {
 
         }

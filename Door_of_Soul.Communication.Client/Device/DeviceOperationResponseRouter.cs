@@ -7,7 +7,7 @@ namespace Door_of_Soul.Communication.Client.Device
     {
         public static DeviceOperationResponseRouter Instance { get; private set; } = new DeviceOperationResponseRouter();
 
-        private DeviceOperationResponseRouter() : base("Device")
+        private DeviceOperationResponseRouter() : base("ClientDevice")
         {
             OperationTable.Add(DeviceOperationCode.SystemOperation, new SystemOperationResponseBroker());
             OperationTable.Add(DeviceOperationCode.AnswerOperation, new AnswerOperationResponseBroker());
