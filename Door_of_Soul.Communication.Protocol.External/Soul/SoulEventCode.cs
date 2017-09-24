@@ -2,6 +2,6 @@
 {
     public enum SoulEventCode : byte
     {
-        LoadProxyAvatar
+
     }
 }

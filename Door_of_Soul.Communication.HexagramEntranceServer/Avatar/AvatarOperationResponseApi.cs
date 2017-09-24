@@ -15,7 +15,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.Avatar
 
         public static void SendEndPointOperationResponse(TerminalEndPoint terminal, VirtualAvatar target, AvatarOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            EndPointOperationResponseApi.EndPointAvatarOperationResponse(terminal, target, operationCode, operationReturnCode, operationMessage, parameters);
+            EndPointOperationResponseApi.AvatarOperationResponse(terminal, target, operationCode, operationReturnCode, operationMessage, parameters);
         }
     }
 }

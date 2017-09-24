@@ -7,7 +7,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Infinite
 {
     public class InfiniteOperationRequestRouter : HexagramOperationRequestRouter<InfiniteEventCode, InfiniteOperationCode, VirtualInfinite>
     {
-        public InfiniteOperationRequestRouter()
+        public InfiniteOperationRequestRouter() : base("HexagramNodeServerInfinite")
         {
 
         }

@@ -7,10 +7,11 @@
     <ProjectGuid>{DF20E90E-7C05-4620-A122-686AF8161211}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Door_of_Soul.Communication.Infrastructure.Client</RootNamespace>
-    <AssemblyName>Door_of_Soul.Communication.Infrastructure.Client</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <RootNamespace>Door_of_Soul.Communication.Client</RootNamespace>
+    <AssemblyName>Door_of_Soul.Communication.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -41,7 +44,6 @@
     <Compile Include="Answer\AnswerEventRouter.cs" />
     <Compile Include="Answer\AnswerOperationRequestApi.cs" />
     <Compile Include="Answer\AnswerOperationResponseRouter.cs" />
-    <Compile Include="Answer\EventHandler\LoadProxySoulHandler.cs" />
     <Compile Include="Avatar\AvatarEventRouter.cs" />
     <Compile Include="Avatar\AvatarOperationRequestApi.cs" />
     <Compile Include="Avatar\AvatarOperationResponseRouter.cs" />
@@ -65,11 +67,10 @@
     <Compile Include="Scene\SceneEventRouter.cs" />
     <Compile Include="Scene\SceneOperationRequestApi.cs" />
     <Compile Include="Scene\SceneOperationResponseRouter.cs" />
-    <Compile Include="Soul\EventHandler\LoadProxyAvatarHandler.cs" />
+    <Compile Include="ServerInformationTable.cs" />
     <Compile Include="Soul\SoulEventRouter.cs" />
     <Compile Include="Soul\SoulOperationRequestApi.cs" />
     <Compile Include="Soul\SoulOperationResponseRouter.cs" />
-    <Compile Include="System\EventHandler\LoadProxyAnswerHandler.cs" />
     <Compile Include="System\OperationResponseHandler\LoginResponseHandler.cs" />
     <Compile Include="System\OperationResponseHandler\RegisterResponseHandler.cs" />
     <Compile Include="System\SystemEventRouter.cs" />
@@ -98,12 +99,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Answer\EventHandler\" />
     <Folder Include="Answer\OperationResponseHandler\" />
     <Folder Include="Avatar\EventHandler\" />
     <Folder Include="Avatar\OperationResponseHandler\" />
     <Folder Include="Scene\EventHandler\" />
     <Folder Include="Scene\OperationResponseHandler\" />
+    <Folder Include="Soul\EventHandler\" />
     <Folder Include="Soul\OperationResponseHandler\" />
+    <Folder Include="System\EventHandler\" />
     <Folder Include="World\EventHandler\" />
     <Folder Include="World\OperationResponseHandler\" />
   </ItemGroup>

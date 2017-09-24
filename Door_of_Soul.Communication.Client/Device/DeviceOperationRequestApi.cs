@@ -12,22 +12,18 @@ namespace Door_of_Soul.Communication.Client.Device
 {
     public static class DeviceOperationRequestApi
     {
-        public static void SendProxyServerOperationRequest(DeviceOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void SendOperationRequest(string applicationName, DeviceOperationCode operationCode, Dictionary<byte, object> parameters)
         {
-            CommunicationService.Instance.SendProxyServerOperation(operationCode, parameters);
+            CommunicationService.Instance.SendOperation(applicationName, operationCode, parameters);
         }
-        public static void SendSceneServerOperationRequest(string sceneServerName, DeviceOperationCode operationCode, Dictionary<byte, object> parameters)
-        {
-            CommunicationService.Instance.SendSceneServerOperation(sceneServerName, operationCode, parameters);
-        }
-        public static void SystemOperationRequest(SystemOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void SystemOperationRequest(string applicationName, SystemOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
                 { (byte)SystemOperationRequestParameterCode.OperationCode, operationCode },
                 { (byte)SystemOperationRequestParameterCode.Parameters, parameters }
             };
-            SendProxyServerOperationRequest(DeviceOperationCode.SystemOperation, operationRequestParameters);
+            SendOperationRequest(applicationName, DeviceOperationCode.SystemOperation, operationRequestParameters);
         }
         public static void AnswerOperationRequest(int answerId, AnswerOperationCode operationCode, Dictionary<byte, object> parameters)
         {
@@ -37,7 +33,7 @@ namespace Door_of_Soul.Communication.Client.Device
                 { (byte)AnswerOperationRequestParameterCode.OperationCode, operationCode },
                 { (byte)AnswerOperationRequestParameterCode.Parameters, parameters }
             };
-            SendProxyServerOperationRequest(DeviceOperationCode.AnswerOperation, operationRequestParameters);
+            SendOperationRequest(ServerInformationTable.Instance.DefaultTrinityServerApplicationName, DeviceOperationCode.AnswerOperation, operationRequestParameters);
         }
         public static void SoulOperationRequest(int answerId, int soulId, SoulOperationCode operationCode, Dictionary<byte, object> parameters)
         {
@@ -48,7 +44,7 @@ namespace Door_of_Soul.Communication.Client.Device
                 { (byte)SoulOperationRequestParameterCode.OperationCode, operationCode },
                 { (byte)SoulOperationRequestParameterCode.Parameters, parameters }
             };
-            SendProxyServerOperationRequest(DeviceOperationCode.SoulOperation, operationRequestParameters);
+            SendOperationRequest(ServerInformationTable.Instance.DefaultTrinityServerApplicationName, DeviceOperationCode.SoulOperation, operationRequestParameters);
         }
         public static void AvatarOperationRequest(int answerId, int soulId, int avatarId, AvatarOperationCode operationCode, Dictionary<byte, object> parameters)
         {
@@ -60,9 +56,13 @@ namespace Door_of_Soul.Communication.Client.Device
                 { (byte)AvatarOperationRequestParameterCode.OperationCode, operationCode },
                 { (byte)AvatarOperationRequestParameterCode.Parameters, parameters }
             };
-            SendProxyServerOperationRequest(DeviceOperationCode.AvatarOperation, operationRequestParameters);
+            string applicationName;
+            if (ServerInformationTable.Instance.FindApplicationNameByAvatarId(avatarId, out applicationName))
+            {
+                SendOperationRequest(applicationName, DeviceOperationCode.AvatarOperation, operationRequestParameters);
+            }
         }
-        public static void WorldOperationRequest(string sceneServerName, int worldId, WorldOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void WorldOperationRequest(int worldId, WorldOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
@@ -70,9 +70,13 @@ namespace Door_of_Soul.Communication.Client.Device
                 { (byte)WorldOperationRequestParameterCode.OperationCode, operationCode },
                 { (byte)WorldOperationRequestParameterCode.Parameters, parameters }
             };
-            SendSceneServerOperationRequest(sceneServerName, DeviceOperationCode.WorldOperation, operationRequestParameters);
+            string applicationName;
+            if (ServerInformationTable.Instance.FindApplicationNameByWorldId(worldId, out applicationName))
+            {
+                SendOperationRequest(applicationName, DeviceOperationCode.WorldOperation, operationRequestParameters);
+            }
         }
-        public static void SceneOperationRequest(string sceneServerName, int worldId, int sceneId, SceneOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void SceneOperationRequest(int worldId, int sceneId, SceneOperationCode operationCode, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
             {
@@ -81,7 +85,11 @@ namespace Door_of_Soul.Communication.Client.Device
                 { (byte)SceneOperationRequestParameterCode.OperationCode, operationCode },
                 { (byte)SceneOperationRequestParameterCode.Parameters, parameters }
             };
-            SendSceneServerOperationRequest(sceneServerName, DeviceOperationCode.SceneOperation, operationRequestParameters);
+            string applicationName;
+            if (ServerInformationTable.Instance.FindApplicationNameBySceneId(sceneId, out applicationName))
+            {
+                SendOperationRequest(applicationName, DeviceOperationCode.SceneOperation, operationRequestParameters);
+            }
         }
     }
 }

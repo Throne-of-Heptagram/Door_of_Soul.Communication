@@ -1,5 +1,4 @@
-﻿using Door_of_Soul.Communication.HexagramEntranceServer.Will.OperationResponseHandler;
-using Door_of_Soul.Communication.Protocol.Hexagram.Will;
+﻿using Door_of_Soul.Communication.Protocol.Hexagram.Will;
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Will
 {
@@ -9,7 +8,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.Will
 
         private WillOperationResponseRouter() : base("Will")
         {
-            OperationTable.Add(WillOperationCode.GetWillSoul, new GetWillSoulResponseHandler());
+
         }
     }
 }

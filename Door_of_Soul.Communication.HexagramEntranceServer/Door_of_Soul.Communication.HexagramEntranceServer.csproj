@@ -43,7 +43,6 @@
     <Compile Include="Answer\AnswerEventApi.cs" />
     <Compile Include="Answer\AnswerOperationRequestRouter.cs" />
     <Compile Include="Answer\AnswerOperationResponseApi.cs" />
-    <Compile Include="Answer\OperationRequestHandler\GetHexagramEntranceSoulRequestHandler.cs" />
     <Compile Include="Avatar\AvatarEventApi.cs" />
     <Compile Include="Avatar\AvatarOperationRequestRouter.cs" />
     <Compile Include="Avatar\AvatarOperationResponseApi.cs" />
@@ -67,12 +66,12 @@
     <Compile Include="EndPoint\OperationRequestHandler\DeviceSoulOperationRequestBroker.cs" />
     <Compile Include="EndPoint\OperationRequestHandler\DeviceSystemOperationRequestBroker.cs" />
     <Compile Include="EndPoint\OperationRequestHandler\DeviceWorldOperationRequestBroker.cs" />
-    <Compile Include="EndPoint\OperationRequestHandler\EndPointAnswerOperationRequestBroker.cs" />
-    <Compile Include="EndPoint\OperationRequestHandler\EndPointAvatarOperationRequestBroker.cs" />
-    <Compile Include="EndPoint\OperationRequestHandler\EndPointSceneOperationRequestBroker.cs" />
-    <Compile Include="EndPoint\OperationRequestHandler\EndPointSoulOperationRequestBroker.cs" />
-    <Compile Include="EndPoint\OperationRequestHandler\EndPointSystemOperationRequestBroker.cs" />
-    <Compile Include="EndPoint\OperationRequestHandler\EndPointWorldOperationRequestBroker.cs" />
+    <Compile Include="EndPoint\OperationRequestHandler\AnswerOperationRequestBroker.cs" />
+    <Compile Include="EndPoint\OperationRequestHandler\AvatarOperationRequestBroker.cs" />
+    <Compile Include="EndPoint\OperationRequestHandler\SceneOperationRequestBroker.cs" />
+    <Compile Include="EndPoint\OperationRequestHandler\SoulOperationRequestBroker.cs" />
+    <Compile Include="EndPoint\OperationRequestHandler\SystemOperationRequestBroker.cs" />
+    <Compile Include="EndPoint\OperationRequestHandler\WorldOperationRequestBroker.cs" />
     <Compile Include="EternityCommunicationService.cs" />
     <Compile Include="Eternity\EternityEventRouter.cs" />
     <Compile Include="Eternity\EternityOperationRequestApi.cs" />
@@ -94,7 +93,6 @@
     <Compile Include="Life\LifeEventRouter.cs" />
     <Compile Include="Life\LifeOperationRequestApi.cs" />
     <Compile Include="Life\LifeOperationResponseRouter.cs" />
-    <Compile Include="Life\OperationResponseHandler\GetLifeAvatarResponseHandler.cs" />
     <Compile Include="LoveCommunicationService.cs" />
     <Compile Include="Love\LoveEventRouter.cs" />
     <Compile Include="Love\LoveOperationRequestApi.cs" />
@@ -108,7 +106,6 @@
     <Compile Include="Shadow\ShadowEventRouter.cs" />
     <Compile Include="Shadow\ShadowOperationRequestApi.cs" />
     <Compile Include="Shadow\ShadowOperationResponseRouter.cs" />
-    <Compile Include="Soul\OperationRequestHandler\GetHexagramEntranceAvatarRequestHandler.cs" />
     <Compile Include="Soul\SoulEventApi.cs" />
     <Compile Include="Soul\SoulOperationRequestRouter.cs" />
     <Compile Include="Soul\SoulOperationResponseApi.cs" />
@@ -116,18 +113,25 @@
     <Compile Include="Space\SpaceEventRouter.cs" />
     <Compile Include="Space\SpaceOperationRequestApi.cs" />
     <Compile Include="Space\SpaceOperationResponseRouter.cs" />
-    <Compile Include="System\OperationRequestHandler\GetHexagramEntranceAnswerRequestHandler.cs" />
+    <Compile Include="System\OperationRequestHandler\DeviceRegisterRequestHandler.cs" />
     <Compile Include="System\SystemEventApi.cs" />
     <Compile Include="System\SystemOperationRequestRouter.cs" />
     <Compile Include="System\SystemOperationResponseApi.cs" />
     <Compile Include="TerminalEndPoint.cs" />
     <Compile Include="ThroneCommunicationService.cs" />
-    <Compile Include="Throne\OperationResponseHandler\GetThroneAnswerResponseHandler.cs" />
+    <Compile Include="Throne\Device\DeviceThroneEventRouter.cs" />
+    <Compile Include="Throne\Device\DeviceThroneOperationRequestApi.cs" />
+    <Compile Include="Throne\Device\DeviceThroneOperationResponseRouter.cs" />
+    <Compile Include="Throne\Device\OperationResponseHandler\RegisterResponseHandler.cs" />
+    <Compile Include="Throne\EndPoint\EndPointThroneEventRouter.cs" />
+    <Compile Include="Throne\EndPoint\EndPointThroneOperationRequestApi.cs" />
+    <Compile Include="Throne\EndPoint\EndPointThroneOperationResponseRouter.cs" />
+    <Compile Include="Throne\OperationResponseHandler\DeviceThroneOperationResponseBroker.cs" />
+    <Compile Include="Throne\OperationResponseHandler\EndPointThroneOperationResponseBroker.cs" />
     <Compile Include="Throne\ThroneEventRouter.cs" />
     <Compile Include="Throne\ThroneOperationRequestApi.cs" />
     <Compile Include="Throne\ThroneOperationResponseRouter.cs" />
     <Compile Include="WillCommunicationService.cs" />
-    <Compile Include="Will\OperationResponseHandler\GetWillSoulResponseHandler.cs" />
     <Compile Include="Will\WillEventRouter.cs" />
     <Compile Include="Will\WillOperationRequestApi.cs" />
     <Compile Include="Will\WillOperationResponseRouter.cs" />
@@ -135,7 +139,12 @@
     <Compile Include="World\WorldOperationRequestRouter.cs" />
     <Compile Include="World\WorldOperationResponseApi.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Answer\OperationRequestHandler\" />
+    <Folder Include="Life\OperationResponseHandler\" />
+    <Folder Include="Soul\OperationRequestHandler\" />
+    <Folder Include="Will\OperationResponseHandler\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Door_of_Soul.Core\Door_of_Soul.Core.HexagramEntranceServer\Door_of_Soul.Core.HexagramEntranceServer.csproj">
       <Project>{e02fb674-13e0-403e-a6f3-88aa421de13a}</Project>

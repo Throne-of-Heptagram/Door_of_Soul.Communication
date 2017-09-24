@@ -2,6 +2,6 @@
 {
     public enum LifeOperationCode : uint
     {
-        GetLifeAvatar
+
     }
 }

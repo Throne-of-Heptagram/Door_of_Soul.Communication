@@ -6,7 +6,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Space
 {
     public class SpaceOperationRequestRouter : HexagramOperationRequestRouter<SpaceEventCode, SpaceOperationCode, VirtualSpace>
     {
-        public SpaceOperationRequestRouter()
+        public SpaceOperationRequestRouter() : base("HexagramNodeServerSpace")
         {
 
         }

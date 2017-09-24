@@ -43,8 +43,6 @@
   <ItemGroup>
     <Compile Include="Answer\AnswerEventCode.cs" />
     <Compile Include="Answer\AnswerOperationCode.cs" />
-    <Compile Include="Answer\OperationRequestParameter\GetHexagramEntranceSoulRequestParameterCode.cs" />
-    <Compile Include="Answer\OperationResponseParameter\GetHexagramEntranceSoulResponseParameterCode.cs" />
     <Compile Include="Avatar\AvatarEventCode.cs" />
     <Compile Include="Avatar\AvatarOperationCode.cs" />
     <Compile Include="EndPoint\EventParameter\AnswerEventParameterCode.cs" />
@@ -59,12 +57,12 @@
     <Compile Include="EndPoint\OperationRequestParameter\DeviceSoulOperationRequestParameterCode.cs" />
     <Compile Include="EndPoint\OperationRequestParameter\DeviceSystemOperationRequestParameterCode.cs" />
     <Compile Include="EndPoint\OperationRequestParameter\DeviceWorldOperationRequestParameterCode.cs" />
-    <Compile Include="EndPoint\OperationRequestParameter\EndPointAnswerOperationRequestParameterCode.cs" />
-    <Compile Include="EndPoint\OperationRequestParameter\EndPointAvatarOperationRequestParameterCode.cs" />
-    <Compile Include="EndPoint\OperationRequestParameter\EndPointSceneOperationRequestParameterCode.cs" />
-    <Compile Include="EndPoint\OperationRequestParameter\EndPointSoulOperationRequestParameterCode.cs" />
-    <Compile Include="EndPoint\OperationRequestParameter\EndPointSystemOperationRequestParameterCode.cs" />
-    <Compile Include="EndPoint\OperationRequestParameter\EndPointWorldOperationRequestParameterCode.cs" />
+    <Compile Include="EndPoint\OperationRequestParameter\AnswerOperationRequestParameterCode.cs" />
+    <Compile Include="EndPoint\OperationRequestParameter\AvatarOperationRequestParameterCode.cs" />
+    <Compile Include="EndPoint\OperationRequestParameter\SceneOperationRequestParameterCode.cs" />
+    <Compile Include="EndPoint\OperationRequestParameter\SoulOperationRequestParameterCode.cs" />
+    <Compile Include="EndPoint\OperationRequestParameter\SystemOperationRequestParameterCode.cs" />
+    <Compile Include="EndPoint\OperationRequestParameter\WorldOperationRequestParameterCode.cs" />
     <Compile Include="EndPoint\OperationResponseParameter\DeviceAnswerOperationResponseParameterCode.cs" />
     <Compile Include="EndPoint\OperationResponseParameter\DeviceAvatarOperationResponseParameterCode.cs" />
     <Compile Include="EndPoint\OperationResponseParameter\DeviceSceneOperationResponseParameterCode.cs" />
@@ -73,21 +71,19 @@
     <Compile Include="EndPoint\OperationResponseParameter\DeviceWorldOperationResponseParameterCode.cs" />
     <Compile Include="EndPoint\EndPointEventCode.cs" />
     <Compile Include="EndPoint\EndPointOperationCode.cs" />
-    <Compile Include="EndPoint\OperationResponseParameter\EndPointAnswerOperationResponseParameterCode.cs" />
-    <Compile Include="EndPoint\OperationResponseParameter\EndPointAvatarOperationResponseParameterCode.cs" />
-    <Compile Include="EndPoint\OperationResponseParameter\EndPointSceneOperationResponseParameterCode.cs" />
-    <Compile Include="EndPoint\OperationResponseParameter\EndPointSoulOperationResponseParameterCode.cs" />
-    <Compile Include="EndPoint\OperationResponseParameter\EndPointSystemOperationResponseParameterCode.cs" />
-    <Compile Include="EndPoint\OperationResponseParameter\EndPointWorldOperationResponseParameterCode.cs" />
+    <Compile Include="EndPoint\OperationResponseParameter\AnswerOperationResponseParameterCode.cs" />
+    <Compile Include="EndPoint\OperationResponseParameter\AvatarOperationResponseParameterCode.cs" />
+    <Compile Include="EndPoint\OperationResponseParameter\SceneOperationResponseParameterCode.cs" />
+    <Compile Include="EndPoint\OperationResponseParameter\SoulOperationResponseParameterCode.cs" />
+    <Compile Include="EndPoint\OperationResponseParameter\SystemOperationResponseParameterCode.cs" />
+    <Compile Include="EndPoint\OperationResponseParameter\WorldOperationResponseParameterCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scene\SceneEventCode.cs" />
     <Compile Include="Scene\SceneOperationCode.cs" />
-    <Compile Include="Soul\OperationRequestParameter\GetHexagramEntranceAvatarRequestParameterCode.cs" />
-    <Compile Include="Soul\OperationResponseParameter\GetHexagramEntranceAvatarResponseParameterCode.cs" />
     <Compile Include="Soul\SoulEventCode.cs" />
     <Compile Include="Soul\SoulOperationCode.cs" />
-    <Compile Include="System\OperationRequestParameter\GetHexagramEntranceAnswerRequestParameterCode.cs" />
-    <Compile Include="System\OperationResponseParameter\GetHexagramEntranceAnswerResponseParameterCode.cs" />
+    <Compile Include="System\OperationRequestParameter\DeviceRegisterRequestParameterCode.cs" />
+    <Compile Include="System\OperationResponseParameter\DeviceRegisterResponseParameterCode.cs" />
     <Compile Include="System\SystemEventCode.cs" />
     <Compile Include="System\SystemOperationCode.cs" />
     <Compile Include="World\WorldEventCode.cs" />
@@ -95,6 +91,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Answer\EventParameter\" />
+    <Folder Include="Answer\OperationRequestParameter\" />
+    <Folder Include="Answer\OperationResponseParameter\" />
     <Folder Include="Avatar\EventParameter\" />
     <Folder Include="Avatar\OperationRequestParameter\" />
     <Folder Include="Avatar\OperationResponseParameter\" />
@@ -102,6 +100,8 @@
     <Folder Include="Scene\OperationRequestParameter\" />
     <Folder Include="Scene\OperationResponseParameter\" />
     <Folder Include="Soul\EventParameter\" />
+    <Folder Include="Soul\OperationRequestParameter\" />
+    <Folder Include="Soul\OperationResponseParameter\" />
     <Folder Include="System\EventParameter\" />
     <Folder Include="World\EventParameter\" />
     <Folder Include="World\OperationRequestParameter\" />

@@ -7,7 +7,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Element
 {
     public class ElementOperationRequestRouter : HexagramOperationRequestRouter<ElementEventCode, ElementOperationCode, VirtualElement>
     {
-        public ElementOperationRequestRouter()
+        public ElementOperationRequestRouter() : base("HexagramNodeServerElement")
         {
 
         }

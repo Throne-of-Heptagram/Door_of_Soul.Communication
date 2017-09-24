@@ -1,5 +1,4 @@
-﻿using Door_of_Soul.Communication.HexagramEntranceServer.Life.OperationResponseHandler;
-using Door_of_Soul.Communication.Protocol.Hexagram.Life;
+﻿using Door_of_Soul.Communication.Protocol.Hexagram.Life;
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Life
 {
@@ -9,7 +8,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.Life
 
         private LifeOperationResponseRouter() : base("Life")
         {
-            OperationTable.Add(LifeOperationCode.GetLifeAvatar, new GetLifeAvatarResponseHandler());
+
         }
     }
 }

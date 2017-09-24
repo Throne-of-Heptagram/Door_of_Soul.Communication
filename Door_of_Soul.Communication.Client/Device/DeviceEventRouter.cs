@@ -7,7 +7,7 @@ namespace Door_of_Soul.Communication.Client.Device
     {
         public static DeviceEventRouter Instance { get; private set; } = new DeviceEventRouter();
 
-        private DeviceEventRouter() : base("Device")
+        private DeviceEventRouter() : base("ClientDevice")
         {
             EventTable.Add(DeviceEventCode.SystemEvent, new SystemEventBroker());
             EventTable.Add(DeviceEventCode.AnswerEvent, new AnswerEventBroker());

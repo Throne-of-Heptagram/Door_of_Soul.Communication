@@ -4,9 +4,9 @@ using Door_of_Soul.Core.Client;
 using Door_of_Soul.Core.Protocol;
 using System.Collections.Generic;
 
-namespace Door_of_Soul.Communication.Infrastructure.Client.System.OperationResponseHandler
+namespace Door_of_Soul.Communication.Client.System.OperationResponseHandler
 {
-    class RegisterResponseHandler : OperationResponseHandler<VirtualSystem, SystemOperationCode>
+    class RegisterResponseHandler : SubjectOperationResponseHandler<VirtualSystem, SystemOperationCode>
     {
         public RegisterResponseHandler() : base(typeof(RegisterResponseParameterCode))
         {

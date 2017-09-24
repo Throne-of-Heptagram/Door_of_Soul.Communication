@@ -48,8 +48,8 @@
     <Compile Include="Eternity\EternityEventCode.cs" />
     <Compile Include="Eternity\EternityForwardOperationCode.cs" />
     <Compile Include="Eternity\EternityOperationCode.cs" />
-    <Compile Include="Hexagram\OperationForwardParameter\OperationForwardParameterCode.cs" />
-    <Compile Include="Hexagram\HexagramForwardOperationCode.cs" />
+    <Compile Include="HexagramCentral\OperationForwardParameter\OperationForwardParameterCode.cs" />
+    <Compile Include="HexagramCentral\HexagramForwardOperationCode.cs" />
     <Compile Include="History\HistoryEventCode.cs" />
     <Compile Include="History\HistoryForwardOperationCode.cs" />
     <Compile Include="History\HistoryOperationCode.cs" />
@@ -62,8 +62,6 @@
     <Compile Include="Life\LifeEventCode.cs" />
     <Compile Include="Life\LifeForwardOperationCode.cs" />
     <Compile Include="Life\LifeOperationCode.cs" />
-    <Compile Include="Life\OperationRequestParameter\GetLifeAvatarRequestParameterCode.cs" />
-    <Compile Include="Life\OperationResponseParameter\GetLifeAvatarResponseParameterCode.cs" />
     <Compile Include="Love\LoveEventCode.cs" />
     <Compile Include="Love\LoveForwardOperationCode.cs" />
     <Compile Include="Love\LoveOperationCode.cs" />
@@ -74,22 +72,34 @@
     <Compile Include="Space\SpaceEventCode.cs" />
     <Compile Include="Space\SpaceForwardOperationCode.cs" />
     <Compile Include="Space\SpaceOperationCode.cs" />
-    <Compile Include="Throne\OperationRequestParameter\GetThroneAnswerRequestParameterCode.cs" />
-    <Compile Include="Throne\OperationResponseParameter\GetThroneAnswerResponseParameterCode.cs" />
+    <Compile Include="Throne\Device\DeviceThroneEventCode.cs" />
+    <Compile Include="Throne\Device\DeviceThroneOperationCode.cs" />
+    <Compile Include="Throne\Device\OperationRequestParameter\RegisterRequestParameterCode.cs" />
+    <Compile Include="Throne\Device\OperationResponseParameter\RegisterResponseParameterCode.cs" />
+    <Compile Include="Throne\EndPoint\EndPointThroneEventCode.cs" />
+    <Compile Include="Throne\EndPoint\EndPointThroneOperationCode.cs" />
+    <Compile Include="Throne\EventParameter\DeviceThroneEventParameterCode.cs" />
+    <Compile Include="Throne\EventParameter\EndPointThroneEventParameterCode.cs" />
+    <Compile Include="Throne\OperationRequestParameter\DeviceThroneOperationRequestParameterCode.cs" />
+    <Compile Include="Throne\OperationRequestParameter\EndPointThroneOperationRequestParameterCode.cs" />
+    <Compile Include="Throne\OperationResponseParameter\DeviceThroneOperationResponseParameterCode.cs" />
+    <Compile Include="Throne\OperationResponseParameter\EndPointThroneOperationResponseParameterCode.cs" />
     <Compile Include="Throne\ThroneEventCode.cs" />
     <Compile Include="Throne\ThroneForwardOperationCode.cs" />
     <Compile Include="Throne\ThroneOperationCode.cs" />
-    <Compile Include="Will\OperationRequestParameter\GetWillSoulRequestParameterCode.cs" />
-    <Compile Include="Will\OperationResponseParameter\GetWillSoulResponseParameterCode.cs" />
     <Compile Include="Will\WillEventCode.cs" />
     <Compile Include="Will\WillForwardOperationCode.cs" />
     <Compile Include="Will\WillOperationCode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Life\EventParameter\" />
+    <Folder Include="Life\OperationRequestParameter\" />
+    <Folder Include="Life\OperationResponseParameter\" />
     <Folder Include="Space\OperationRequestParameter\" />
     <Folder Include="Space\OperationResponseParameter\" />
     <Folder Include="Will\EventParameter\" />
+    <Folder Include="Will\OperationRequestParameter\" />
+    <Folder Include="Will\OperationResponseParameter\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

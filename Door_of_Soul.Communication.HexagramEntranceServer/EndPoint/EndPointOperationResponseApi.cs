@@ -95,76 +95,76 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
             SendOperationResponse(terminal, EndPointOperationCode.DeviceSceneOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
         }
 
-        public static void EndPointSystemOperationResponse(TerminalEndPoint terminal, SystemOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SystemOperationResponse(TerminalEndPoint terminal, SystemOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationResponseParameters = new Dictionary<byte, object>
             {
-                { (byte)EndPointSystemOperationResponseParameterCode.OperationCode, operationCode },
-                { (byte)EndPointSystemOperationResponseParameterCode.OperationReturnCode, operationReturnCode },
-                { (byte)EndPointSystemOperationResponseParameterCode.OperationMessage, operationMessage },
-                { (byte)EndPointSystemOperationResponseParameterCode.Parameters, parameters }
+                { (byte)SystemOperationResponseParameterCode.OperationCode, operationCode },
+                { (byte)SystemOperationResponseParameterCode.OperationReturnCode, operationReturnCode },
+                { (byte)SystemOperationResponseParameterCode.OperationMessage, operationMessage },
+                { (byte)SystemOperationResponseParameterCode.Parameters, parameters }
             };
-            SendOperationResponse(terminal, EndPointOperationCode.EndPointSystemOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
+            SendOperationResponse(terminal, EndPointOperationCode.SystemOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
         }
-        public static void EndPointAnswerOperationResponse(TerminalEndPoint terminal, Core.Answer target, AnswerOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void AnswerOperationResponse(TerminalEndPoint terminal, Core.Answer target, AnswerOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationResponseParameters = new Dictionary<byte, object>
             {
-                { (byte)EndPointAnswerOperationResponseParameterCode.AnswerId, target.AnswerId },
-                { (byte)EndPointAnswerOperationResponseParameterCode.OperationCode, operationCode },
-                { (byte)EndPointAnswerOperationResponseParameterCode.OperationReturnCode, operationReturnCode },
-                { (byte)EndPointAnswerOperationResponseParameterCode.OperationMessage, operationMessage },
-                { (byte)EndPointAnswerOperationResponseParameterCode.Parameters, parameters }
+                { (byte)AnswerOperationResponseParameterCode.AnswerId, target.AnswerId },
+                { (byte)AnswerOperationResponseParameterCode.OperationCode, operationCode },
+                { (byte)AnswerOperationResponseParameterCode.OperationReturnCode, operationReturnCode },
+                { (byte)AnswerOperationResponseParameterCode.OperationMessage, operationMessage },
+                { (byte)AnswerOperationResponseParameterCode.Parameters, parameters }
             };
-            SendOperationResponse(terminal, EndPointOperationCode.EndPointAnswerOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
+            SendOperationResponse(terminal, EndPointOperationCode.AnswerOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
         }
-        public static void EndPointSoulOperationResponse(TerminalEndPoint terminal, Core.Soul target, SoulOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SoulOperationResponse(TerminalEndPoint terminal, Core.Soul target, SoulOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationResponseParameters = new Dictionary<byte, object>
             {
-                { (byte)EndPointSoulOperationResponseParameterCode.SoulId, target.SoulId },
-                { (byte)EndPointSoulOperationResponseParameterCode.OperationCode, operationCode },
-                { (byte)EndPointSoulOperationResponseParameterCode.OperationReturnCode, operationReturnCode },
-                { (byte)EndPointSoulOperationResponseParameterCode.OperationMessage, operationMessage },
-                { (byte)EndPointSoulOperationResponseParameterCode.Parameters, parameters }
+                { (byte)SoulOperationResponseParameterCode.SoulId, target.SoulId },
+                { (byte)SoulOperationResponseParameterCode.OperationCode, operationCode },
+                { (byte)SoulOperationResponseParameterCode.OperationReturnCode, operationReturnCode },
+                { (byte)SoulOperationResponseParameterCode.OperationMessage, operationMessage },
+                { (byte)SoulOperationResponseParameterCode.Parameters, parameters }
             };
-            SendOperationResponse(terminal, EndPointOperationCode.EndPointSoulOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
+            SendOperationResponse(terminal, EndPointOperationCode.SoulOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
         }
-        public static void EndPointAvatarOperationResponse(TerminalEndPoint terminal, Core.Avatar target, AvatarOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void AvatarOperationResponse(TerminalEndPoint terminal, Core.Avatar target, AvatarOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationResponseParameters = new Dictionary<byte, object>
             {
-                { (byte)EndPointAvatarOperationResponseParameterCode.AvatarId, target.AvatarId },
-                { (byte)EndPointAvatarOperationResponseParameterCode.OperationCode, operationCode },
-                { (byte)EndPointAvatarOperationResponseParameterCode.OperationReturnCode, operationReturnCode },
-                { (byte)EndPointAvatarOperationResponseParameterCode.OperationMessage, operationMessage },
-                { (byte)EndPointAvatarOperationResponseParameterCode.Parameters, parameters }
+                { (byte)AvatarOperationResponseParameterCode.AvatarId, target.AvatarId },
+                { (byte)AvatarOperationResponseParameterCode.OperationCode, operationCode },
+                { (byte)AvatarOperationResponseParameterCode.OperationReturnCode, operationReturnCode },
+                { (byte)AvatarOperationResponseParameterCode.OperationMessage, operationMessage },
+                { (byte)AvatarOperationResponseParameterCode.Parameters, parameters }
             };
-            SendOperationResponse(terminal, EndPointOperationCode.EndPointAvatarOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
+            SendOperationResponse(terminal, EndPointOperationCode.AvatarOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
         }
-        public static void EndPointWorldOperationResponse(TerminalEndPoint terminal, int worldId, WorldOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void WorldOperationResponse(TerminalEndPoint terminal, int worldId, WorldOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationResponseParameters = new Dictionary<byte, object>
             {
-                { (byte)EndPointWorldOperationResponseParameterCode.WorldId, worldId },
-                { (byte)EndPointWorldOperationResponseParameterCode.OperationCode, operationCode },
-                { (byte)EndPointWorldOperationResponseParameterCode.OperationReturnCode, operationReturnCode },
-                { (byte)EndPointWorldOperationResponseParameterCode.OperationMessage, operationMessage },
-                { (byte)EndPointWorldOperationResponseParameterCode.Parameters, parameters }
+                { (byte)WorldOperationResponseParameterCode.WorldId, worldId },
+                { (byte)WorldOperationResponseParameterCode.OperationCode, operationCode },
+                { (byte)WorldOperationResponseParameterCode.OperationReturnCode, operationReturnCode },
+                { (byte)WorldOperationResponseParameterCode.OperationMessage, operationMessage },
+                { (byte)WorldOperationResponseParameterCode.Parameters, parameters }
             };
-            SendOperationResponse(terminal, EndPointOperationCode.EndPointWorldOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
+            SendOperationResponse(terminal, EndPointOperationCode.WorldOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
         }
-        public static void EndPointSceneOperationResponse(TerminalEndPoint terminal, int sceneId, SceneOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SceneOperationResponse(TerminalEndPoint terminal, int sceneId, SceneOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
             Dictionary<byte, object> operationResponseParameters = new Dictionary<byte, object>
             {
-                { (byte)EndPointSceneOperationResponseParameterCode.SceneId, sceneId },
-                { (byte)EndPointSceneOperationResponseParameterCode.OperationCode, operationCode },
-                { (byte)EndPointSceneOperationResponseParameterCode.OperationReturnCode, operationReturnCode },
-                { (byte)EndPointSceneOperationResponseParameterCode.OperationMessage, operationMessage },
-                { (byte)EndPointSceneOperationResponseParameterCode.Parameters, parameters }
+                { (byte)SceneOperationResponseParameterCode.SceneId, sceneId },
+                { (byte)SceneOperationResponseParameterCode.OperationCode, operationCode },
+                { (byte)SceneOperationResponseParameterCode.OperationReturnCode, operationReturnCode },
+                { (byte)SceneOperationResponseParameterCode.OperationMessage, operationMessage },
+                { (byte)SceneOperationResponseParameterCode.Parameters, parameters }
             };
-            SendOperationResponse(terminal, EndPointOperationCode.EndPointSceneOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
+            SendOperationResponse(terminal, EndPointOperationCode.SceneOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
         }
     }
 }

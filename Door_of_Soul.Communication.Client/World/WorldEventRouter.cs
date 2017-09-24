@@ -3,11 +3,11 @@ using Door_of_Soul.Core.Client;
 
 namespace Door_of_Soul.Communication.Client.World
 {
-    class WorldEventRouter : EventRouter<VirtualWorld, WorldEventCode>
+    class WorldEventRouter : SubjectEventRouter<VirtualWorld, WorldEventCode>
     {
         public static WorldEventRouter Instance { get; private set; } = new WorldEventRouter();
 
-        private WorldEventRouter()
+        private WorldEventRouter() : base("ClientWorld")
         {
         }
     }

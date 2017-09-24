@@ -7,7 +7,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Eternity
 {
     public class EternityOperationRequestRouter : HexagramOperationRequestRouter<EternityEventCode, EternityOperationCode, VirtualEternity>
     {
-        public EternityOperationRequestRouter()
+        public EternityOperationRequestRouter() : base("HexagramNodeServerElement")
         {
 
         }

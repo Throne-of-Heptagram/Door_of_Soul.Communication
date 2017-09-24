@@ -99,7 +99,6 @@
     <Compile Include="Life\LifeForwardOperationApi.cs" />
     <Compile Include="Life\LifeOperationRequestRouter.cs" />
     <Compile Include="Life\LifeOperationResponseApi.cs" />
-    <Compile Include="Life\OperationRequestHandler\GetLifeAvatarRequestHandler.cs" />
     <Compile Include="LoveHexagramEntrance.cs" />
     <Compile Include="LoveHexagramEntranceFactory.cs" />
     <Compile Include="Love\LoveEventApi.cs" />
@@ -122,14 +121,21 @@
     <Compile Include="TerminalHexagramEntrance.cs" />
     <Compile Include="ThroneHexagramEntrance.cs" />
     <Compile Include="ThroneHexagramEntranceFactory.cs" />
-    <Compile Include="Throne\OperationRequestHandler\GetThroneAnswerRequestHandler.cs" />
+    <Compile Include="Throne\Device\DeviceThroneEventApi.cs" />
+    <Compile Include="Throne\Device\DeviceThroneOperationRequestRouter.cs" />
+    <Compile Include="Throne\Device\DeviceThroneOperationResponseApi.cs" />
+    <Compile Include="Throne\Device\OperationRequestHandler\RegisterRequestHandler.cs" />
+    <Compile Include="Throne\EndPoint\EndPointThroneEventApi.cs" />
+    <Compile Include="Throne\EndPoint\EndPointThroneOperationRequestRouter.cs" />
+    <Compile Include="Throne\EndPoint\EndPointThroneOperationResponseApi.cs" />
+    <Compile Include="Throne\OperationRequestHandler\DeviceThroneOperationRequestBroker.cs" />
+    <Compile Include="Throne\OperationRequestHandler\EndPointThroneOperationRequestBroker.cs" />
     <Compile Include="Throne\ThroneEventApi.cs" />
     <Compile Include="Throne\ThroneForwardOperation.cs" />
     <Compile Include="Throne\ThroneOperationRequestRouter.cs" />
     <Compile Include="Throne\ThroneOperationResponseApi.cs" />
     <Compile Include="WillHexagramEntrance.cs" />
     <Compile Include="WillHexagramEntranceFactory.cs" />
-    <Compile Include="Will\OperationRequestHandler\GetWillSoulRequestHandler.cs" />
     <Compile Include="Will\WillEventApi.cs" />
     <Compile Include="Will\WillForwardOperationApi.cs" />
     <Compile Include="Will\WillOperationRequestRouter.cs" />
@@ -157,7 +163,10 @@
       <Name>Door_of_Soul.Communication</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Life\OperationRequestHandler\" />
+    <Folder Include="Will\OperationRequestHandler\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
