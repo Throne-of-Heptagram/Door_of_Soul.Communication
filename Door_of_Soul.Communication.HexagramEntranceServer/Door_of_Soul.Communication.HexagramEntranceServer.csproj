@@ -77,6 +77,7 @@
     <Compile Include="Eternity\EternityOperationRequestApi.cs" />
     <Compile Include="Eternity\EternityOperationResponseRouter.cs" />
     <Compile Include="HexagramCommunicationService.cs" />
+    <Compile Include="HexagramNodeServerType.cs" />
     <Compile Include="HistoryCommunicationService.cs" />
     <Compile Include="History\HistoryEventRouter.cs" />
     <Compile Include="History\HistoryOperationRequestApi.cs" />
