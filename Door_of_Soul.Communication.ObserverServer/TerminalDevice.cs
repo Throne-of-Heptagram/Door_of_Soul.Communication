@@ -25,6 +25,10 @@ namespace Door_of_Soul.Communication.ObserverServer
             SendEvent = sendEventMethod;
             SendOperationResponse = sendOperationResponseMethod;
         }
+        public override string ToString()
+        {
+            return $"Device Id:{DeviceId}";
+        }
 
         public bool IsSceneLinked(int sceneId)
         {

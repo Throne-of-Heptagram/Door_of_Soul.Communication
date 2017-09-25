@@ -19,5 +19,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer
             SendEvent = sendEventMethod;
             SendOperationResponse = sendOperationResponseMethod;
         }
+        public override string ToString()
+        {
+            return $"Entrance Id:{HexagramEntranceId}";
+        }
     }
 }

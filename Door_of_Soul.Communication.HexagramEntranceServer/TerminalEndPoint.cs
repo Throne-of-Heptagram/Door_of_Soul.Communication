@@ -22,5 +22,9 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer
             SendEvent = sendEventMethod;
             SendOperationResponse = sendOperationResponseMethod;
         }
+        public override string ToString()
+        {
+            return $"EndPoint Id:{EndPointId} Type:{EndPointType}";
+        }
     }
 }

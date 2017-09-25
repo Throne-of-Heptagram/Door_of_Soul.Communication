@@ -19,5 +19,9 @@ namespace Door_of_Soul.Communication.LoginServer
             SendEvent = sendEventMethod;
             SendOperationResponse = sendOperationResponseMethod;
         }
+        public override string ToString()
+        {
+            return $"Device Id:{DeviceId}";
+        }
     }
 }

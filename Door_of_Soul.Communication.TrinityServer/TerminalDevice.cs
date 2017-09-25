@@ -24,6 +24,10 @@ namespace Door_of_Soul.Communication.TrinityServer
             SendEvent = sendEventMethod;
             SendOperationResponse = sendOperationResponseMethod;
         }
+        public override string ToString()
+        {
+            return $"Device Id:{DeviceId}";
+        }
 
         public bool IsAnswerLinked(int answerId)
         {

@@ -91,6 +91,7 @@
     <Compile Include="System\SystemOperationResponseApi.cs" />
     <Compile Include="System\SystemOperationResponseRouter.cs" />
     <Compile Include="TerminalAnswer.cs" />
+    <Compile Include="TerminalAvatar.cs" />
     <Compile Include="TerminalDevice.cs" />
   </ItemGroup>
   <ItemGroup>

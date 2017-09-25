@@ -7,5 +7,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer
         public InfiniteHexagramEntrance(int hexagramEntranceId, SendEventDelegate sendEventMethod, SendOperationResponseDelegate sendOperationResponseMethod) : base(hexagramEntranceId, sendEventMethod, sendOperationResponseMethod)
         {
         }
+        public override string ToString()
+        {
+            return $"Infinite{base.ToString()}";
+        }
     }
 }

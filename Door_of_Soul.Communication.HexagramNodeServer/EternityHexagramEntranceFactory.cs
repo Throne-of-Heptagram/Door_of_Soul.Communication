@@ -6,22 +6,15 @@ namespace Door_of_Soul.Communication.HexagramNodeServer
     {
         public static EternityHexagramEntranceFactory Instance { get; private set; } = new EternityHexagramEntranceFactory();
 
-        private int entranceCounter = 1;
-        private object entranceCounterLock = new object();
-
         private EternityHexagramEntranceFactory()
         {
 
         }
 
-        public bool CreateEntrance(EternityHexagramEntrance.SendEventDelegate sendEventMethod, EternityHexagramEntrance.SendOperationResponseDelegate sendOperationResponseMethod, out EternityHexagramEntrance entrance)
+        public bool CreateEntrance(int hexagranEntranceId, EternityHexagramEntrance.SendEventDelegate sendEventMethod, EternityHexagramEntrance.SendOperationResponseDelegate sendOperationResponseMethod, out EternityHexagramEntrance entrance)
         {
-            lock (entranceCounterLock)
-            {
-                entrance = new EternityHexagramEntrance(entranceCounter, sendEventMethod, sendOperationResponseMethod);
-                entranceCounter++;
-                return Add(entrance.HexagramEntranceId, entrance);
-            }
+            entrance = new EternityHexagramEntrance(hexagranEntranceId, sendEventMethod, sendOperationResponseMethod);
+            return Add(entrance.HexagramEntranceId, entrance);
         }
     }
 }

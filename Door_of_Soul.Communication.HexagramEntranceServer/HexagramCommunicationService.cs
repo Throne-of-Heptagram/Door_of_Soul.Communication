@@ -17,7 +17,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer
             }
         }
 
-        public abstract bool ConnectServer(string serverAddress, int port, string applicationName);
+        public abstract bool ConnectServer(int hexagramEntranceId, string serverAddress, int port, string applicationName);
         public abstract void DisconnectServer();
     }
 }
