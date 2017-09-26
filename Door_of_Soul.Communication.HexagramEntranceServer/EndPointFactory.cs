@@ -6,22 +6,15 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer
     {
         public static EndPointFactory Instance { get; private set; } = new EndPointFactory();
 
-        private int endPointCounter = 1;
-        private object endPointCounterLock = new object();
-
         private EndPointFactory()
         {
 
         }
 
-        public bool CreateEndPoint(EndPointType endPointType, TerminalEndPoint.SendEventDelegate sendEventMethod, TerminalEndPoint.SendOperationResponseDelegate sendOperationResponseMethod, out TerminalEndPoint endPoint)
+        public bool CreateEndPoint(int endPointId, EndPointType endPointType, TerminalEndPoint.SendEventDelegate sendEventMethod, TerminalEndPoint.SendOperationResponseDelegate sendOperationResponseMethod, out TerminalEndPoint endPoint)
         {
-            lock (endPointCounterLock)
-            {
-                endPoint = new TerminalEndPoint(endPointCounter, endPointType, sendEventMethod, sendOperationResponseMethod);
-                endPointCounter++;
-                return Add(endPoint.EndPointId, endPoint);
-            }
+            endPoint = new TerminalEndPoint(endPointId, endPointType, sendEventMethod, sendOperationResponseMethod);
+            return Add(endPoint.EndPointId, endPoint);
         }
     }
 }
