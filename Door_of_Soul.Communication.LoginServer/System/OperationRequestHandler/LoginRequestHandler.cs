@@ -24,8 +24,15 @@ namespace Door_of_Soul.Communication.LoginServer.System.OperationRequestHandler
                 string answerName = (string)parameters[(byte)RegisterRequestParameterCode.AnswerName];
                 string basicPassword = (string)parameters[(byte)RegisterRequestParameterCode.BasicPassword];
                 OperationReturnCode returnCode = requester.Login(terminal.DeviceId, answerName, basicPassword, out errorMessage);
-                SendResponse(terminal, requester, operationCode, returnCode, errorMessage, new Dictionary<byte, object>());
-                return returnCode == OperationReturnCode.Successiful;
+                if(returnCode != OperationReturnCode.Successiful)
+                {
+                    SendResponse(terminal, requester, operationCode, returnCode, errorMessage, new Dictionary<byte, object>());
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else
             {

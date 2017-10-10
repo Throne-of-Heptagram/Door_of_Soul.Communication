@@ -1,4 +1,4 @@
-﻿namespace Door_of_Soul.Communication.HexagramNodeServer.Hexagram
+﻿namespace Door_of_Soul.Communication.HexagramNodeServer.HexagramCentral
 {
     public abstract class HexagramForwardOperationRouter<TForwardOperationCode> : ForwardOperationRouter<TForwardOperationCode>
     {

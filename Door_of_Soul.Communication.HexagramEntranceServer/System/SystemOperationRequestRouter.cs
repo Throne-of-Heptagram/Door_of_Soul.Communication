@@ -11,6 +11,8 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.System
         private SystemOperationRequestRouter() : base("HexagramEntranceServerSystem")
         {
             L2OperationTable.Add(SystemOperationCode.DeviceRegister, new DeviceRegisterRequestHandler());
+
+            OperationTable.Add(SystemOperationCode.GetAnswerTrinityServer, new GetAnswerTrinityServerRequestHandler());
         }
     }
 }

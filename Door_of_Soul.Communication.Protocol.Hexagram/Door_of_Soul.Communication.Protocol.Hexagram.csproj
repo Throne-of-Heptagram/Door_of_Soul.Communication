@@ -72,6 +72,9 @@
     <Compile Include="Space\SpaceEventCode.cs" />
     <Compile Include="Space\SpaceForwardOperationCode.cs" />
     <Compile Include="Space\SpaceOperationCode.cs" />
+    <Compile Include="System\InverseOperationRequestParameter\AssignAnswerRequestParameterCode.cs" />
+    <Compile Include="System\InverseOperationResponseParameter\AssignAnswerResponseParameterCode.cs" />
+    <Compile Include="System\SystemInverseOperationCode.cs" />
     <Compile Include="Throne\Device\DeviceThroneEventCode.cs" />
     <Compile Include="Throne\Device\DeviceThroneOperationCode.cs" />
     <Compile Include="Throne\Device\OperationRequestParameter\RegisterRequestParameterCode.cs" />
@@ -80,12 +83,17 @@
     <Compile Include="Throne\EndPoint\EndPointThroneOperationCode.cs" />
     <Compile Include="Throne\EventParameter\DeviceThroneEventParameterCode.cs" />
     <Compile Include="Throne\EventParameter\EndPointThroneEventParameterCode.cs" />
+    <Compile Include="Throne\InverseOperationRequestParameter\AssignAnswerRequestParameterCode.cs" />
+    <Compile Include="Throne\InverseOperationResponseParameter\AssignAnswerResponseParameterCode.cs" />
     <Compile Include="Throne\OperationRequestParameter\DeviceThroneOperationRequestParameterCode.cs" />
     <Compile Include="Throne\OperationRequestParameter\EndPointThroneOperationRequestParameterCode.cs" />
+    <Compile Include="Throne\OperationRequestParameter\GetAnswerTrinityServerRequestParameterCode.cs" />
     <Compile Include="Throne\OperationResponseParameter\DeviceThroneOperationResponseParameterCode.cs" />
     <Compile Include="Throne\OperationResponseParameter\EndPointThroneOperationResponseParameterCode.cs" />
+    <Compile Include="Throne\OperationResponseParameter\GetAnswerTrinityServerResponseParameterCode.cs" />
     <Compile Include="Throne\ThroneEventCode.cs" />
     <Compile Include="Throne\ThroneForwardOperationCode.cs" />
+    <Compile Include="Throne\ThroneInverseOperationCode.cs" />
     <Compile Include="Throne\ThroneOperationCode.cs" />
     <Compile Include="Will\WillEventCode.cs" />
     <Compile Include="Will\WillForwardOperationCode.cs" />

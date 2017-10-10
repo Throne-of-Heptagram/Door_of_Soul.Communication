@@ -21,6 +21,7 @@ namespace Door_of_Soul.Communication.Client.System.OperationResponseHandler
             }
             else
             {
+                subject.RegisterResponse(returnCode, operationMessage);
                 return false;
             }
         }

@@ -1,4 +1,5 @@
-﻿using Door_of_Soul.Communication.Protocol.Internal.System;
+﻿using Door_of_Soul.Communication.LoginServer.System.OperationResponseHandler;
+using Door_of_Soul.Communication.Protocol.Internal.System;
 using Door_of_Soul.Core.LoginServer;
 
 namespace Door_of_Soul.Communication.LoginServer.System
@@ -9,7 +10,7 @@ namespace Door_of_Soul.Communication.LoginServer.System
 
         private SystemOperationResponseRouter() : base("LoginServerSystem")
         {
-
+            OperationTable.Add(SystemOperationCode.GetAnswerTrinityServer, new GetAnswerTrinityServerResponseHandler());
         }
     }
 }

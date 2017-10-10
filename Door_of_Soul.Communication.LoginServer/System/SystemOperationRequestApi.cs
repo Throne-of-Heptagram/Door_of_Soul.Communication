@@ -25,5 +25,14 @@ namespace Door_of_Soul.Communication.LoginServer.System
             };
             SendDeviceOperationRequest(deviceId, SystemOperationCode.DeviceRegister, operationRequestParameters);
         }
+
+        public static void GetAnswerTrinityServer(int answerId)
+        {
+            Dictionary<byte, object> operationRequestParameters = new Dictionary<byte, object>
+            {
+                { (byte)GetAnswerTrinityServerRequestParameterCode.AnswerId, answerId }
+            };
+            SendEndPointOperationRequest(SystemOperationCode.GetAnswerTrinityServer, operationRequestParameters);
+        }
     }
 }

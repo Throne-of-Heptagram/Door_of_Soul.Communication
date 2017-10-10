@@ -1,4 +1,4 @@
-﻿namespace Door_of_Soul.Communication.HexagramNodeServer.Hexagram
+﻿namespace Door_of_Soul.Communication.HexagramNodeServer
 {
     public abstract class HexagramOperationRequestRouter<TEventCode, TOperationCode, TSubject> : SubjectOperationRequestRouter<TerminalHexagramEntrance<TEventCode, TOperationCode>, TSubject, TOperationCode>
     {

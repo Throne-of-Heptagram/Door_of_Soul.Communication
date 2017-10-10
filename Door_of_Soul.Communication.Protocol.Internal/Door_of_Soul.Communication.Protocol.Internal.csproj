@@ -45,12 +45,14 @@
     <Compile Include="Answer\AnswerOperationCode.cs" />
     <Compile Include="Avatar\AvatarEventCode.cs" />
     <Compile Include="Avatar\AvatarOperationCode.cs" />
+    <Compile Include="EndPoint\EndPointInverseOperationCode.cs" />
     <Compile Include="EndPoint\EventParameter\AnswerEventParameterCode.cs" />
     <Compile Include="EndPoint\EventParameter\AvatarEventParameterCode.cs" />
     <Compile Include="EndPoint\EventParameter\SceneEventParameterCode.cs" />
     <Compile Include="EndPoint\EventParameter\SoulEventParameterCode.cs" />
     <Compile Include="EndPoint\EventParameter\SystemEventParameterCode.cs" />
     <Compile Include="EndPoint\EventParameter\WorldEventParameterCode.cs" />
+    <Compile Include="EndPoint\InverseOperationRequestParameter\SystemInverseOperationRequestParameterCode.cs" />
     <Compile Include="EndPoint\OperationRequestParameter\DeviceAnswerOperationRequestParameterCode.cs" />
     <Compile Include="EndPoint\OperationRequestParameter\DeviceAvatarOperationRequestParameterCode.cs" />
     <Compile Include="EndPoint\OperationRequestParameter\DeviceSceneOperationRequestParameterCode.cs" />
@@ -82,9 +84,14 @@
     <Compile Include="Scene\SceneOperationCode.cs" />
     <Compile Include="Soul\SoulEventCode.cs" />
     <Compile Include="Soul\SoulOperationCode.cs" />
+    <Compile Include="System\InverseOperationRequestParameter\ThroneAssignAnswerRequestParameterCode.cs" />
+    <Compile Include="System\InverseOperationResponseParameter\ThroneAssignAnswerResponseParameterCode.cs" />
     <Compile Include="System\OperationRequestParameter\DeviceRegisterRequestParameterCode.cs" />
+    <Compile Include="System\OperationRequestParameter\GetAnswerTrinityServerRequestParameterCode.cs" />
     <Compile Include="System\OperationResponseParameter\DeviceRegisterResponseParameterCode.cs" />
+    <Compile Include="System\OperationResponseParameter\GetAnswerTrinityServerResponseParameterCode.cs" />
     <Compile Include="System\SystemEventCode.cs" />
+    <Compile Include="System\SystemInverseOperationCode.cs" />
     <Compile Include="System\SystemOperationCode.cs" />
     <Compile Include="World\WorldEventCode.cs" />
     <Compile Include="World\WorldOperationCode.cs" />
@@ -96,6 +103,7 @@
     <Folder Include="Avatar\EventParameter\" />
     <Folder Include="Avatar\OperationRequestParameter\" />
     <Folder Include="Avatar\OperationResponseParameter\" />
+    <Folder Include="EndPoint\InverseOperationResponseParameter\" />
     <Folder Include="Scene\EventParameter\" />
     <Folder Include="Scene\OperationRequestParameter\" />
     <Folder Include="Scene\OperationResponseParameter\" />

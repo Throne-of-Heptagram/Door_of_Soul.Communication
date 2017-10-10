@@ -1,4 +1,4 @@
-﻿using Door_of_Soul.Communication.HexagramNodeServer.Hexagram;
+﻿using Door_of_Soul.Communication.HexagramNodeServer.HexagramCentral;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.HexagramNodeServer

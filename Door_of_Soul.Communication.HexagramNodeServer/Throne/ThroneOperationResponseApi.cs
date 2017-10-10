@@ -39,5 +39,16 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Throne
             };
             SendOperationResponse(terminal, ThroneOperationCode.DeviceThroneOperation, OperationReturnCode.Successiful, "", operationResponseParameters);
         }
+
+        public static void GetAnswerTrinityServer(ThroneHexagramEntrance terminal, OperationReturnCode returnCode, string operationMessage, int trinityServerEndPointId, int answerId, string answerAccessToken)
+        {
+            Dictionary<byte, object> operationResponseParameters = new Dictionary<byte, object>
+            {
+                { (byte)GetAnswerTrinityServerResponseParameterCode.TrinityServerEndPointId, trinityServerEndPointId },
+                { (byte)GetAnswerTrinityServerResponseParameterCode.AnswerId, answerId },
+                { (byte)GetAnswerTrinityServerResponseParameterCode.AnswerAccessToken, answerAccessToken }
+            };
+            SendOperationResponse(terminal, ThroneOperationCode.GetAnswerTrinityServer, returnCode, operationMessage, operationResponseParameters);
+        }
     }
 }

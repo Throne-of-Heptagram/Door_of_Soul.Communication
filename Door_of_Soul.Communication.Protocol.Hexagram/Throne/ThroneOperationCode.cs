@@ -4,5 +4,7 @@
     {
         EndPointThroneOperation,
         DeviceThroneOperation,
+
+        GetAnswerTrinityServer
     }
 }

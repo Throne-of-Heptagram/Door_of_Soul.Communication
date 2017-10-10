@@ -14,9 +14,9 @@ using Door_of_Soul.Communication.Protocol.Hexagram.Throne;
 using Door_of_Soul.Communication.Protocol.Hexagram.Will;
 using System.Collections.Generic;
 
-namespace Door_of_Soul.Communication.HexagramNodeServer.Hexagram
+namespace Door_of_Soul.Communication.HexagramNodeServer.HexagramCentral
 {
-    public static class HexagramOperationRequestApi
+    public static class HexagramForwardOperationRequestApi
     {
         public static void SendOperationRequest(HexagramForwardOperationCode operationCode, Dictionary<byte, object> parameters)
         {

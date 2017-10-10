@@ -55,6 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System\OperationRequestHandler\LoginRequestHandler.cs" />
     <Compile Include="System\OperationRequestHandler\RegisterRequestHandler.cs" />
+    <Compile Include="System\OperationResponseHandler\GetAnswerTrinityServerResponseHandler.cs" />
     <Compile Include="System\SystemEventApi.cs" />
     <Compile Include="System\SystemEventRouter.cs" />
     <Compile Include="System\SystemOperationRequestApi.cs" />
@@ -85,8 +86,6 @@
       <Name>Door_of_Soul.Communication</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="System\OperationResponseHandler\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
