@@ -2,9 +2,9 @@
 
 namespace Door_of_Soul.Communication.HexagramNodeServer
 {
-    public class WillHexagramEntrance : TerminalHexagramEntrance<WillEventCode, WillOperationCode>
+    public class WillHexagramEntrance : TerminalHexagramEntrance<WillEventCode, WillOperationCode, WillInverseOperationCode, WillInverseEventCode>
     {
-        public WillHexagramEntrance(int hexagramEntranceId, SendEventDelegate sendEventMethod, SendOperationResponseDelegate sendOperationResponseMethod) : base(hexagramEntranceId, sendEventMethod, sendOperationResponseMethod)
+        public WillHexagramEntrance(int hexagramEntranceId, SendEventDelegate sendEventMethod, SendOperationResponseDelegate sendOperationResponseMethod, SendInverseOperationRequestDelegate sendInverseOperationRequestMethod) : base(hexagramEntranceId, sendEventMethod, sendOperationResponseMethod, sendInverseOperationRequestMethod)
         {
         }
         public override string ToString()

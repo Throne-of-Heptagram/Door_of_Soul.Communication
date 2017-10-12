@@ -8,18 +8,18 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.HexagramNodeServer.Throne.OperationRequestHandler
 {
-    class DeviceThroneOperationRequestBroker : SubjectOperationRequestHandler<TerminalHexagramEntrance<ThroneEventCode, ThroneOperationCode>, VirtualThrone, ThroneOperationCode>
+    class DeviceThroneOperationRequestBroker : SubjectOperationRequestHandler<ThroneHexagramEntrance, VirtualThrone, ThroneOperationCode>
     {
         public DeviceThroneOperationRequestBroker() : base(typeof(DeviceThroneOperationRequestParameterCode))
         {
         }
 
-        public override void SendResponse(TerminalHexagramEntrance<ThroneEventCode, ThroneOperationCode> terminal, VirtualThrone target, ThroneOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(ThroneHexagramEntrance terminal, VirtualThrone target, ThroneOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            ThroneOperationResponseApi.SendOperationResponse(terminal as ThroneHexagramEntrance, operationCode, operationReturnCode, operationMessage, parameters);
+            ThroneOperationResponseApi.SendOperationResponse(terminal, operationCode, operationReturnCode, operationMessage, parameters);
         }
 
-        public override bool Handle(TerminalHexagramEntrance<ThroneEventCode, ThroneOperationCode> terminal, VirtualThrone requester, ThroneOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override bool Handle(ThroneHexagramEntrance terminal, VirtualThrone requester, ThroneOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
             if (base.Handle(terminal, requester, operationCode, parameters, out errorMessage))
             {
@@ -28,7 +28,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Throne.OperationRequestH
                 DeviceThroneOperationCode resolvedOperationCode = (DeviceThroneOperationCode)parameters[(byte)DeviceThroneOperationRequestParameterCode.OperationCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)DeviceThroneOperationRequestParameterCode.Parameters];
                 return DeviceThroneOperationRequestRouter.Instance.Route(
-                    terminal: terminal as ThroneHexagramEntrance,
+                    terminal: terminal,
                     l2TerminalId: endPointId,
                     l3TerminalId: deviceId,
                     subject: requester,

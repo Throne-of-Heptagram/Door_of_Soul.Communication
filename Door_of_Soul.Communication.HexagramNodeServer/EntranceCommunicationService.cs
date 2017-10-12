@@ -1,15 +1,24 @@
-﻿using Door_of_Soul.Communication.HexagramNodeServer.HexagramCentral;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.HexagramNodeServer
 {
-    public class EntranceCommunicationService<TEventCode, TOperationCode, TSubject>
+    public class EntranceCommunicationService<TTerminal, TSubject, TOperationCode, TInverseOperationCode>
     {
-        public static EntranceCommunicationService<TEventCode, TOperationCode, TSubject> Instance { get; private set; } = new EntranceCommunicationService<TEventCode, TOperationCode, TSubject>();
+        public static EntranceCommunicationService<TTerminal, TSubject, TOperationCode, TInverseOperationCode> Instance { get; private set; } = new EntranceCommunicationService<TTerminal, TSubject, TOperationCode, TInverseOperationCode>();
 
-        public bool HandleOperationRequest(TerminalHexagramEntrance<TEventCode, TOperationCode> hexagramEntrance, TSubject subject, TOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public bool HandlerInverseEvent()
         {
-            return HexagramOperationRequestRouter<TEventCode, TOperationCode, TSubject>.Instance.Route(hexagramEntrance, subject, operationCode, parameters, out errorMessage);
+
+        }
+
+        public bool HandleOperationRequest(TTerminal hexagramEntrance, TSubject subject, TOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        {
+            return HexagramOperationRequestRouter<TTerminal, TSubject, TOperationCode>.Instance.Route(hexagramEntrance, subject, operationCode, parameters, out errorMessage);
+        }
+
+        public bool HandleInverseOperationResponse(TTerminal hexagramEntrance, TSubject subject, TOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        {
+            return HexagramInverseOperationResponseRouter<TTerminal, TSubject, TOperationCode>.Instance.Route(hexagramEntrance, subject, operationCode, parameters, out errorMessage);
         }
     }
 }

@@ -77,7 +77,6 @@
     <Compile Include="Eternity\EternityOperationRequestApi.cs" />
     <Compile Include="Eternity\EternityOperationResponseRouter.cs" />
     <Compile Include="HexagramCommunicationService.cs" />
-    <Compile Include="HexagramNodeServerType.cs" />
     <Compile Include="HistoryCommunicationService.cs" />
     <Compile Include="History\HistoryEventRouter.cs" />
     <Compile Include="History\HistoryOperationRequestApi.cs" />
@@ -128,9 +127,11 @@
     <Compile Include="Throne\EndPoint\EndPointThroneEventRouter.cs" />
     <Compile Include="Throne\EndPoint\EndPointThroneOperationRequestApi.cs" />
     <Compile Include="Throne\EndPoint\EndPointThroneOperationResponseRouter.cs" />
+    <Compile Include="Throne\InverseOperationRequestHandler\AssignAnswerRequestHandler.cs" />
     <Compile Include="Throne\OperationResponseHandler\DeviceThroneOperationResponseBroker.cs" />
     <Compile Include="Throne\OperationResponseHandler\EndPointThroneOperationResponseBroker.cs" />
     <Compile Include="Throne\ThroneEventRouter.cs" />
+    <Compile Include="Throne\ThroneInverseOperationRequestRouter.cs" />
     <Compile Include="Throne\ThroneOperationRequestApi.cs" />
     <Compile Include="Throne\ThroneOperationResponseRouter.cs" />
     <Compile Include="WillCommunicationService.cs" />

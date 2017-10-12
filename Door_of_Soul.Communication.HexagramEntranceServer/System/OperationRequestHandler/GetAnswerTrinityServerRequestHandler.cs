@@ -22,7 +22,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.System.OperationRequ
             if (base.Handle(terminal, requester, operationCode, parameters, out errorMessage))
             {
                 int answerId = (int)parameters[(byte)GetAnswerTrinityServerRequestParameterCode.AnswerId];
-                OperationReturnCode returnCode = requester.GetAnswerTrinityServer(answerId, out errorMessage);
+                OperationReturnCode returnCode = requester.GetAnswerTrinityServer(terminal.EndPointId, answerId, out errorMessage);
                 if (returnCode != OperationReturnCode.Successiful)
                 {
                     SendResponse(terminal, requester, operationCode, returnCode, errorMessage, new Dictionary<byte, object>());

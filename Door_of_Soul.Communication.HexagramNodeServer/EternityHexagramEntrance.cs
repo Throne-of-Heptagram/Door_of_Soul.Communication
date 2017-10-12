@@ -2,9 +2,9 @@
 
 namespace Door_of_Soul.Communication.HexagramNodeServer
 {
-    public class EternityHexagramEntrance : TerminalHexagramEntrance<EternityEventCode, EternityOperationCode>
+    public class EternityHexagramEntrance : TerminalHexagramEntrance<EternityEventCode, EternityOperationCode, EternityInverseOperationCode, EternityInverseEventCode>
     {
-        public EternityHexagramEntrance(int hexagramEntranceId, SendEventDelegate sendEventMethod, SendOperationResponseDelegate sendOperationResponseMethod) : base(hexagramEntranceId, sendEventMethod, sendOperationResponseMethod)
+        public EternityHexagramEntrance(int hexagramEntranceId, SendEventDelegate sendEventMethod, SendOperationResponseDelegate sendOperationResponseMethod, SendInverseOperationRequestDelegate sendInverseOperationRequestMethod) : base(hexagramEntranceId, sendEventMethod, sendOperationResponseMethod, sendInverseOperationRequestMethod)
         {
         }
         public override string ToString()

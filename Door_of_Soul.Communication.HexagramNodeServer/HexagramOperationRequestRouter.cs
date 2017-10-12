@@ -1,9 +1,9 @@
 ﻿namespace Door_of_Soul.Communication.HexagramNodeServer
 {
-    public abstract class HexagramOperationRequestRouter<TEventCode, TOperationCode, TSubject> : SubjectOperationRequestRouter<TerminalHexagramEntrance<TEventCode, TOperationCode>, TSubject, TOperationCode>
+    public abstract class HexagramOperationRequestRouter<TTerminal, TSubject, TOperationCode> : SubjectOperationRequestRouter<TTerminal, TSubject, TOperationCode>
     {
-        public static HexagramOperationRequestRouter<TEventCode, TOperationCode, TSubject> Instance { get; private set; }
-        public static void Initialize(HexagramOperationRequestRouter<TEventCode, TOperationCode, TSubject> instance)
+        public static HexagramOperationRequestRouter<TTerminal, TSubject, TOperationCode> Instance { get; private set; }
+        public static void Initialize(HexagramOperationRequestRouter<TTerminal, TSubject, TOperationCode> instance)
         {
             Instance = instance;
         }

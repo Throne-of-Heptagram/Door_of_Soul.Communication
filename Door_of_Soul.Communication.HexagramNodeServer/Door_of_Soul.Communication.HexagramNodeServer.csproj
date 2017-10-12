@@ -61,6 +61,8 @@
     <Compile Include="Eternity\EternityOperationRequestRouter.cs" />
     <Compile Include="Eternity\EternityOperationResponseApi.cs" />
     <Compile Include="HexagramCentral\HexagramForwardOperationRouter.cs" />
+    <Compile Include="HexagramInverseEventRouter.cs" />
+    <Compile Include="HexagramInverseOperationResponseRouter.cs" />
     <Compile Include="HexagramOperationRequestRouter.cs" />
     <Compile Include="HexagramCentral\HexagramForwardOperationRequestApi.cs" />
     <Compile Include="HexagramCentral\OperationRouter\DestinyForwardOperationRouter.cs" />
@@ -128,10 +130,13 @@
     <Compile Include="Throne\EndPoint\EndPointThroneEventApi.cs" />
     <Compile Include="Throne\EndPoint\EndPointThroneOperationRequestRouter.cs" />
     <Compile Include="Throne\EndPoint\EndPointThroneOperationResponseApi.cs" />
+    <Compile Include="Throne\InverseOperationResponseHandler\AssignAnswerResponseHandler.cs" />
     <Compile Include="Throne\OperationRequestHandler\DeviceThroneOperationRequestBroker.cs" />
     <Compile Include="Throne\OperationRequestHandler\EndPointThroneOperationRequestBroker.cs" />
     <Compile Include="Throne\ThroneEventApi.cs" />
     <Compile Include="Throne\ThroneForwardOperation.cs" />
+    <Compile Include="Throne\ThroneInverseOperationRequestApi.cs" />
+    <Compile Include="Throne\ThroneInverseOperationResponseRouter.cs" />
     <Compile Include="Throne\ThroneOperationRequestRouter.cs" />
     <Compile Include="Throne\ThroneOperationResponseApi.cs" />
     <Compile Include="WillHexagramEntrance.cs" />
