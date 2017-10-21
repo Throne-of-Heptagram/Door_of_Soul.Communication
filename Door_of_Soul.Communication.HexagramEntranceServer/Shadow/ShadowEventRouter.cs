@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Shadow
 {
-    class ShadowEventRouter : EventRouter<ShadowEventCode>
+    class ShadowEventRouter : BasicEventRouter<ShadowEventCode>
     {
         public static ShadowEventRouter Instance { get; private set; } = new ShadowEventRouter();
 

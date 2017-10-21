@@ -8,20 +8,21 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint.OperationRequestHandler
 {
-    class DeviceSoulOperationRequestBroker : OperationRequestHandler<TerminalEndPoint, EndPointOperationCode>
+    class DeviceSoulOperationRequestBroker : BasicOperationRequestHandler<TerminalEndPoint>
     {
         public DeviceSoulOperationRequestBroker() : base(typeof(DeviceSoulOperationRequestParameterCode))
         {
         }
 
-        public override void SendResponse(TerminalEndPoint target, EndPointOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(TerminalEndPoint target, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            EndPointOperationResponseApi.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
+            EndPointOperationResponseApi.SendOperationResponse(target, EndPointOperationCode.DeviceSoulOperation, operationReturnCode, operationMessage, parameters);
         }
 
-        public override bool Handle(TerminalEndPoint terminal, EndPointOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(TerminalEndPoint terminal, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(terminal, operationCode, parameters, out errorMessage))
+            OperationReturnCode returnCode = base.Handle(terminal, parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int deviceId = (int)parameters[(byte)DeviceSoulOperationRequestParameterCode.DeviceId];
                 int soulId = (int)parameters[(byte)DeviceSoulOperationRequestParameterCode.SoulId];
@@ -30,18 +31,15 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint.OperationRe
                 VirtualSoul soul;
                 if (ResourceService.Instance.FindSoul(soulId, out soul))
                 {
-                    return SoulOperationRequestRouter.Instance.Route(terminal, deviceId, soul, resolvedOperationCode, resolvedParameters, out errorMessage);
+                    returnCode = SoulOperationRequestRouter.Instance.Route(terminal, deviceId, soul, resolvedOperationCode, resolvedParameters, out errorMessage);
                 }
                 else
                 {
                     errorMessage = $"Can not find SoulId:{soulId}";
-                    return false;
+                    returnCode = OperationReturnCode.NotExisted;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

@@ -8,20 +8,21 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint.OperationRequestHandler
 {
-    class AnswerOperationRequestBroker : OperationRequestHandler<TerminalEndPoint, EndPointOperationCode>
+    class AnswerOperationRequestBroker : BasicOperationRequestHandler<TerminalEndPoint>
     {
         public AnswerOperationRequestBroker() : base(typeof(AnswerOperationRequestParameterCode))
         {
         }
 
-        public override void SendResponse(TerminalEndPoint target, EndPointOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(TerminalEndPoint target, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            EndPointOperationResponseApi.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
+            EndPointOperationResponseApi.SendOperationResponse(target, EndPointOperationCode.AnswerOperation, operationReturnCode, operationMessage, parameters);
         }
 
-        public override bool Handle(TerminalEndPoint terminal, EndPointOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(TerminalEndPoint terminal, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(terminal, operationCode, parameters, out errorMessage))
+            OperationReturnCode returnCode = base.Handle(terminal, parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int answerId = (int)parameters[(byte)AnswerOperationRequestParameterCode.AnswerId];
                 AnswerOperationCode resolvedOperationCode = (AnswerOperationCode)parameters[(byte)AnswerOperationRequestParameterCode.OperationCode];
@@ -29,18 +30,15 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint.OperationRe
                 VirtualAnswer answer;
                 if (ResourceService.Instance.FindAnswer(answerId, out answer))
                 {
-                    return AnswerOperationRequestRouter.Instance.Route(terminal, answer, resolvedOperationCode, resolvedParameters, out errorMessage);
+                    returnCode = AnswerOperationRequestRouter.Instance.Route(terminal, answer, resolvedOperationCode, resolvedParameters, out errorMessage);
                 }
                 else
                 {
                     errorMessage = $"Can not find AnswerId:{answerId}";
-                    return false;
+                    returnCode = OperationReturnCode.NotExisted;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

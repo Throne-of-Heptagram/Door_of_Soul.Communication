@@ -8,20 +8,21 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint.OperationRequestHandler
 {
-    class DeviceAvatarOperationRequestBroker : OperationRequestHandler<TerminalEndPoint, EndPointOperationCode>
+    class DeviceAvatarOperationRequestBroker : BasicOperationRequestHandler<TerminalEndPoint>
     {
         public DeviceAvatarOperationRequestBroker() : base(typeof(DeviceAvatarOperationRequestParameterCode))
         {
         }
 
-        public override void SendResponse(TerminalEndPoint target, EndPointOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(TerminalEndPoint target, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            EndPointOperationResponseApi.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
+            EndPointOperationResponseApi.SendOperationResponse(target, EndPointOperationCode.DeviceAvatarOperation, operationReturnCode, operationMessage, parameters);
         }
 
-        public override bool Handle(TerminalEndPoint terminal, EndPointOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(TerminalEndPoint terminal, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(terminal, operationCode, parameters, out errorMessage))
+            OperationReturnCode returnCode = base.Handle(terminal, parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int deviceId = (int)parameters[(byte)DeviceAvatarOperationRequestParameterCode.DeviceId];
                 int avatarId = (int)parameters[(byte)DeviceAvatarOperationRequestParameterCode.AvatarId];
@@ -30,18 +31,15 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint.OperationRe
                 VirtualAvatar avatar;
                 if (ResourceService.Instance.FindAvatar(avatarId, out avatar))
                 {
-                    return AvatarOperationRequestRouter.Instance.Route(terminal, deviceId, avatar, resolvedOperationCode, resolvedParameters, out errorMessage);
+                    returnCode = AvatarOperationRequestRouter.Instance.Route(terminal, deviceId, avatar, resolvedOperationCode, resolvedParameters, out errorMessage);
                 }
                 else
                 {
                     errorMessage = $"Can not find AvatarId:{avatarId}";
-                    return false;
+                    returnCode = OperationReturnCode.NotExisted;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

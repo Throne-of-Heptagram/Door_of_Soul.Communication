@@ -8,20 +8,21 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint.OperationRequestHandler
 {
-    class DeviceWorldOperationRequestBroker : OperationRequestHandler<TerminalEndPoint, EndPointOperationCode>
+    class DeviceWorldOperationRequestBroker : BasicOperationRequestHandler<TerminalEndPoint>
     {
         public DeviceWorldOperationRequestBroker() : base(typeof(DeviceWorldOperationRequestParameterCode))
         {
         }
 
-        public override void SendResponse(TerminalEndPoint target, EndPointOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(TerminalEndPoint target, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            EndPointOperationResponseApi.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
+            EndPointOperationResponseApi.SendOperationResponse(target, EndPointOperationCode.DeviceWorldOperation, operationReturnCode, operationMessage, parameters);
         }
 
-        public override bool Handle(TerminalEndPoint terminal, EndPointOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(TerminalEndPoint terminal, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(terminal, operationCode, parameters, out errorMessage))
+            OperationReturnCode returnCode = base.Handle(terminal, parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int deviceId = (int)parameters[(byte)DeviceWorldOperationRequestParameterCode.DeviceId];
                 int worldId = (int)parameters[(byte)DeviceWorldOperationRequestParameterCode.WorldId];
@@ -30,18 +31,15 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint.OperationRe
                 VirtualWorld world;
                 if (ResourceService.Instance.FindWorld(worldId, out world))
                 {
-                    return WorldOperationRequestRouter.Instance.Route(terminal, deviceId, world, resolvedOperationCode, resolvedParameters, out errorMessage);
+                    returnCode = WorldOperationRequestRouter.Instance.Route(terminal, deviceId, world, resolvedOperationCode, resolvedParameters, out errorMessage);
                 }
                 else
                 {
                     errorMessage = $"Can not find WorldId:{worldId}";
-                    return false;
+                    returnCode = OperationReturnCode.NotExisted;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

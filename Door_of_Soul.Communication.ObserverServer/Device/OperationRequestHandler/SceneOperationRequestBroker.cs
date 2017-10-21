@@ -7,20 +7,21 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.ObserverServer.Device.OperationRequestHandler
 {
-    class SceneOperationRequestBroker : OperationRequestHandler<TerminalDevice, DeviceOperationCode>
+    class SceneOperationRequestBroker : BasicOperationRequestHandler<TerminalDevice>
     {
         public SceneOperationRequestBroker() : base(typeof(SceneOperationRequestParameterCode))
         {
         }
 
-        public override void SendResponse(TerminalDevice target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(TerminalDevice target, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            DeviceOperationResponseApi.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
+            DeviceOperationResponseApi.SendOperationResponse(target, DeviceOperationCode.SceneOperation, operationReturnCode, operationMessage, parameters);
         }
 
-        public override bool Handle(TerminalDevice terminal, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(TerminalDevice terminal, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(terminal, operationCode, parameters, out errorMessage))
+            OperationReturnCode returnCode = base.Handle(terminal, parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int worldId = (int)parameters[(byte)SceneOperationRequestParameterCode.WorldId];
                 int sceneId = (int)parameters[(byte)SceneOperationRequestParameterCode.SceneId];
@@ -29,18 +30,15 @@ namespace Door_of_Soul.Communication.ObserverServer.Device.OperationRequestHandl
                 TerminalScene scene;
                 if (ResourceService.Instance.FindScene(sceneId, out scene) && scene.WorldId == worldId)
                 {
-                    return SceneOperationRequestRouter.Instance.Route(terminal, scene as TerminalScene, resolvedOperationCode, resolvedParameters, out errorMessage);
+                    returnCode = SceneOperationRequestRouter.Instance.Route(terminal, scene as TerminalScene, resolvedOperationCode, resolvedParameters, out errorMessage);
                 }
                 else
                 {
                     errorMessage = $"Can not find SceneId:{sceneId} in WorldId:{worldId}";
-                    return false;
+                    returnCode = OperationReturnCode.NotExisted;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

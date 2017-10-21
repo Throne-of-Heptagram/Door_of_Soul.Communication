@@ -1,20 +1,21 @@
 ﻿using Door_of_Soul.Communication.ObserverServer.Scene;
-using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint.EventParameter;
 using Door_of_Soul.Communication.Protocol.Internal.Scene;
+using Door_of_Soul.Core.Protocol;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.ObserverServer.EndPoint.EventHandler
 {
-    class SceneEventBroker : EventHandler<EndPointEventCode>
+    class SceneEventBroker : BasicEventHandler
     {
         public SceneEventBroker() : base(typeof(SceneEventParameterCode))
         {
         }
 
-        public override bool Handle(EndPointEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(eventCode, parameters, out errorMessage))
+            OperationReturnCode returnCode = base.Handle(parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int sceneId = (int)parameters[(byte)SceneEventParameterCode.SceneId];
                 SceneEventCode resolvedEventCode = (SceneEventCode)parameters[(byte)SceneEventParameterCode.EventCode];
@@ -22,18 +23,15 @@ namespace Door_of_Soul.Communication.ObserverServer.EndPoint.EventHandler
                 TerminalScene scene;
                 if (ResourceService.Instance.FindScene(sceneId, out scene))
                 {
-                    return SceneEventRouter.Instance.Route(scene, resolvedEventCode, resolvedParameters, out errorMessage);
+                    returnCode = SceneEventRouter.Instance.Route(scene, resolvedEventCode, resolvedParameters, out errorMessage);
                 }
                 else
                 {
                     errorMessage = $"Can not find SceneId:{sceneId}";
-                    return false;
+                    returnCode = OperationReturnCode.NotExisted;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

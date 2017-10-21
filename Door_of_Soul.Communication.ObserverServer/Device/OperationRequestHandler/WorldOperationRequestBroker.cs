@@ -1,27 +1,28 @@
-﻿using Door_of_Soul.Communication.Protocol.External.Device;
+﻿using Door_of_Soul.Communication.ObserverServer.World;
+using Door_of_Soul.Communication.Protocol.External.Device;
 using Door_of_Soul.Communication.Protocol.External.Device.OperationRequestParameter;
 using Door_of_Soul.Communication.Protocol.External.World;
-using Door_of_Soul.Communication.ObserverServer.World;
-using Door_of_Soul.Core.Protocol;
 using Door_of_Soul.Core.ObserverServer;
+using Door_of_Soul.Core.Protocol;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.ObserverServer.Device.OperationRequestHandler
 {
-    class WorldOperationRequestBroker : OperationRequestHandler<TerminalDevice, DeviceOperationCode>
+    class WorldOperationRequestBroker : BasicOperationRequestHandler<TerminalDevice>
     {
         public WorldOperationRequestBroker() : base(typeof(WorldOperationRequestParameterCode))
         {
         }
 
-        public override void SendResponse(TerminalDevice target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(TerminalDevice target, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            DeviceOperationResponseApi.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
+            DeviceOperationResponseApi.SendOperationResponse(target, DeviceOperationCode.WorldOperation, operationReturnCode, operationMessage, parameters);
         }
 
-        public override bool Handle(TerminalDevice terminal, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(TerminalDevice terminal, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(terminal, operationCode, parameters, out errorMessage))
+            OperationReturnCode returnCode = base.Handle(terminal, parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int worldId = (int)parameters[(byte)WorldOperationRequestParameterCode.WorldId];
                 WorldOperationCode resolvedOperationCode = (WorldOperationCode)parameters[(byte)WorldOperationRequestParameterCode.OperationCode];
@@ -29,18 +30,15 @@ namespace Door_of_Soul.Communication.ObserverServer.Device.OperationRequestHandl
                 VirtualWorld world;
                 if (ResourceService.Instance.FindWorld(worldId, out world))
                 {
-                    return WorldOperationRequestRouter.Instance.Route(terminal, world, resolvedOperationCode, resolvedParameters, out errorMessage);
+                    returnCode = WorldOperationRequestRouter.Instance.Route(terminal, world, resolvedOperationCode, resolvedParameters, out errorMessage);
                 }
                 else
                 {
                     errorMessage = $"Can not find WorldId:{worldId}";
-                    return false;
+                    returnCode = OperationReturnCode.NotExisted;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

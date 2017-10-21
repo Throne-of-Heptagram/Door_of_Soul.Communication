@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Infinite
 {
-    class InfiniteEventRouter : EventRouter<InfiniteEventCode>
+    class InfiniteEventRouter : BasicEventRouter<InfiniteEventCode>
     {
         public static InfiniteEventRouter Instance { get; private set; } = new InfiniteEventRouter();
 

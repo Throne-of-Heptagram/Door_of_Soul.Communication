@@ -13,14 +13,19 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer
             Instance = instance;
         }
 
-        public bool HandleEvent(ThroneEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public OperationReturnCode HandleEvent(ThroneEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
             return ThroneEventRouter.Instance.Route(eventCode, parameters, out errorMessage);
         }
-        public bool HandleOperationResponse(ThroneOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
+        public OperationReturnCode HandleOperationResponse(ThroneOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
             return ThroneOperationResponseRouter.Instance.Route(operationCode, returnCode, operationMessage, parameters, out errorMessage);
         }
+        public OperationReturnCode HandleInverseOperationRequest(ThroneInverseOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        {
+            return ThroneInverseOperationRequestRouter.Instance.Route(operationCode, parameters, out errorMessage);
+        }
         public abstract void SendOperation(ThroneOperationCode operationCode, Dictionary<byte, object> parameters);
+        public abstract void SendInverseOperationResponse(ThroneInverseOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters);
     }
 }

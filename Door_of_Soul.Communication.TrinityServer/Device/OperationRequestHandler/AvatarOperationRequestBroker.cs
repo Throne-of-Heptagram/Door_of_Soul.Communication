@@ -8,20 +8,21 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.TrinityServer.Device.OperationRequestHandler
 {
-    class AvatarOperationRequestBroker : OperationRequestHandler<TerminalDevice, DeviceOperationCode>
+    class AvatarOperationRequestBroker : BasicOperationRequestHandler<TerminalDevice>
     {
         public AvatarOperationRequestBroker() : base(typeof(AvatarOperationRequestParameterCode))
         {
         }
 
-        public override void SendResponse(TerminalDevice target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(TerminalDevice target, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            DeviceOperationResponseApi.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
+            DeviceOperationResponseApi.SendOperationResponse(target, DeviceOperationCode.AvatarOperation, operationReturnCode, operationMessage, parameters);
         }
 
-        public override bool Handle(TerminalDevice terminal, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(TerminalDevice terminal, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(terminal, operationCode, parameters, out errorMessage))
+            OperationReturnCode returnCode = base.Handle(terminal, parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int answerId = (int)parameters[(byte)AvatarOperationRequestParameterCode.AnswerId];
                 int soulId = (int)parameters[(byte)AvatarOperationRequestParameterCode.SoulId];
@@ -34,18 +35,15 @@ namespace Door_of_Soul.Communication.TrinityServer.Device.OperationRequestHandle
                     ResourceService.Instance.FindAvatar(avatarId, out avatar) &&
                     avatar.IsSoulLinked(soulId))
                 {
-                    return AvatarOperationRequestRouter.Instance.Route(terminal, avatar, resolvedOperationCode, resolvedParameters, out errorMessage);
+                    returnCode = AvatarOperationRequestRouter.Instance.Route(terminal, avatar, resolvedOperationCode, resolvedParameters, out errorMessage);
                 }
                 else
                 {
                     errorMessage = $"Can not find AvatarId:{avatarId} in AnswerId:{answerId}, SoulId:{soulId}";
-                    return false;
+                    returnCode = OperationReturnCode.NotExisted;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

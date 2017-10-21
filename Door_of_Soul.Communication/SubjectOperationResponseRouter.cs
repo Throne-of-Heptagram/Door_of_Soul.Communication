@@ -6,31 +6,28 @@ namespace Door_of_Soul.Communication
     public abstract class SubjectOperationResponseRouter<TSubject, TOperationCode>
     {
         private string subjectName;
-        protected Dictionary<TOperationCode, SubjectOperationResponseHandler<TSubject, TOperationCode>> OperationTable { get; private set; } = new Dictionary<TOperationCode, SubjectOperationResponseHandler<TSubject, TOperationCode>>();
+        protected Dictionary<TOperationCode, SubjectOperationResponseHandler<TSubject>> OperationTable { get; private set; } = new Dictionary<TOperationCode, SubjectOperationResponseHandler<TSubject>>();
 
         protected SubjectOperationResponseRouter(string subjectName)
         {
             this.subjectName = subjectName;
         }
 
-        public bool Route(TSubject subject, TOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
+        public OperationReturnCode Route(TSubject subject, TOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
             if (OperationTable.ContainsKey(operationCode))
             {
-                if (OperationTable[operationCode].Handle(subject, operationCode, returnCode, operationMessage, parameters, out errorMessage))
-                {
-                    return true;
-                }
-                else
+                returnCode = OperationTable[operationCode].Handle(subject, returnCode, operationMessage, parameters, out errorMessage);
+                if (returnCode != OperationReturnCode.Successiful)
                 {
                     errorMessage = $"{subjectName}OperationResponse Error, OperationCode: {operationCode} from:{subject}, HandlerErrorMessage: {errorMessage}";
-                    return false;
                 }
+                return returnCode;
             }
             else
             {
                 errorMessage = $"Unknow {subjectName}OperationResponse OperationCode:{operationCode} from:{subject}";
-                return false;
+                return OperationReturnCode.UndefinedError;
             }
         }
     }

@@ -8,20 +8,21 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.TrinityServer.Device.OperationRequestHandler
 {
-    class SoulOperationRequestBroker : OperationRequestHandler<TerminalDevice, DeviceOperationCode>
+    class SoulOperationRequestBroker : BasicOperationRequestHandler<TerminalDevice>
     {
         public SoulOperationRequestBroker() : base(typeof(SoulOperationRequestParameterCode))
         {
         }
 
-        public override void SendResponse(TerminalDevice target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(TerminalDevice target, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            DeviceOperationResponseApi.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
+            DeviceOperationResponseApi.SendOperationResponse(target, DeviceOperationCode.SoulOperation, operationReturnCode, operationMessage, parameters);
         }
 
-        public override bool Handle(TerminalDevice terminal, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(TerminalDevice terminal, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(terminal, operationCode, parameters, out errorMessage))
+            OperationReturnCode returnCode = base.Handle(terminal, parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int answerId = (int)parameters[(byte)SoulOperationRequestParameterCode.AnswerId];
                 int soulId = (int)parameters[(byte)SoulOperationRequestParameterCode.SoulId];
@@ -37,13 +38,10 @@ namespace Door_of_Soul.Communication.TrinityServer.Device.OperationRequestHandle
                 else
                 {
                     errorMessage = $"Can not find SoulId:{soulId} in AnswerId:{answerId}";
-                    return false;
+                    returnCode = OperationReturnCode.NotExisted;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

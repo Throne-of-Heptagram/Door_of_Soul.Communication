@@ -1,5 +1,4 @@
 ﻿using Door_of_Soul.Communication.Client.Soul;
-using Door_of_Soul.Communication.Protocol.External.Device;
 using Door_of_Soul.Communication.Protocol.External.Device.OperationResponseParameter;
 using Door_of_Soul.Communication.Protocol.External.Soul;
 using Door_of_Soul.Core.Client;
@@ -8,15 +7,16 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Client.Device.OperationResponseHandler
 {
-    class SoulOperationResponseBroker : OperationResponseHandler<DeviceOperationCode>
+    class SoulOperationResponseBroker : BasicOperationResponseHandler
     {
         public SoulOperationResponseBroker() : base(typeof(SoulOperationResponseParameterCode))
         {
         }
 
-        public override bool Handle(DeviceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(operationCode, returnCode, operationMessage, parameters, out errorMessage))
+            returnCode = base.Handle(returnCode, operationMessage, parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int soulId = (int)parameters[(byte)SoulOperationResponseParameterCode.SoulId];
                 SoulOperationCode resolvedOperationCode = (SoulOperationCode)parameters[(byte)SoulOperationResponseParameterCode.OperationCode];
@@ -26,18 +26,15 @@ namespace Door_of_Soul.Communication.Client.Device.OperationResponseHandler
                 VirtualSoul soul;
                 if (CommunicationService.Instance.FindSoul(soulId, out soul))
                 {
-                    return SoulOperationResponseRouter.Instance.Route(soul, resolvedOperationCode, resolvedOperationReturnCode, resolvedOperationMessage, resolvedParameters, out errorMessage);
+                    returnCode = SoulOperationResponseRouter.Instance.Route(soul, resolvedOperationCode, resolvedOperationReturnCode, resolvedOperationMessage, resolvedParameters, out errorMessage);
                 }
                 else
                 {
                     errorMessage = $"Can not find SoulId:{soulId}";
-                    return false;
+                    returnCode = OperationReturnCode.NotExisted;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

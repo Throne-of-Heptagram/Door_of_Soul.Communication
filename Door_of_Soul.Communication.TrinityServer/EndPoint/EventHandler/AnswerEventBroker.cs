@@ -1,20 +1,21 @@
 ﻿using Door_of_Soul.Communication.Protocol.Internal.Answer;
-using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint.EventParameter;
 using Door_of_Soul.Communication.TrinityServer.Answer;
+using Door_of_Soul.Core.Protocol;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.TrinityServer.EndPoint.EventHandler
 {
-    class AnswerEventBroker : EventHandler<EndPointEventCode>
+    class AnswerEventBroker : BasicEventHandler
     {
         public AnswerEventBroker() : base(typeof(AnswerEventParameterCode))
         {
         }
 
-        public override bool Handle(EndPointEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if(base.Handle(eventCode, parameters, out errorMessage))
+            OperationReturnCode returnCode = base.Handle(parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int answerId = (int)parameters[(byte)AnswerEventParameterCode.AnswerId];
                 AnswerEventCode resolvedEventCode = (AnswerEventCode)parameters[(byte)AnswerEventParameterCode.EventCode];
@@ -22,18 +23,15 @@ namespace Door_of_Soul.Communication.TrinityServer.EndPoint.EventHandler
                 TerminalAnswer answer;
                 if(ResourceService.Instance.FindAnswer(answerId, out answer))
                 {
-                    return AnswerEventRouter.Instance.Route(answer, resolvedEventCode, resolvedParameters, out errorMessage);
+                    returnCode = AnswerEventRouter.Instance.Route(answer, resolvedEventCode, resolvedParameters, out errorMessage);
                 }
                 else
                 {
                     errorMessage = $"Can not find AnswerId:{answerId}";
-                    return false;
+                    returnCode = OperationReturnCode.NotExisted;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

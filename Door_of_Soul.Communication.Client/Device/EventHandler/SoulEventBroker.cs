@@ -1,21 +1,22 @@
 ﻿using Door_of_Soul.Communication.Client.Soul;
-using Door_of_Soul.Communication.Protocol.External.Device;
 using Door_of_Soul.Communication.Protocol.External.Device.EventParameter;
 using Door_of_Soul.Communication.Protocol.External.Soul;
 using Door_of_Soul.Core.Client;
+using Door_of_Soul.Core.Protocol;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Client.Device.EventHandler
 {
-    class SoulEventBroker : EventHandler<DeviceEventCode>
+    class SoulEventBroker : BasicEventHandler
     {
         public SoulEventBroker() : base(typeof(SoulEventParameterCode))
         {
         }
 
-        public override bool Handle(DeviceEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(eventCode, parameters, out errorMessage))
+            OperationReturnCode returnCode = base.Handle(parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int soulId = (int)parameters[(byte)SoulEventParameterCode.SoulId];
                 SoulEventCode resolvedEventCode = (SoulEventCode)parameters[(byte)SoulEventParameterCode.EventCode];
@@ -23,18 +24,15 @@ namespace Door_of_Soul.Communication.Client.Device.EventHandler
                 VirtualSoul soul;
                 if (CommunicationService.Instance.FindSoul(soulId, out soul))
                 {
-                    return SoulEventRouter.Instance.Route(soul, resolvedEventCode, resolvedParameters, out errorMessage);
+                    returnCode = SoulEventRouter.Instance.Route(soul, resolvedEventCode, resolvedParameters, out errorMessage);
                 }
                 else
                 {
                     errorMessage = $"Can not find SoulId:{soulId}";
-                    return false;
+                    returnCode = OperationReturnCode.NotExisted;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

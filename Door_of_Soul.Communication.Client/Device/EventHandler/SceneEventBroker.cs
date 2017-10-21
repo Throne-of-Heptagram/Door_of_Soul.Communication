@@ -1,21 +1,22 @@
 ﻿using Door_of_Soul.Communication.Client.Scene;
-using Door_of_Soul.Communication.Protocol.External.Device;
 using Door_of_Soul.Communication.Protocol.External.Device.EventParameter;
 using Door_of_Soul.Communication.Protocol.External.Scene;
 using Door_of_Soul.Core.Client;
+using Door_of_Soul.Core.Protocol;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Client.Device.EventHandler
 {
-    class SceneEventBroker : EventHandler<DeviceEventCode>
+    class SceneEventBroker : BasicEventHandler
     {
         public SceneEventBroker() : base(typeof(SceneEventParameterCode))
         {
         }
 
-        public override bool Handle(DeviceEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(eventCode, parameters, out errorMessage))
+            OperationReturnCode returnCode = base.Handle(parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int sceneId = (int)parameters[(byte)SceneEventParameterCode.SceneId];
                 SceneEventCode resolvedEventCode = (SceneEventCode)parameters[(byte)SceneEventParameterCode.EventCode];
@@ -28,13 +29,10 @@ namespace Door_of_Soul.Communication.Client.Device.EventHandler
                 else
                 {
                     errorMessage = $"Can not find SceneId:{sceneId}";
-                    return false;
+                    returnCode = OperationReturnCode.NotExisted;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

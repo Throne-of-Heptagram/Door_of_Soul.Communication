@@ -1,5 +1,4 @@
 ﻿using Door_of_Soul.Communication.HexagramEntranceServer.Throne.Device;
-using Door_of_Soul.Communication.Protocol.Hexagram.Throne;
 using Door_of_Soul.Communication.Protocol.Hexagram.Throne.Device;
 using Door_of_Soul.Communication.Protocol.Hexagram.Throne.OperationResponseParameter;
 using Door_of_Soul.Core.Protocol;
@@ -7,15 +6,16 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Throne.OperationResponseHandler
 {
-    class DeviceThroneOperationResponseBroker : OperationResponseHandler<ThroneOperationCode>
+    class DeviceThroneOperationResponseBroker : BasicOperationResponseHandler
     {
         public DeviceThroneOperationResponseBroker() : base(typeof(DeviceThroneOperationResponseParameterCode))
         {
         }
 
-        public override bool Handle(ThroneOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(operationCode, returnCode, operationMessage, parameters, out errorMessage))
+            returnCode = base.Handle(returnCode, operationMessage, parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int endPointId = (int)parameters[(byte)DeviceThroneOperationResponseParameterCode.EndPointId];
                 int deviceId = (int)parameters[(byte)DeviceThroneOperationResponseParameterCode.DeviceId];
@@ -26,18 +26,15 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.Throne.OperationResp
                 TerminalEndPoint endPoint;
                 if (EndPointFactory.Instance.Find(endPointId, out endPoint))
                 {
-                    return DeviceThroneOperationResponseRouter.Instance.Route(endPoint, deviceId, resolvedOperationCode, resolvedOperationReturnCode, resolvedOperationMessage, resolvedParameters, out errorMessage);
+                    returnCode = DeviceThroneOperationResponseRouter.Instance.Route(endPoint, deviceId, resolvedOperationCode, resolvedOperationReturnCode, resolvedOperationMessage, resolvedParameters, out errorMessage);
                 }
                 else
                 {
                     errorMessage = $"Can not find EndPointId:{endPointId} DeviceId:{deviceId}";
-                    return false;
+                    returnCode = OperationReturnCode.NotExisted;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

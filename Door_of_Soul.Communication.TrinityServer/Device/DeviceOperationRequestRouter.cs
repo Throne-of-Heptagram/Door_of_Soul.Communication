@@ -3,7 +3,7 @@ using Door_of_Soul.Communication.TrinityServer.Device.OperationRequestHandler;
 
 namespace Door_of_Soul.Communication.TrinityServer.Device
 {
-    class DeviceOperationRequestRouter : OperationRequestRouter<TerminalDevice, DeviceOperationCode>
+    class DeviceOperationRequestRouter : BasicOperationRequestRouter<TerminalDevice, DeviceOperationCode>
     {
         public static DeviceOperationRequestRouter Instance { get; private set; } = new DeviceOperationRequestRouter();
 

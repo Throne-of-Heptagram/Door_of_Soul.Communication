@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Love
 {
-    class LoveOperationResponseRouter : OperationResponseRouter<LoveOperationCode>
+    class LoveOperationResponseRouter : BasicOperationResponseRouter<LoveOperationCode>
     {
         public static LoveOperationResponseRouter Instance { get; private set; } = new LoveOperationResponseRouter();
 

@@ -7,20 +7,21 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.TrinityServer.Device.OperationRequestHandler
 {
-    class AnswerOperationRequestBroker : OperationRequestHandler<TerminalDevice, DeviceOperationCode>
+    class AnswerOperationRequestBroker : BasicOperationRequestHandler<TerminalDevice>
     {
         public AnswerOperationRequestBroker() : base(typeof(AnswerOperationRequestParameterCode))
         {
         }
 
-        public override void SendResponse(TerminalDevice target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(TerminalDevice target, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            DeviceOperationResponseApi.SendOperationResponse(target, operationCode, operationReturnCode, operationMessage, parameters);
+            DeviceOperationResponseApi.SendOperationResponse(target, DeviceOperationCode.AnswerOperation, operationReturnCode, operationMessage, parameters);
         }
 
-        public override bool Handle(TerminalDevice terminal, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(TerminalDevice terminal, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(terminal, operationCode, parameters, out errorMessage))
+            OperationReturnCode returnCode = base.Handle(terminal, parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int answerId = (int)parameters[(byte)AnswerOperationRequestParameterCode.AnswerId];
                 AnswerOperationCode resolvedOperationCode = (AnswerOperationCode)parameters[(byte)AnswerOperationRequestParameterCode.OperationCode];
@@ -32,13 +33,10 @@ namespace Door_of_Soul.Communication.TrinityServer.Device.OperationRequestHandle
                 else
                 {
                     errorMessage = $"Can not find AnswerId:{answerId}";
-                    return false;
+                    returnCode = OperationReturnCode.NotExisted;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

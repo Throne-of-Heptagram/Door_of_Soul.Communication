@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Shadow
 {
-    class ShadowOperationResponseRouter : OperationResponseRouter<ShadowOperationCode>
+    class ShadowOperationResponseRouter : BasicOperationResponseRouter<ShadowOperationCode>
     {
         public static ShadowOperationResponseRouter Instance { get; private set; } = new ShadowOperationResponseRouter();
 

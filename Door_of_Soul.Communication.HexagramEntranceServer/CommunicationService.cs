@@ -1,5 +1,6 @@
 ﻿using Door_of_Soul.Communication.HexagramEntranceServer.EndPoint;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
+using Door_of_Soul.Core.Protocol;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer
@@ -12,7 +13,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer
             Instance = instance;
         }
 
-        public bool HandleOperationRequest(TerminalEndPoint endPoint, EndPointOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public OperationReturnCode HandleOperationRequest(TerminalEndPoint endPoint, EndPointOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
             return EndPointOperationRequestRouter.Instance.Route(endPoint, operationCode, parameters, out errorMessage);
         }

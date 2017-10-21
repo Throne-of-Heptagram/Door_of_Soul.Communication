@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Throne
 {
-    class ThroneEventRouter : EventRouter<ThroneEventCode>
+    class ThroneEventRouter : BasicEventRouter<ThroneEventCode>
     {
         public static ThroneEventRouter Instance { get; private set; } = new ThroneEventRouter();
 

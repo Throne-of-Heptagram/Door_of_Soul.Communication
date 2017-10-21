@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Will
 {
-    class WillOperationResponseRouter : OperationResponseRouter<WillOperationCode>
+    class WillOperationResponseRouter : BasicOperationResponseRouter<WillOperationCode>
     {
         public static WillOperationResponseRouter Instance { get; private set; } = new WillOperationResponseRouter();
 

@@ -3,7 +3,7 @@ using Door_of_Soul.Communication.Protocol.External.Device;
 
 namespace Door_of_Soul.Communication.Client.Device
 {
-    class DeviceEventRouter : EventRouter<DeviceEventCode>
+    class DeviceEventRouter : BasicEventRouter<DeviceEventCode>
     {
         public static DeviceEventRouter Instance { get; private set; } = new DeviceEventRouter();
 

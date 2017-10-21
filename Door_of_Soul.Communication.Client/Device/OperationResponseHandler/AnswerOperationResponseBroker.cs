@@ -8,15 +8,16 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.Client.Device.OperationResponseHandler
 {
-    class AnswerOperationResponseBroker : OperationResponseHandler<DeviceOperationCode>
+    class AnswerOperationResponseBroker : BasicOperationResponseHandler
     {
         public AnswerOperationResponseBroker() : base(typeof(AnswerOperationResponseParameterCode))
         {
         }
 
-        public override bool Handle(DeviceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if(base.Handle(operationCode, returnCode, operationMessage, parameters, out errorMessage))
+            returnCode = base.Handle(returnCode, operationMessage, parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int answerId = (int)parameters[(byte)AnswerOperationResponseParameterCode.AnswerId];
                 AnswerOperationCode resolvedOperationCode = (AnswerOperationCode)parameters[(byte)AnswerOperationResponseParameterCode.OperationCode];
@@ -26,18 +27,15 @@ namespace Door_of_Soul.Communication.Client.Device.OperationResponseHandler
                 VirtualAnswer answer;
                 if (CommunicationService.Instance.FindAnswer(answerId, out answer))
                 {
-                    return AnswerOperationResponseRouter.Instance.Route(answer, resolvedOperationCode, resolvedOperationReturnCode, resolvedOperationMessage, resolvedParameters, out errorMessage);
+                    returnCode = AnswerOperationResponseRouter.Instance.Route(answer, resolvedOperationCode, resolvedOperationReturnCode, resolvedOperationMessage, resolvedParameters, out errorMessage);
                 }
                 else
                 {
                     errorMessage = $"Can not find AnswerId:{answerId}";
-                    return false;
+                    returnCode = OperationReturnCode.NotExisted;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

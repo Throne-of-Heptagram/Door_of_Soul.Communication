@@ -3,7 +3,7 @@ using Door_of_Soul.Communication.Protocol.External.Device;
 
 namespace Door_of_Soul.Communication.Client.Device
 {
-    class DeviceOperationResponseRouter : OperationResponseRouter<DeviceOperationCode>
+    class DeviceOperationResponseRouter : BasicOperationResponseRouter<DeviceOperationCode>
     {
         public static DeviceOperationResponseRouter Instance { get; private set; } = new DeviceOperationResponseRouter();
 

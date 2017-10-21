@@ -4,41 +4,22 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication
 {
-    public abstract class L3SubjectOperationRequestHandler<TTerminal, TSubterminalId, TEndTerminalId, TSubject, TOperationCode>
+    public abstract class L3SubjectOperationRequestHandler<TTerminal, TL2TerminalId, TL3TerminalId, TSubject> : ParameterChecker
     {
-        protected int CorrectParameterCount { get; private set; }
-
-        public L3SubjectOperationRequestHandler(Type typeOfOperationRequestParameterCode)
+        public L3SubjectOperationRequestHandler(Type typeOfOperationRequestParameterCode) : base(typeOfOperationRequestParameterCode)
         {
-            CorrectParameterCount = Enum.GetNames(typeOfOperationRequestParameterCode).Length;
         }
 
-        public abstract void SendResponse(TTerminal terminal, TSubterminalId subterminalId, TEndTerminalId endTerminalId, TSubject target, TOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters);
+        public abstract void SendResponse(TTerminal terminal, TL2TerminalId l2TerminalId, TL3TerminalId l3TerminalId, TSubject target, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters);
 
-        public virtual bool Handle(TTerminal terminal, TSubterminalId subterminalId, TEndTerminalId endTerminalId, TSubject requester, TOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public virtual OperationReturnCode Handle(TTerminal terminal, TL2TerminalId l2TerminalId, TL3TerminalId l3TerminalId, TSubject requester, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (CheckParameterCount(parameters, out errorMessage))
+            OperationReturnCode returnCode = CheckParameters(parameters, out errorMessage);
+            if (returnCode != OperationReturnCode.Successiful)
             {
-                return true;
+                SendResponse(terminal, l2TerminalId, l3TerminalId, requester, returnCode, errorMessage, new Dictionary<byte, object>());
             }
-            else
-            {
-                SendResponse(terminal, subterminalId, endTerminalId, requester, operationCode, OperationReturnCode.ParameterCountError, errorMessage, new Dictionary<byte, object>());
-                return false;
-            }
-        }
-        private bool CheckParameterCount(Dictionary<byte, object> parameters, out string errorMessage)
-        {
-            if (parameters.Count == CorrectParameterCount)
-            {
-                errorMessage = "";
-                return true;
-            }
-            else
-            {
-                errorMessage = $"Parameter Count: {parameters.Count}, should be {CorrectParameterCount}";
-                return false;
-            }
+            return returnCode;
         }
     }
 }

@@ -29,17 +29,17 @@ namespace Door_of_Soul.Communication.ObserverServer
             }
         }
 
-        public bool HandleOperationRequest(TerminalDevice device, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public OperationReturnCode HandleOperationRequest(TerminalDevice device, DeviceOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
             return DeviceOperationRequestRouter.Instance.Route(device, operationCode, parameters, out errorMessage);
         }
 
-        public bool HandleEvent(EndPointEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public OperationReturnCode HandleEvent(EndPointEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
             return EndPointEventRouter.Instance.Route(eventCode, parameters, out errorMessage);
         }
 
-        public bool HandleOperationResponse(EndPointOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
+        public OperationReturnCode HandleOperationResponse(EndPointOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
             return EndPointOperationResponseRouter.Instance.Route(operationCode, returnCode, operationMessage, parameters, out errorMessage);
         }

@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Love
 {
-    class LoveEventRouter : EventRouter<LoveEventCode>
+    class LoveEventRouter : BasicEventRouter<LoveEventCode>
     {
         public static LoveEventRouter Instance { get; private set; } = new LoveEventRouter();
 

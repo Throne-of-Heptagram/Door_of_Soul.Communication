@@ -132,6 +132,7 @@
     <Compile Include="Throne\OperationResponseHandler\EndPointThroneOperationResponseBroker.cs" />
     <Compile Include="Throne\ThroneEventRouter.cs" />
     <Compile Include="Throne\ThroneInverseOperationRequestRouter.cs" />
+    <Compile Include="Throne\ThroneInverseOperationResponseApi.cs" />
     <Compile Include="Throne\ThroneOperationRequestApi.cs" />
     <Compile Include="Throne\ThroneOperationResponseRouter.cs" />
     <Compile Include="WillCommunicationService.cs" />

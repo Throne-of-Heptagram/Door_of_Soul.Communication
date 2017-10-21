@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Life
 {
-    class LifeOperationResponseRouter : OperationResponseRouter<LifeOperationCode>
+    class LifeOperationResponseRouter : BasicOperationResponseRouter<LifeOperationCode>
     {
         public static LifeOperationResponseRouter Instance { get; private set; } = new LifeOperationResponseRouter();
 

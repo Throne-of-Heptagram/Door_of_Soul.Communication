@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Infinite
 {
-    class InfiniteOperationResponseRouter : OperationResponseRouter<InfiniteOperationCode>
+    class InfiniteOperationResponseRouter : BasicOperationResponseRouter<InfiniteOperationCode>
     {
         public static InfiniteOperationResponseRouter Instance { get; private set; } = new InfiniteOperationResponseRouter();
 

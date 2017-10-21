@@ -1,10 +1,12 @@
 ﻿using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
+using Door_of_Soul.Core;
 using Door_of_Soul.Core.Protocol;
+using System;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer
 {
-    public class TerminalEndPoint
+    public class TerminalEndPoint : IEventDependencyReleasable
     {
         public delegate void SendEventDelegate(EndPointEventCode eventCode, Dictionary<byte, object> parameters);
         public delegate void SendOperationResponseDelegate(EndPointOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters);
@@ -22,9 +24,17 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer
             SendEvent = sendEventMethod;
             SendOperationResponse = sendOperationResponseMethod;
         }
+
+        public event Action OnEventDependencyDisappear;
+
         public override string ToString()
         {
             return $"EndPoint Id:{EndPointId} Type:{EndPointType}";
+        }
+
+        public void ReleaseDependency()
+        {
+            OnEventDependencyDisappear?.Invoke();
         }
     }
 }

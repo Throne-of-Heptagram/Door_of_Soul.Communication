@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Life
 {
-    class LifeEventRouter : EventRouter<LifeEventCode>
+    class LifeEventRouter : BasicEventRouter<LifeEventCode>
     {
         public static LifeEventRouter Instance { get; private set; } = new LifeEventRouter();
 

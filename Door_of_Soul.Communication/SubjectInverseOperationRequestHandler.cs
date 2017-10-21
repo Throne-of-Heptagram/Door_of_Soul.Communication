@@ -4,41 +4,22 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication
 {
-    public abstract class SubjectInverseOperationRequestHandler<TSubject, TInverseOperationCode>
+    public abstract class SubjectInverseOperationRequestHandler<TSubject> : ParameterChecker
     {
-        protected int CorrectParameterCount { get; private set; }
-
-        public SubjectInverseOperationRequestHandler(Type typeOfOperationRequestParameterCode)
+        public SubjectInverseOperationRequestHandler(Type typeOfOperationRequestParameterCode) : base(typeOfOperationRequestParameterCode)
         {
-            CorrectParameterCount = Enum.GetNames(typeOfOperationRequestParameterCode).Length;
         }
 
-        public abstract void SendResponse(TSubject target, TInverseOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters);
+        public abstract void SendResponse(TSubject target, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters);
 
-        public virtual bool Handle(TSubject requester, TInverseOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public virtual OperationReturnCode Handle(TSubject requester, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (CheckParameterCount(parameters, out errorMessage))
+            OperationReturnCode returnCode = CheckParameters(parameters, out errorMessage);
+            if (returnCode != OperationReturnCode.Successiful)
             {
-                return true;
+                SendResponse(requester, returnCode, errorMessage, new Dictionary<byte, object>());
             }
-            else
-            {
-                SendResponse(requester, operationCode, OperationReturnCode.ParameterCountError, errorMessage, new Dictionary<byte, object>());
-                return false;
-            }
-        }
-        private bool CheckParameterCount(Dictionary<byte, object> parameters, out string errorMessage)
-        {
-            if (parameters.Count == CorrectParameterCount)
-            {
-                errorMessage = "";
-                return true;
-            }
-            else
-            {
-                errorMessage = $"Parameter Count: {parameters.Count}, should be {CorrectParameterCount}";
-                return false;
-            }
+            return returnCode;
         }
     }
 }

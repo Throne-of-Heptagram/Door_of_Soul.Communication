@@ -6,31 +6,28 @@ namespace Door_of_Soul.Communication
     public abstract class SubjectInverseOperationResponseRouter<TTerminal, TSubject, TInverseOperationCode>
     {
         private string subjectName;
-        protected Dictionary<TInverseOperationCode, SubjectInverseOperationResponseHandler<TTerminal, TSubject, TInverseOperationCode>> OperationTable { get; private set; } = new Dictionary<TInverseOperationCode, SubjectInverseOperationResponseHandler<TTerminal, TSubject, TInverseOperationCode>>();
+        protected Dictionary<TInverseOperationCode, SubjectInverseOperationResponseHandler<TTerminal, TSubject>> OperationTable { get; private set; } = new Dictionary<TInverseOperationCode, SubjectInverseOperationResponseHandler<TTerminal, TSubject>>();
 
         protected SubjectInverseOperationResponseRouter(string subjectName)
         {
             this.subjectName = subjectName;
         }
 
-        public bool Route(TTerminal terminal, TSubject subject, TInverseOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
+        public OperationReturnCode Route(TTerminal terminal, TSubject subject, TInverseOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
             if (OperationTable.ContainsKey(operationCode))
             {
-                if (OperationTable[operationCode].Handle(terminal, subject, operationCode, returnCode, operationMessage, parameters, out errorMessage))
-                {
-                    return true;
-                }
-                else
+                returnCode = OperationTable[operationCode].Handle(terminal, subject, returnCode, operationMessage, parameters, out errorMessage);
+                if (returnCode != OperationReturnCode.Successiful)
                 {
                     errorMessage = $"{subjectName}InverseOperationResponse Error, OperationCode: {operationCode} from:{subject}, HandlerErrorMessage: {errorMessage}";
-                    return false;
                 }
+                return returnCode;
             }
             else
             {
                 errorMessage = $"Unknow {subjectName}InverseOperationResponse OperationCode:{operationCode} from:{subject}";
-                return false;
+                return OperationReturnCode.NotExisted;
             }
         }
     }

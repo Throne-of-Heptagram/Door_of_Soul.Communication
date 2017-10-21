@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Destiny
 {
-    class DestinyEventRouter : EventRouter<DestinyEventCode>
+    class DestinyEventRouter : BasicEventRouter<DestinyEventCode>
     {
         public static DestinyEventRouter Instance { get; private set; } = new DestinyEventRouter();
 

@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Element
 {
-    class ElementEventRouter : EventRouter<ElementEventCode>
+    class ElementEventRouter : BasicEventRouter<ElementEventCode>
     {
         public static ElementEventRouter Instance { get; private set; } = new ElementEventRouter();
 

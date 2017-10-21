@@ -3,7 +3,7 @@ using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
 {
-    class EndPointOperationRequestRouter : OperationRequestRouter<TerminalEndPoint, EndPointOperationCode>
+    class EndPointOperationRequestRouter : BasicOperationRequestRouter<TerminalEndPoint, EndPointOperationCode>
     {
         public static EndPointOperationRequestRouter Instance { get; private set; } = new EndPointOperationRequestRouter();
 

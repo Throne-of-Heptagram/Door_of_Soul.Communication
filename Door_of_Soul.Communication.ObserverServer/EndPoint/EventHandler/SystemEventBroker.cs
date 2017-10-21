@@ -1,30 +1,28 @@
-﻿using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
+﻿using Door_of_Soul.Communication.ObserverServer.System;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint.EventParameter;
 using Door_of_Soul.Communication.Protocol.Internal.System;
-using Door_of_Soul.Communication.ObserverServer.System;
 using Door_of_Soul.Core.ObserverServer;
+using Door_of_Soul.Core.Protocol;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.ObserverServer.EndPoint.EventHandler
 {
-    class SystemEventBroker : EventHandler<EndPointEventCode>
+    class SystemEventBroker : BasicEventHandler
     {
         public SystemEventBroker() : base(typeof(SystemEventParameterCode))
         {
         }
 
-        public override bool Handle(EndPointEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(eventCode, parameters, out errorMessage))
+            OperationReturnCode returnCode = base.Handle(parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 SystemEventCode resolvedEventCode = (SystemEventCode)parameters[(byte)SystemEventParameterCode.EventCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)SystemEventParameterCode.Parameters];
-                return SystemEventRouter.Instance.Route(VirtualSystem.Instance, resolvedEventCode, resolvedParameters, out errorMessage);
+                returnCode = SystemEventRouter.Instance.Route(VirtualSystem.Instance, resolvedEventCode, resolvedParameters, out errorMessage);
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

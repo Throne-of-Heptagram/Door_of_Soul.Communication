@@ -1,21 +1,22 @@
 ﻿using Door_of_Soul.Communication.Protocol.Internal.Avatar;
-using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
 using Door_of_Soul.Communication.Protocol.Internal.EndPoint.EventParameter;
 using Door_of_Soul.Communication.TrinityServer.Avatar;
+using Door_of_Soul.Core.Protocol;
 using Door_of_Soul.Core.TrinityServer;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.TrinityServer.EndPoint.EventHandler
 {
-    class AvatarEventBroker : EventHandler<EndPointEventCode>
+    class AvatarEventBroker : BasicEventHandler
     {
         public AvatarEventBroker() : base(typeof(AvatarEventParameterCode))
         {
         }
 
-        public override bool Handle(EndPointEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(eventCode, parameters, out errorMessage))
+            OperationReturnCode returnCode = base.Handle(parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int avatarId = (int)parameters[(byte)AvatarEventParameterCode.AvatarId];
                 AvatarEventCode resolvedEventCode = (AvatarEventCode)parameters[(byte)AvatarEventParameterCode.EventCode];
@@ -23,18 +24,15 @@ namespace Door_of_Soul.Communication.TrinityServer.EndPoint.EventHandler
                 VirtualAvatar avatar;
                 if (ResourceService.Instance.FindAvatar(avatarId, out avatar))
                 {
-                    return AvatarEventRouter.Instance.Route(avatar, resolvedEventCode, resolvedParameters, out errorMessage);
+                    returnCode = AvatarEventRouter.Instance.Route(avatar, resolvedEventCode, resolvedParameters, out errorMessage);
                 }
                 else
                 {
                     errorMessage = $"Can not find AvatarId:{avatarId}";
-                    return false;
+                    returnCode = OperationReturnCode.NotExisted;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

@@ -1,13 +1,17 @@
 ﻿using Door_of_Soul.Communication.Protocol.External.Device;
+using Door_of_Soul.Core;
 using Door_of_Soul.Core.Protocol;
+using System;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.LoginServer
 {
-    public class TerminalDevice
+    public class TerminalDevice : IEventDependencyReleasable
     {
         public delegate void SendEventDelegate(DeviceEventCode eventCode, Dictionary<byte, object> parameters);
         public delegate void SendOperationResponseDelegate(DeviceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters);
+
+        public event Action OnEventDependencyDisappear;
 
         public int DeviceId { get; private set; }
         public SendEventDelegate SendEvent { get; private set; }
@@ -19,9 +23,17 @@ namespace Door_of_Soul.Communication.LoginServer
             SendEvent = sendEventMethod;
             SendOperationResponse = sendOperationResponseMethod;
         }
+
+        
+
         public override string ToString()
         {
             return $"Device Id:{DeviceId}";
+        }
+
+        public void ReleaseDependency()
+        {
+            OnEventDependencyDisappear?.Invoke();
         }
     }
 }

@@ -1,33 +1,31 @@
-﻿using System.Collections.Generic;
+﻿using Door_of_Soul.Core.Protocol;
+using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication
 {
     public abstract class L2SubjectOperationRequestRouter<TTerminal, TL2TerminalId, TSubject, TOperationCode> : SubjectOperationRequestRouter<TTerminal, TSubject, TOperationCode>
     {
-        protected Dictionary<TOperationCode, L2SubjectOperationRequestHandler<TTerminal, TL2TerminalId, TSubject, TOperationCode>> L2OperationTable { get; private set; } = new Dictionary<TOperationCode, L2SubjectOperationRequestHandler<TTerminal, TL2TerminalId, TSubject, TOperationCode>>();
+        protected Dictionary<TOperationCode, L2SubjectOperationRequestHandler<TTerminal, TL2TerminalId, TSubject>> L2OperationTable { get; private set; } = new Dictionary<TOperationCode, L2SubjectOperationRequestHandler<TTerminal, TL2TerminalId, TSubject>>();
 
         protected L2SubjectOperationRequestRouter(string subjectName) : base(subjectName)
         {
         }
 
-        public bool Route(TTerminal terminal, TL2TerminalId l2TerminalId, TSubject subject, TOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public OperationReturnCode Route(TTerminal terminal, TL2TerminalId l2TerminalId, TSubject subject, TOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
             if (L2OperationTable.ContainsKey(operationCode))
             {
-                if (L2OperationTable[operationCode].Handle(terminal, l2TerminalId, subject, operationCode, parameters, out errorMessage))
+                OperationReturnCode returnCode = L2OperationTable[operationCode].Handle(terminal, l2TerminalId, subject, parameters, out errorMessage);
+                if (returnCode != OperationReturnCode.Successiful)
                 {
-                    return true;
+                    errorMessage = $"{subjectName}L2OperationRequest Error, OperationCode: {operationCode} from {terminal}, L2TerminalId:{l2TerminalId}, Subject:{subject}, HandlerErrorMessage: {errorMessage}";
                 }
-                else
-                {
-                    errorMessage = $"{subjectName}OperationRequest Error, OperationCode: {operationCode} from {terminal}, L2TerminalId:{l2TerminalId}, Subject:{subject}, HandlerErrorMessage: {errorMessage}";
-                    return false;
-                }
+                return returnCode;
             }
             else
             {
-                errorMessage = $"Unknow {subjectName}OperationRequest OperationCode:{operationCode} from {terminal}, L2TerminalId:{l2TerminalId}, Subject:{subject}";
-                return false;
+                errorMessage = $"Unknow {subjectName}L2OperationRequest OperationCode:{operationCode} from {terminal}, L2TerminalId:{l2TerminalId}, Subject:{subject}";
+                return OperationReturnCode.NotExisted;
             }
         }
     }

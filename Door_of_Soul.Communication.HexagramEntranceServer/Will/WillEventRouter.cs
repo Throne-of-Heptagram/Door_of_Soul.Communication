@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Will
 {
-    class WillEventRouter : EventRouter<WillEventCode>
+    class WillEventRouter : BasicEventRouter<WillEventCode>
     {
         public static WillEventRouter Instance { get; private set; } = new WillEventRouter();
 

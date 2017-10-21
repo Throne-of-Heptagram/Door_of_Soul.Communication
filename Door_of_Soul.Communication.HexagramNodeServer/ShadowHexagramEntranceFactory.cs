@@ -11,9 +11,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer
 
         }
 
-        public bool CreateEntrance(int hexagranEntranceId, ShadowHexagramEntrance.SendEventDelegate sendEventMethod, ShadowHexagramEntrance.SendOperationResponseDelegate sendOperationResponseMethod, out ShadowHexagramEntrance entrance)
+        public bool CreateEntrance(int hexagranEntranceId, ShadowHexagramEntrance.SendEventDelegate sendEventMethod, ShadowHexagramEntrance.SendOperationResponseDelegate sendOperationResponseMethod, ShadowHexagramEntrance.SendInverseOperationRequestDelegate sendInverseOperationRequestMethod, out ShadowHexagramEntrance entrance)
         {
-            entrance = new ShadowHexagramEntrance(hexagranEntranceId, sendEventMethod, sendOperationResponseMethod);
+            entrance = new ShadowHexagramEntrance(hexagranEntranceId, sendEventMethod, sendOperationResponseMethod, sendInverseOperationRequestMethod);
             return Add(entrance.HexagramEntranceId, entrance);
         }
     }

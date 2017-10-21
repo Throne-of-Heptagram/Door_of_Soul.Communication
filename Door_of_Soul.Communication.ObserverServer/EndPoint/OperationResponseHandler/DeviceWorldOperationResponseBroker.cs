@@ -1,21 +1,21 @@
 ﻿using Door_of_Soul.Communication.ObserverServer.World;
-using Door_of_Soul.Communication.Protocol.Internal.EndPoint;
-using Door_of_Soul.Communication.Protocol.Internal.EndPoint.OperationResponseParameter;
 using Door_of_Soul.Communication.Protocol.External.World;
+using Door_of_Soul.Communication.Protocol.Internal.EndPoint.OperationResponseParameter;
 using Door_of_Soul.Core.Protocol;
 using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.ObserverServer.EndPoint.OperationResponseHandler
 {
-    class DeviceWorldOperationResponseBroker : OperationResponseHandler<EndPointOperationCode>
+    class DeviceWorldOperationResponseBroker : BasicOperationResponseHandler
     {
         public DeviceWorldOperationResponseBroker() : base(typeof(DeviceWorldOperationResponseParameterCode))
         {
         }
 
-        public override bool Handle(EndPointOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(operationCode, returnCode, operationMessage, parameters, out errorMessage))
+            returnCode = base.Handle(returnCode, operationMessage, parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int deviceId = (int)parameters[(byte)DeviceWorldOperationResponseParameterCode.DeviceId];
                 int worldId = (int)parameters[(byte)DeviceWorldOperationResponseParameterCode.WorldId];
@@ -27,18 +27,14 @@ namespace Door_of_Soul.Communication.ObserverServer.EndPoint.OperationResponseHa
                 if (DeviceFactory.Instance.Find(deviceId, out device))
                 {
                     WorldOperationResponseApi.SendOperationResponse(device, worldId, resolvedOperationCode, resolvedOperationReturnCode, resolvedOperationMessage, resolvedParameters);
-                    return true;
                 }
                 else
                 {
                     errorMessage = $"Can not find DeviceId:{deviceId}";
-                    return false;
+                    returnCode = OperationReturnCode.NotExisted;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

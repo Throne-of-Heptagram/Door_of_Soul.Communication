@@ -41,14 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventHandler.cs" />
-    <Compile Include="EventRouter.cs" />
-    <Compile Include="ForwardOperationHandler.cs" />
-    <Compile Include="ForwardOperationRouter.cs" />
-    <Compile Include="InverseOperationRequestHandler.cs" />
-    <Compile Include="InverseOperationRequestRouter.cs" />
-    <Compile Include="InverseOperationResponseHandler.cs" />
-    <Compile Include="InverseOperationResponseRouter.cs" />
+    <Compile Include="BasicEventHandler.cs" />
+    <Compile Include="BasicEventRouter.cs" />
+    <Compile Include="BasicForwardOperationHandler.cs" />
+    <Compile Include="BasicForwardOperationRouter.cs" />
+    <Compile Include="BasicInverseEventHandler.cs" />
+    <Compile Include="BasicInverseEventRouter.cs" />
+    <Compile Include="BasicInverseOperationRequestHandler.cs" />
+    <Compile Include="BasicInverseOperationRequestRouter.cs" />
+    <Compile Include="BasicInverseOperationResponseHandler.cs" />
+    <Compile Include="BasicInverseOperationResponseRouter.cs" />
     <Compile Include="L2OperationRequestRouter.cs" />
     <Compile Include="L2SubjectOperationRequestHandler.cs" />
     <Compile Include="L2SubjectOperationRequestRouter.cs" />
@@ -58,13 +60,16 @@
     <Compile Include="L3OperationRequestRouter.cs" />
     <Compile Include="L3SubjectOperationRequestHandler.cs" />
     <Compile Include="L3SubjectOperationRequestRouter.cs" />
-    <Compile Include="OperationRequestHandler.cs" />
-    <Compile Include="OperationRequestRouter.cs" />
-    <Compile Include="OperationResponseHandler.cs" />
-    <Compile Include="OperationResponseRouter.cs" />
+    <Compile Include="BasicOperationRequestHandler.cs" />
+    <Compile Include="BasicOperationRequestRouter.cs" />
+    <Compile Include="BasicOperationResponseHandler.cs" />
+    <Compile Include="BasicOperationResponseRouter.cs" />
+    <Compile Include="ParameterChecker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubjectEventHandler.cs" />
     <Compile Include="SubjectEventRouter.cs" />
+    <Compile Include="SubjectInverseEventHandler.cs" />
+    <Compile Include="SubjectInverseEventRouter.cs" />
     <Compile Include="SubjectInverseOperationRequestHandler.cs" />
     <Compile Include="SubjectInverseOperationRequestRouter.cs" />
     <Compile Include="SubjectInverseOperationResponseHandler.cs" />

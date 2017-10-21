@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Element
 {
-    class ElementOperationResponseRouter : OperationResponseRouter<ElementOperationCode>
+    class ElementOperationResponseRouter : BasicOperationResponseRouter<ElementOperationCode>
     {
         public static ElementOperationResponseRouter Instance { get; private set; } = new ElementOperationResponseRouter();
 

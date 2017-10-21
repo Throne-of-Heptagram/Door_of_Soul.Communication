@@ -13,11 +13,11 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer
             Instance = instance;
         }
 
-        public bool HandleEvent(SpaceEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public OperationReturnCode HandleEvent(SpaceEventCode eventCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
             return SpaceEventRouter.Instance.Route(eventCode, parameters, out errorMessage);
         }
-        public bool HandleOperationResponse(SpaceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
+        public OperationReturnCode HandleOperationResponse(SpaceOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters, out string errorMessage)
         {
             return SpaceOperationResponseRouter.Instance.Route(operationCode, returnCode, operationMessage, parameters, out errorMessage);
         }

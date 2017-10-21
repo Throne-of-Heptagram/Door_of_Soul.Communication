@@ -3,7 +3,7 @@ using Door_of_Soul.Communication.Protocol.External.Device;
 
 namespace Door_of_Soul.Communication.LoginServer.Device
 {
-    class DeviceOperationRequestRouter : OperationRequestRouter<TerminalDevice, DeviceOperationCode>
+    class DeviceOperationRequestRouter : BasicOperationRequestRouter<TerminalDevice, DeviceOperationCode>
     {
         public static DeviceOperationRequestRouter Instance { get; private set; } = new DeviceOperationRequestRouter();
 

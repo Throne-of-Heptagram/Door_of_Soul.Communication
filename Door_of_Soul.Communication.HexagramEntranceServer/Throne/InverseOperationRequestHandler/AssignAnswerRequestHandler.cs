@@ -6,37 +6,30 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Throne.InverseOperationRequestHandler
 {
-    class AssignAnswerRequestHandler : InverseOperationRequestHandler<ThroneInverseOperationCode>
+    class AssignAnswerRequestHandler : BasicInverseOperationRequestHandler
     {
         public AssignAnswerRequestHandler() : base(typeof(AssignAnswerRequestParameterCode))
         {
         }
 
-        public override void SendResponse(ThroneInverseOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            SystemOperationResponseApi.SendEndPointOperationResponse(operationCode, operationReturnCode, operationMessage, parameters);
+            ThroneInverseOperationResponseApi.SendOperationResponse(ThroneInverseOperationCode.AssignAnswer, operationReturnCode, operationMessage, parameters);
         }
 
-        public override bool Handle(ThroneInverseOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(operationCode, parameters, out errorMessage))
+            OperationReturnCode returnCode = base.Handle(parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int answerId = (int)parameters[(byte)AssignAnswerRequestParameterCode.AnswerId];
-                OperationReturnCode returnCode = VirtualSystem.Instance.GetAnswerTrinityServer(answerId, out errorMessage);
+                returnCode = VirtualSystem.Instance.AssignAnswer(answerId, out errorMessage);
                 if (returnCode != OperationReturnCode.Successiful)
                 {
-                    SendResponse(operationCode, returnCode, errorMessage, new Dictionary<byte, object>());
-                    return false;
-                }
-                else
-                {
-                    return true;
+                    SendResponse(returnCode, errorMessage, new Dictionary<byte, object>());
                 }
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

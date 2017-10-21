@@ -8,26 +8,27 @@ using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.HexagramNodeServer.Throne.OperationRequestHandler
 {
-    class DeviceThroneOperationRequestBroker : SubjectOperationRequestHandler<ThroneHexagramEntrance, VirtualThrone, ThroneOperationCode>
+    class DeviceThroneOperationRequestBroker : SubjectOperationRequestHandler<ThroneHexagramEntrance, VirtualThrone>
     {
         public DeviceThroneOperationRequestBroker() : base(typeof(DeviceThroneOperationRequestParameterCode))
         {
         }
 
-        public override void SendResponse(ThroneHexagramEntrance terminal, VirtualThrone target, ThroneOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(ThroneHexagramEntrance terminal, VirtualThrone target, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            ThroneOperationResponseApi.SendOperationResponse(terminal, operationCode, operationReturnCode, operationMessage, parameters);
+            ThroneOperationResponseApi.SendOperationResponse(terminal, ThroneOperationCode.DeviceThroneOperation, operationReturnCode, operationMessage, parameters);
         }
 
-        public override bool Handle(ThroneHexagramEntrance terminal, VirtualThrone requester, ThroneOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
+        public override OperationReturnCode Handle(ThroneHexagramEntrance terminal, VirtualThrone requester, Dictionary<byte, object> parameters, out string errorMessage)
         {
-            if (base.Handle(terminal, requester, operationCode, parameters, out errorMessage))
+            OperationReturnCode returnCode = base.Handle(terminal, requester, parameters, out errorMessage);
+            if (returnCode == OperationReturnCode.Successiful)
             {
                 int endPointId = (int)parameters[(byte)DeviceThroneOperationRequestParameterCode.EndPointId];
                 int deviceId = (int)parameters[(byte)DeviceThroneOperationRequestParameterCode.DeviceId];
                 DeviceThroneOperationCode resolvedOperationCode = (DeviceThroneOperationCode)parameters[(byte)DeviceThroneOperationRequestParameterCode.OperationCode];
                 Dictionary<byte, object> resolvedParameters = (Dictionary<byte, object>)parameters[(byte)DeviceThroneOperationRequestParameterCode.Parameters];
-                return DeviceThroneOperationRequestRouter.Instance.Route(
+                returnCode = DeviceThroneOperationRequestRouter.Instance.Route(
                     terminal: terminal,
                     l2TerminalId: endPointId,
                     l3TerminalId: deviceId,
@@ -36,10 +37,7 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Throne.OperationRequestH
                     parameters: resolvedParameters,
                     errorMessage: out errorMessage);
             }
-            else
-            {
-                return false;
-            }
+            return returnCode;
         }
     }
 }

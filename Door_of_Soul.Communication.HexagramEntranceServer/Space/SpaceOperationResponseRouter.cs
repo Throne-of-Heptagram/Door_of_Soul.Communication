@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Space
 {
-    class SpaceOperationResponseRouter : OperationResponseRouter<SpaceOperationCode>
+    class SpaceOperationResponseRouter : BasicOperationResponseRouter<SpaceOperationCode>
     {
         public static SpaceOperationResponseRouter Instance { get; private set; } = new SpaceOperationResponseRouter();
 

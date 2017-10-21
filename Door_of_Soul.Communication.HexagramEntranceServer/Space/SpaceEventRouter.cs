@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Space
 {
-    class SpaceEventRouter : EventRouter<SpaceEventCode>
+    class SpaceEventRouter : BasicEventRouter<SpaceEventCode>
     {
         public static SpaceEventRouter Instance { get; private set; } = new SpaceEventRouter();
 

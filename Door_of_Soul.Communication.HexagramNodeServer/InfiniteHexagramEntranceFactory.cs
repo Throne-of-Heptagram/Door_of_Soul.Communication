@@ -11,9 +11,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer
 
         }
 
-        public bool CreateEntrance(int hexagranEntranceId, InfiniteHexagramEntrance.SendEventDelegate sendEventMethod, InfiniteHexagramEntrance.SendOperationResponseDelegate sendOperationResponseMethod, out InfiniteHexagramEntrance entrance)
+        public bool CreateEntrance(int hexagranEntranceId, InfiniteHexagramEntrance.SendEventDelegate sendEventMethod, InfiniteHexagramEntrance.SendOperationResponseDelegate sendOperationResponseMethod, InfiniteHexagramEntrance.SendInverseOperationRequestDelegate sendInverseOperationRequestMethod, out InfiniteHexagramEntrance entrance)
         {
-            entrance = new InfiniteHexagramEntrance(hexagranEntranceId, sendEventMethod, sendOperationResponseMethod);
+            entrance = new InfiniteHexagramEntrance(hexagranEntranceId, sendEventMethod, sendOperationResponseMethod, sendInverseOperationRequestMethod);
             return Add(entrance.HexagramEntranceId, entrance);
         }
     }

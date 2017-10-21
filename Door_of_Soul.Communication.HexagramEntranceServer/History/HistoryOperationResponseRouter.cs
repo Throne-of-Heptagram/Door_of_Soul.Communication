@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.History
 {
-    class HistoryOperationResponseRouter : OperationResponseRouter<HistoryOperationCode>
+    class HistoryOperationResponseRouter : BasicOperationResponseRouter<HistoryOperationCode>
     {
         public static HistoryOperationResponseRouter Instance { get; private set; } = new HistoryOperationResponseRouter();
 

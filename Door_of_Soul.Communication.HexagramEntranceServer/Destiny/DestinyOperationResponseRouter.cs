@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.Destiny
 {
-    class DestinyOperationResponseRouter : OperationResponseRouter<DestinyOperationCode>
+    class DestinyOperationResponseRouter : BasicOperationResponseRouter<DestinyOperationCode>
     {
         public static DestinyOperationResponseRouter Instance { get; private set; } = new DestinyOperationResponseRouter();
 

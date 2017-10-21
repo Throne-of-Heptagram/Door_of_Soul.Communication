@@ -23,6 +23,7 @@ namespace Door_of_Soul.Communication.HexagramCentralServer
         {
             Instance = instance;
         }
+
         public bool HandleForwardOperationRequest(HexagramForwardOperationCode operationCode, Dictionary<byte, object> parameters, out string errorMessage)
         {
             errorMessage = "";

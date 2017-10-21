@@ -2,7 +2,7 @@
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer.History
 {
-    class HistoryEventRouter : EventRouter<HistoryEventCode>
+    class HistoryEventRouter : BasicEventRouter<HistoryEventCode>
     {
         public static HistoryEventRouter Instance { get; private set; } = new HistoryEventRouter();
 
