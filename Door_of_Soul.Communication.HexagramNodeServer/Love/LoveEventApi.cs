@@ -5,9 +5,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Love
 {
     public static class LoveEventApi
     {
-        public static void SendEvent(LoveHexagramEntrance target, LoveEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SendEvent(LoveHexagramEntrance terminal, LoveEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            target.SendEvent(eventCode, parameters);
+            terminal.SendEvent(eventCode, parameters);
         }
     }
 }

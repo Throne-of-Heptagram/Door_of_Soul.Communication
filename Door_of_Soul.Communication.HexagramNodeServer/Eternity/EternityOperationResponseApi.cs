@@ -7,9 +7,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Eternity
 {
     public static class EternityOperationResponseApi
     {
-        public static void SendOperationResponse(EternityHexagramEntrance target, EternityOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SendOperationResponse(EternityHexagramEntrance terminal, EternityOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            target.SendOperationResponse(operationCode, operationReturnCode, operationMessage, parameters);
+            terminal.SendOperationResponse(operationCode, operationReturnCode, operationMessage, parameters);
         }
     }
 }

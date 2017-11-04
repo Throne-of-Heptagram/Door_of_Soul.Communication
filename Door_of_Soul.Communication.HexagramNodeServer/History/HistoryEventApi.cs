@@ -5,9 +5,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.History
 {
     public static class HistoryEventApi
     {
-        public static void SendEvent(HistoryHexagramEntrance target, HistoryEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SendEvent(HistoryHexagramEntrance terminal, HistoryEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            target.SendEvent(eventCode, parameters);
+            terminal.SendEvent(eventCode, parameters);
         }
     }
 }

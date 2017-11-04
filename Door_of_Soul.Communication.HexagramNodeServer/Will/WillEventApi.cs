@@ -5,9 +5,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Will
 {
     public static class WillEventApi
     {
-        public static void SendEvent(WillHexagramEntrance target, WillEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SendEvent(WillHexagramEntrance terminal, WillEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            target.SendEvent(eventCode, parameters);
+            terminal.SendEvent(eventCode, parameters);
         }
     }
 }

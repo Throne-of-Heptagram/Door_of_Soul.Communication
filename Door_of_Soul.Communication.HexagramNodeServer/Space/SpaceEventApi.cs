@@ -5,9 +5,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Space
 {
     public static class SpaceEventApi
     {
-        public static void SendEvent(SpaceHexagramEntrance target, SpaceEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SendEvent(SpaceHexagramEntrance terminal, SpaceEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            target.SendEvent(eventCode, parameters);
+            terminal.SendEvent(eventCode, parameters);
         }
     }
 }

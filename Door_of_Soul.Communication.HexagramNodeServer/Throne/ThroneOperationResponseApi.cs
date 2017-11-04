@@ -9,9 +9,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Throne
 {
     public static class ThroneOperationResponseApi
     {
-        public static void SendOperationResponse(ThroneHexagramEntrance target, ThroneOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SendOperationResponse(ThroneHexagramEntrance terminal, ThroneOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            target.SendOperationResponse(operationCode, operationReturnCode, operationMessage, parameters);
+            terminal.SendOperationResponse(operationCode, operationReturnCode, operationMessage, parameters);
         }
 
         public static void EndPointOperationResponse(ThroneHexagramEntrance terminal, int endPointId, EndPointThroneOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)

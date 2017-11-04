@@ -11,9 +11,9 @@ namespace Door_of_Soul.Communication.TrinityServer.Device
 {
     public static class DeviceOperationResponseApi
     {
-        public static void SendOperationResponse(TerminalDevice target, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SendOperationResponse(TerminalDevice terminal, DeviceOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            target.SendOperationResponse(operationCode, operationReturnCode, operationMessage, parameters);
+            terminal.SendOperationResponse(operationCode, operationReturnCode, operationMessage, parameters);
         }
         public static void SystemOperationResponse(TerminalDevice terminal, SystemOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {

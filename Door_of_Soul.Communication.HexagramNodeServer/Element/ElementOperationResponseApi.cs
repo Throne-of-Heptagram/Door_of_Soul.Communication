@@ -7,9 +7,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Element
 {
     public static class ElementOperationResponseApi
     {
-        public static void SendOperationResponse(ElementHexagramEntrance target, ElementOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SendOperationResponse(ElementHexagramEntrance terminal, ElementOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            target.SendOperationResponse(operationCode, operationReturnCode, operationMessage, parameters);
+            terminal.SendOperationResponse(operationCode, operationReturnCode, operationMessage, parameters);
         }
     }
 }

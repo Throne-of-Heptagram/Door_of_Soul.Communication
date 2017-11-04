@@ -10,7 +10,7 @@ namespace Door_of_Soul.Communication
         {
         }
 
-        public abstract void SendResponse(TTerminal target, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters);
+        public abstract void SendResponse(TTerminal terminal, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters);
 
         public virtual OperationReturnCode Handle(TTerminal terminal, Dictionary<byte, object> parameters, out string errorMessage)
         {

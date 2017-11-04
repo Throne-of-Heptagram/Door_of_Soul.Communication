@@ -14,9 +14,9 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
 {
     public static class EndPointEventApi
     {
-        public static void SendEvent(TerminalEndPoint target, EndPointEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SendEvent(TerminalEndPoint terminal, EndPointEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            target.SendEvent(eventCode, parameters);
+            terminal.SendEvent(eventCode, parameters);
         }
 
         public static void SystemEvent(TerminalEndPoint terminal, SystemEventCode eventCode, Dictionary<byte, object> parameters)
@@ -99,7 +99,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
                 { (byte)AnswerEventParameterCode.EventCode, eventCode },
                 { (byte)AnswerEventParameterCode.Parameters, parameters }
             };
-            foreach (var endPoint in EndPointFactory.Instance.Subjects.Where(x => x.EndPointType == EndPointType.TrinityServer))
+            foreach (var endPoint in EndPointFactory.Instance.Subjects.OfType<TrinityEndPoint>())
             {
                 SendEvent(endPoint, EndPointEventCode.AnswerEvent, eventParameters);
             }
@@ -112,7 +112,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
                 { (byte)SoulEventParameterCode.EventCode, eventCode },
                 { (byte)SoulEventParameterCode.Parameters, parameters }
             };
-            foreach (var endPoint in EndPointFactory.Instance.Subjects.Where(x => x.EndPointType == EndPointType.TrinityServer))
+            foreach (var endPoint in EndPointFactory.Instance.Subjects.OfType<TrinityEndPoint>())
             {
                 SendEvent(endPoint, EndPointEventCode.SoulEvent, eventParameters);
             }
@@ -125,7 +125,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
                 { (byte)AvatarEventParameterCode.EventCode, eventCode },
                 { (byte)AvatarEventParameterCode.Parameters, parameters }
             };
-            foreach (var endPoint in EndPointFactory.Instance.Subjects.Where(x => x.EndPointType == EndPointType.TrinityServer))
+            foreach (var endPoint in EndPointFactory.Instance.Subjects.OfType<TrinityEndPoint>())
             {
                 SendEvent(endPoint, EndPointEventCode.AvatarEvent, eventParameters);
             }
@@ -138,7 +138,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
                 { (byte)WorldEventParameterCode.EventCode, eventCode },
                 { (byte)WorldEventParameterCode.Parameters, parameters }
             };
-            foreach (var endPoint in EndPointFactory.Instance.Subjects.Where(x => x.EndPointType == EndPointType.ObserverServer))
+            foreach (var endPoint in EndPointFactory.Instance.Subjects.OfType<ObserverEndPoint>())
             {
                 SendEvent(endPoint, EndPointEventCode.WorldEvent, eventParameters);
             }
@@ -151,7 +151,7 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint
                 { (byte)SceneEventParameterCode.EventCode, eventCode },
                 { (byte)SceneEventParameterCode.Parameters, parameters }
             };
-            foreach (var endPoint in EndPointFactory.Instance.Subjects.Where(x => x.EndPointType == EndPointType.ObserverServer))
+            foreach (var endPoint in EndPointFactory.Instance.Subjects.OfType<ObserverEndPoint>())
             {
                 SendEvent(endPoint, EndPointEventCode.SceneEvent, eventParameters);
             }

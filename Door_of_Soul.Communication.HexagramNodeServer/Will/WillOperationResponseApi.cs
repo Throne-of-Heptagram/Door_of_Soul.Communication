@@ -6,9 +6,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Will
 {
     public static class WillOperationResponseApi
     {
-        public static void SendOperationResponse(WillHexagramEntrance target, WillOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SendOperationResponse(WillHexagramEntrance terminal, WillOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            target.SendOperationResponse(operationCode, operationReturnCode, operationMessage, parameters);
+            terminal.SendOperationResponse(operationCode, operationReturnCode, operationMessage, parameters);
         }
     }
 }

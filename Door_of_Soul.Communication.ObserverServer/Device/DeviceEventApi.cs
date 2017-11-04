@@ -9,9 +9,9 @@ namespace Door_of_Soul.Communication.ObserverServer.Device
 {
     public static class DeviceEventApi
     {
-        public static void SendEvent(TerminalDevice target, DeviceEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SendEvent(TerminalDevice terminal, DeviceEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            target.SendEvent(eventCode, parameters);
+            terminal.SendEvent(eventCode, parameters);
         }
 
         public static void WorldEvent(TerminalDevice terminal, VirtualWorld target, WorldEventCode eventCode, Dictionary<byte, object> parameters)

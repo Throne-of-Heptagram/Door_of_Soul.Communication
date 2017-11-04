@@ -7,9 +7,9 @@ namespace Door_of_Soul.Communication.LoginServer.Device
 {
     public static class DeviceEventApi
     {
-        public static void SendEvent(TerminalDevice target, DeviceEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SendEvent(TerminalDevice terminal, DeviceEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            target.SendEvent(eventCode, parameters);
+            terminal.SendEvent(eventCode, parameters);
         }
 
         public static void SystemEvent(TerminalDevice terminal, SystemEventCode eventCode, Dictionary<byte, object> parameters)

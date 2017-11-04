@@ -58,6 +58,7 @@
     <Compile Include="EndPointFactory.cs" />
     <Compile Include="EndPointType.cs" />
     <Compile Include="EndPoint\EndPointEventApi.cs" />
+    <Compile Include="EndPoint\EndPointInverseOperationRequestApi.cs" />
     <Compile Include="EndPoint\EndPointOperationRequestRouter.cs" />
     <Compile Include="EndPoint\EndPointOperationResponseApi.cs" />
     <Compile Include="EndPoint\OperationRequestHandler\DeviceAnswerOperationRequestBroker.cs" />
@@ -93,10 +94,12 @@
     <Compile Include="Life\LifeEventRouter.cs" />
     <Compile Include="Life\LifeOperationRequestApi.cs" />
     <Compile Include="Life\LifeOperationResponseRouter.cs" />
+    <Compile Include="LoginEndPoint.cs" />
     <Compile Include="LoveCommunicationService.cs" />
     <Compile Include="Love\LoveEventRouter.cs" />
     <Compile Include="Love\LoveOperationRequestApi.cs" />
     <Compile Include="Love\LoveOperationResponseRouter.cs" />
+    <Compile Include="ObserverEndPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceService.cs" />
     <Compile Include="Scene\SceneEventApi.cs" />
@@ -116,6 +119,7 @@
     <Compile Include="System\OperationRequestHandler\DeviceRegisterRequestHandler.cs" />
     <Compile Include="System\OperationRequestHandler\GetAnswerTrinityServerRequestHandler.cs" />
     <Compile Include="System\SystemEventApi.cs" />
+    <Compile Include="System\SystemInverseOperationRequestApi.cs" />
     <Compile Include="System\SystemOperationRequestRouter.cs" />
     <Compile Include="System\SystemOperationResponseApi.cs" />
     <Compile Include="TerminalEndPoint.cs" />
@@ -135,6 +139,7 @@
     <Compile Include="Throne\ThroneInverseOperationResponseApi.cs" />
     <Compile Include="Throne\ThroneOperationRequestApi.cs" />
     <Compile Include="Throne\ThroneOperationResponseRouter.cs" />
+    <Compile Include="TrinityEndPoint.cs" />
     <Compile Include="WillCommunicationService.cs" />
     <Compile Include="Will\WillEventRouter.cs" />
     <Compile Include="Will\WillOperationRequestApi.cs" />

@@ -7,9 +7,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Infinite
 {
     public static class InfiniteOperationResponseApi
     {
-        public static void SendOperationResponse(InfiniteHexagramEntrance target, InfiniteOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public static void SendOperationResponse(InfiniteHexagramEntrance terminal, InfiniteOperationCode operationCode, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            target.SendOperationResponse(operationCode, operationReturnCode, operationMessage, parameters);
+            terminal.SendOperationResponse(operationCode, operationReturnCode, operationMessage, parameters);
         }
     }
 }

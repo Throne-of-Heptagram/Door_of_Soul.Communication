@@ -5,8 +5,6 @@ namespace Door_of_Soul.Communication.HexagramNodeServer
 {
     public class SpaceHexagramEntrance : TerminalHexagramEntrance<SpaceEventCode, SpaceOperationCode, SpaceInverseOperationCode, SpaceInverseEventCode>
     {
-        public override event Action OnEventDependencyDisappear;
-
         public SpaceHexagramEntrance(int hexagramEntranceId, SendEventDelegate sendEventMethod, SendOperationResponseDelegate sendOperationResponseMethod, SendInverseOperationRequestDelegate sendInverseOperationRequestMethod) : base(hexagramEntranceId, sendEventMethod, sendOperationResponseMethod, sendInverseOperationRequestMethod)
         {
         }
@@ -14,11 +12,6 @@ namespace Door_of_Soul.Communication.HexagramNodeServer
         public override string ToString()
         {
             return $"Space{base.ToString()}";
-        }
-
-        public override void ReleaseDependency()
-        {
-            OnEventDependencyDisappear?.Invoke();
-        }       
+        }    
     }
 }

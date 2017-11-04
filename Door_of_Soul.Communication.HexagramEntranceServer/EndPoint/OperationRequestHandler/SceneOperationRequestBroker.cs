@@ -14,9 +14,9 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.EndPoint.OperationRe
         {
         }
 
-        public override void SendResponse(TerminalEndPoint target, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(TerminalEndPoint terminal, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            EndPointOperationResponseApi.SendOperationResponse(target, EndPointOperationCode.SceneOperation, operationReturnCode, operationMessage, parameters);
+            EndPointOperationResponseApi.SendOperationResponse(terminal, EndPointOperationCode.SceneOperation, operationReturnCode, operationMessage, parameters);
         }
 
         public override OperationReturnCode Handle(TerminalEndPoint terminal, Dictionary<byte, object> parameters, out string errorMessage)

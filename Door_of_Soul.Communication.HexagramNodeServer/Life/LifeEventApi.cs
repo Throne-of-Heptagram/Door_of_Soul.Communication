@@ -5,9 +5,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Life
 {
     public static class LifeEventApi
     {
-        public static void SendEvent(LifeHexagramEntrance target, LifeEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SendEvent(LifeHexagramEntrance terminal, LifeEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            target.SendEvent(eventCode, parameters);
+            terminal.SendEvent(eventCode, parameters);
         }
     }
 }

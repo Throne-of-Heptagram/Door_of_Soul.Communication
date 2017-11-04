@@ -8,9 +8,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Throne
 {
     public static class ThroneEventApi
     {
-        public static void SendEvent(ThroneHexagramEntrance target, ThroneEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SendEvent(ThroneHexagramEntrance terminal, ThroneEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            target.SendEvent(eventCode, parameters);
+            terminal.SendEvent(eventCode, parameters);
         }
 
         public static void EndPointEvent(ThroneHexagramEntrance terminal, int endPointId, EndPointThroneEventCode eventCode, Dictionary<byte, object> parameters)

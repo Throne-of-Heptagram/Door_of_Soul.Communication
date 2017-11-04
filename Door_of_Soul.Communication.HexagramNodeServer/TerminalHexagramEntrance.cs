@@ -1,7 +1,7 @@
 ﻿using Door_of_Soul.Core;
 using Door_of_Soul.Core.Protocol;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 
 namespace Door_of_Soul.Communication.HexagramNodeServer
 {
@@ -11,7 +11,8 @@ namespace Door_of_Soul.Communication.HexagramNodeServer
         public delegate void SendOperationResponseDelegate(TOperationCode operationCode, OperationReturnCode returnCode, string operationMessage, Dictionary<byte, object> parameters);
         public delegate void SendInverseOperationRequestDelegate(TInverseOperationCode inverseOperationCode, Dictionary<byte, object> parameters);
 
-        public abstract event Action OnEventDependencyDisappear;
+        public event Action OnDisconnected;
+        public event Action OnEventDependencyDisappear;
 
         public int HexagramEntranceId { get; private set; }
 
@@ -32,6 +33,15 @@ namespace Door_of_Soul.Communication.HexagramNodeServer
             return $"Entrance Id:{HexagramEntranceId}";
         }
 
-        public abstract void ReleaseDependency();
+        public void Disconnect()
+        {
+            OnDisconnected?.Invoke();
+            ReleaseDependency();
+        }
+
+        public void ReleaseDependency()
+        {
+            OnEventDependencyDisappear?.Invoke();
+        }
     }
 }

@@ -24,10 +24,6 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer.Throne.InverseOperat
             {
                 int answerId = (int)parameters[(byte)AssignAnswerRequestParameterCode.AnswerId];
                 returnCode = VirtualSystem.Instance.AssignAnswer(answerId, out errorMessage);
-                if (returnCode != OperationReturnCode.Successiful)
-                {
-                    SendResponse(returnCode, errorMessage, new Dictionary<byte, object>());
-                }
             }
             return returnCode;
         }

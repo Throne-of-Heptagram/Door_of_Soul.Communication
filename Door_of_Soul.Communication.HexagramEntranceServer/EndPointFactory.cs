@@ -1,4 +1,5 @@
 ﻿using Door_of_Soul.Core;
+using System;
 
 namespace Door_of_Soul.Communication.HexagramEntranceServer
 {
@@ -11,10 +12,37 @@ namespace Door_of_Soul.Communication.HexagramEntranceServer
 
         }
 
-        public bool CreateEndPoint(int endPointId, EndPointType endPointType, TerminalEndPoint.SendEventDelegate sendEventMethod, TerminalEndPoint.SendOperationResponseDelegate sendOperationResponseMethod, out TerminalEndPoint endPoint)
+        public bool CreateEndPoint(int endPointId, EndPointType endPointType, TerminalEndPoint.SendEventDelegate sendEventMethod, TerminalEndPoint.SendOperationResponseDelegate sendOperationResponseMethod, TerminalEndPoint.SendInverseOperationRequestDelegate sendInverseOperationRequestMethod, out TerminalEndPoint endPoint)
         {
-            endPoint = new TerminalEndPoint(endPointId, endPointType, sendEventMethod, sendOperationResponseMethod);
+            switch(endPointType)
+            {
+                case EndPointType.LoginServer:
+                    endPoint = new LoginEndPoint(endPointId, sendEventMethod, sendOperationResponseMethod, sendInverseOperationRequestMethod);
+                    break;
+                case EndPointType.TrinityServer:
+                    endPoint = new TrinityEndPoint(endPointId, sendEventMethod, sendOperationResponseMethod, sendInverseOperationRequestMethod);
+                    break;
+                case EndPointType.ObserverServer:
+                    endPoint = new ObserverEndPoint(endPointId, sendEventMethod, sendOperationResponseMethod, sendInverseOperationRequestMethod);
+                    break;
+                default:
+                    throw new NotImplementedException($"EndPointFactory unknown EndPointType:{endPointType}");
+            }
             return Add(endPoint.EndPointId, endPoint);
+        }
+        public bool Find<TEndPoint>(int endPointId, out TEndPoint endPoint) where TEndPoint : TerminalEndPoint
+        {
+            TerminalEndPoint baseEndPoint;
+            if(Find(endPointId, out baseEndPoint) && baseEndPoint is TEndPoint)
+            {
+                endPoint = baseEndPoint as TEndPoint;
+                return true;
+            }
+            else
+            {
+                endPoint = default(TEndPoint);
+                return false;
+            }
         }
     }
 }

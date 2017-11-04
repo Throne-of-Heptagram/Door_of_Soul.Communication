@@ -5,8 +5,6 @@ namespace Door_of_Soul.Communication.HexagramNodeServer
 {
     public class HistoryHexagramEntrance : TerminalHexagramEntrance<HistoryEventCode, HistoryOperationCode, HistoryInverseOperationCode, HistoryInverseEventCode>
     {
-        public override event Action OnEventDependencyDisappear;
-
         public HistoryHexagramEntrance(int hexagramEntranceId, SendEventDelegate sendEventMethod, SendOperationResponseDelegate sendOperationResponseMethod, SendInverseOperationRequestDelegate sendInverseOperationRequestMethod) : base(hexagramEntranceId, sendEventMethod, sendOperationResponseMethod, sendInverseOperationRequestMethod)
         {
         }
@@ -14,11 +12,6 @@ namespace Door_of_Soul.Communication.HexagramNodeServer
         public override string ToString()
         {
             return $"History{base.ToString()}";
-        }
-
-        public override void ReleaseDependency()
-        {
-            OnEventDependencyDisappear?.Invoke();
         }
     }
 }

@@ -5,9 +5,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Knowledge
 {
     public static class KnowledgeEventApi
     {
-        public static void SendEvent(KnowledgeHexagramEntrance target, KnowledgeEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SendEvent(KnowledgeHexagramEntrance terminal, KnowledgeEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            target.SendEvent(eventCode, parameters);
+            terminal.SendEvent(eventCode, parameters);
         }
     }
 }

@@ -5,9 +5,6 @@ namespace Door_of_Soul.Communication.HexagramNodeServer
 {
     public class ThroneHexagramEntrance : TerminalHexagramEntrance<ThroneEventCode, ThroneOperationCode, ThroneInverseOperationCode, ThroneInverseEventCode>
     {
-        public event Action OnDisconnected;
-        public override event Action OnEventDependencyDisappear;
-
         private object accessAnswerCountLock = new object();
         public int AccessAnswerCount { get; private set; }
 
@@ -32,16 +29,6 @@ namespace Door_of_Soul.Communication.HexagramNodeServer
             {
                 AccessAnswerCount--;
             }
-        }
-        public void Disconnect()
-        {
-            OnDisconnected?.Invoke();
-            ReleaseDependency();
-        }
-
-        public override void ReleaseDependency()
-        {
-            OnEventDependencyDisappear?.Invoke();
         }
     }
 }

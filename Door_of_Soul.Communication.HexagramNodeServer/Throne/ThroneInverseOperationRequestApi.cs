@@ -6,9 +6,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Throne
 {
     public static class ThroneInverseOperationRequestApi
     {
-        public static void SendOperationRequest(ThroneHexagramEntrance target, ThroneInverseOperationCode operationCode, Dictionary<byte, object> parameters)
+        public static void SendOperationRequest(ThroneHexagramEntrance terminal, ThroneInverseOperationCode operationCode, Dictionary<byte, object> parameters)
         {
-            target.SendInverseOperationRequest(operationCode, parameters);
+            terminal.SendInverseOperationRequest(operationCode, parameters);
         }
 
         public static void AssignAnswer(ThroneHexagramEntrance terminal, int answerId)

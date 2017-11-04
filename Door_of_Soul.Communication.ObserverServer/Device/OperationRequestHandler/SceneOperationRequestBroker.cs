@@ -13,9 +13,9 @@ namespace Door_of_Soul.Communication.ObserverServer.Device.OperationRequestHandl
         {
         }
 
-        public override void SendResponse(TerminalDevice target, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
+        public override void SendResponse(TerminalDevice terminal, OperationReturnCode operationReturnCode, string operationMessage, Dictionary<byte, object> parameters)
         {
-            DeviceOperationResponseApi.SendOperationResponse(target, DeviceOperationCode.SceneOperation, operationReturnCode, operationMessage, parameters);
+            DeviceOperationResponseApi.SendOperationResponse(terminal, DeviceOperationCode.SceneOperation, operationReturnCode, operationMessage, parameters);
         }
 
         public override OperationReturnCode Handle(TerminalDevice terminal, Dictionary<byte, object> parameters, out string errorMessage)

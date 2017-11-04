@@ -5,9 +5,9 @@ namespace Door_of_Soul.Communication.HexagramNodeServer.Infinite
 {
     public static class InfiniteEventApi
     {
-        public static void SendEvent(InfiniteHexagramEntrance target, InfiniteEventCode eventCode, Dictionary<byte, object> parameters)
+        public static void SendEvent(InfiniteHexagramEntrance terminal, InfiniteEventCode eventCode, Dictionary<byte, object> parameters)
         {
-            target.SendEvent(eventCode, parameters);
+            terminal.SendEvent(eventCode, parameters);
         }
     }
 }
